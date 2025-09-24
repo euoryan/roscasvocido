@@ -3,15 +3,123 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>roscasvocido</title>
-    <link rel="stylesheet" href="assets/css/styles.css">
+    
+    <!-- SEO Meta Tags -->
+    <title>Roscas Vo Cido</title>
+    <meta name="description" content="Roscas artesanais feitas com carinho pelo vô Cido. Congeladas e prontas para assar em casa. Tradicionais, de canela, chocolate e queijo. Entrega via WhatsApp.">
+    <meta name="keywords" content="roscas, artesanal, pão, assar, delivery, WhatsApp, vô Cido, tradicionais, canela, chocolate, queijo, congeladas">
+    <meta name="author" content="roscasvocido">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="pt-BR">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://roscasvocido.github.io/">
+    <meta property="og:title" content="roscasvocido - Roscas Artesanais Feitas com Carinho">
+    <meta property="og:description" content="Roscas artesanais feitas com carinho pelo vô Cido. Congeladas e prontas para assar em casa. Tradicionais, de canela, chocolate e queijo.">
+    <meta property="og:image" content="https://roscasvocido.github.io/assets/logo/logo%20roscasvocido.svg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="roscasvocido">
+    <meta property="og:locale" content="pt_BR">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://roscasvocido.github.io/">
+    <meta property="twitter:title" content="roscasvocido - Roscas Artesanais Feitas com Carinho">
+    <meta property="twitter:description" content="Roscas artesanais feitas com carinho pelo vô Cido. Congeladas e prontas para assar em casa.">
+    <meta property="twitter:image" content="https://roscasvocido.github.io/assets/logo/logo%20roscasvocido.svg">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="assets/favicon/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
+    <link rel="manifest" href="assets/favicon/site.webmanifest">
+    
+    <!-- Theme Colors -->
+    <meta name="theme-color" content="#3b401b">
+    <meta name="msapplication-TileColor" content="#3b401b">
+    <meta name="msapplication-config" content="assets/favicon/browserconfig.xml">
+    
+    <!-- Preconnect for performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://wa.me">
+    
+    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <meta name="description" content="Feitas com carinho, congeladas e prontas para assar em casa!">
-    <meta name="keywords" content="roscas, artesanal, pão, assar, delivery, WhatsApp">
-    <meta name="theme-color" content="#3b401b">
-    <link rel="apple-touch-icon" href="assets/logo/logo roscasvocido.svg">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="assets/css/styles.css">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "roscasvocido",
+        "description": "Roscas artesanais feitas com carinho pelo vô Cido",
+        "url": "https://roscasvocido.github.io",
+        "telephone": "+55 48 8803-0687",
+        "address": {
+            "@type": "PostalAddress",
+            "addressCountry": "BR"
+        },
+        "openingHours": "Mo-Su",
+        "priceRange": "R$ 8,00 - R$ 12,00",
+        "servesCuisine": "Brasileira",
+        "hasMenu": {
+            "@type": "Menu",
+            "hasMenuSection": {
+                "@type": "MenuSection",
+                "name": "Roscas Artesanais",
+                "hasMenuItem": [
+                    {
+                        "@type": "MenuItem",
+                        "name": "Rosca Tradicional",
+                        "description": "Nossa receita clássica, macia e saborosa",
+                        "offers": {
+                            "@type": "Offer",
+                            "price": "8.00",
+                            "priceCurrency": "BRL"
+                        }
+                    },
+                    {
+                        "@type": "MenuItem",
+                        "name": "Rosca de Canela",
+                        "description": "Deliciosa rosca com canela e açúcar",
+                        "offers": {
+                            "@type": "Offer",
+                            "price": "10.00",
+                            "priceCurrency": "BRL"
+                        }
+                    },
+                    {
+                        "@type": "MenuItem",
+                        "name": "Rosca de Chocolate",
+                        "description": "Irresistível rosca com gotas de chocolate",
+                        "offers": {
+                            "@type": "Offer",
+                            "price": "12.00",
+                            "priceCurrency": "BRL"
+                        }
+                    },
+                    {
+                        "@type": "MenuItem",
+                        "name": "Rosca de Queijo",
+                        "description": "Salgada e saborosa, perfeita para o café",
+                        "offers": {
+                            "@type": "Offer",
+                            "price": "9.00",
+                            "priceCurrency": "BRL"
+                        }
+                    }
+                ]
+            }
+        }
+    }
+    </script>
 </head>
 <body>
     <header class="header">
@@ -43,7 +151,7 @@
                     <p>Feitas com carinho, congeladas e prontas para assar em casa!</p>
                     <div class="hero-buttons">
                         <a href="#catalogo" class="btn btn-primary btn-hero">Ver Catálogo</a>
-                        <a href="#pagamento" class="btn btn-secondary btn-hero">Ver Pix Pagamento</a>
+                        <a href="#pagamento" class="btn btn-secondary btn-hero">Pagamentos</a>
                     </div>
                 </div>
             </div>
@@ -226,24 +334,27 @@
         </section>
     </main>
 
-    <footer class="footer">
+    <footer class="footer" role="contentinfo">
+        <h2 class="sr-only">Footer</h2>
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">
-                    <img src="assets/logo/logo roscasvocido.svg" alt="roscasvocido" class="footer-logo-img">
-                    <span>roscasvocido</span>
+            <div class="footer-main">
+                <div class="footer-brand">
+                    <img src="assets/logo/logo roscasvocido.svg" alt="roscasvocido" class="footer-logo">
+                    <span>&copy; 2025 roscasvocido</span>
                 </div>
-                <div class="footer-nav">
-                    <a href="#home" class="footer-link">Início</a>
-                    <a href="#catalogo" class="footer-link">Catálogo</a>
-                    <a href="#videos" class="footer-link">Como Assar</a>
-                    <a href="#pagamento" class="footer-link">Pagamento</a>
-                    <a href="#contato" class="footer-link">Contato</a>
-                </div>
+                <nav aria-label="Footer">
+                    <h3 class="sr-only" id="sr-footer-heading">Footer navigation</h3>
+                    <ul class="footer-nav" aria-labelledby="sr-footer-heading">
+                        <li><a href="#home" class="footer-link">Início</a></li>
+                        <li><a href="#catalogo" class="footer-link">Catálogo</a></li>
+                        <li><a href="#videos" class="footer-link">Preparo</a></li>
+                        <li><a href="#pagamento" class="footer-link">Pagamentos</a></li>
+                        <li><a href="#contato" class="footer-link">Contato</a></li>
+                    </ul>
+                </nav>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 roscasvocido. Todos os direitos reservados.</p>
-                <p class="footer-credits">Desenvolvido por <a href="https://euoryan.com" target="_blank" class="credits-link">euoryan</a></p>
+                <p>Desenvolvido por <a href="https://euoryan.com" target="_blank" class="credits-link">euoryan</a></p>
             </div>
         </div>
     </footer>
