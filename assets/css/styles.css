@@ -58,9 +58,9 @@ body {
 
 /* HEADER */
 .header {
-    background: rgba(255, 255, 255, 0.98);
-    backdrop-filter: blur(5px);
-    border-bottom: 1px solid var(--border-light);
+    background: rgba(248, 250, 252, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 2px solid var(--primary-color);
     position: fixed;
     top: 0;
     left: 0;
@@ -69,6 +69,7 @@ body {
     transition: var(--transition);
     width: 100%;
     will-change: auto;
+    box-shadow: 0 2px 8px rgba(59, 64, 27, 0.1);
 }
 
 .header.scrolled {
@@ -87,7 +88,7 @@ body {
 
 .nav {
     display: flex;
-    gap: 2rem;
+    gap: 1rem;
     align-items: center;
 }
 
@@ -201,7 +202,12 @@ body {
 
 /* HERO SECTION */
 .hero {
-    background: linear-gradient(135deg, var(--background-light) 0%, var(--background) 100%);
+    background: 
+        linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.8) 100%),
+        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><defs><pattern id="bread-pattern" width="200" height="200" patternUnits="userSpaceOnUse"><circle cx="100" cy="100" r="40" fill="%23f5f1e8" opacity="0.3"/><circle cx="50" cy="50" r="20" fill="%23e8ddd4" opacity="0.2"/><circle cx="150" cy="150" r="25" fill="%23d4c4a8" opacity="0.15"/></pattern></defs><rect width="1200" height="800" fill="url(%23bread-pattern)"/></svg>');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
     padding: 120px 0 80px;
     text-align: center;
     position: relative;
@@ -218,8 +224,9 @@ body {
     right: 0;
     bottom: 0;
     background: 
-        radial-gradient(circle at 20% 20%, rgba(59, 64, 27, 0.05) 0%, transparent 50%),
-        radial-gradient(circle at 80% 80%, rgba(193, 118, 36, 0.05) 0%, transparent 50%);
+        radial-gradient(circle at 20% 20%, rgba(59, 64, 27, 0.03) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(193, 118, 36, 0.03) 0%, transparent 50%),
+        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="%233b401b" opacity="0.1"/><circle cx="80" cy="30" r="1.5" fill="%23c17624" opacity="0.08"/><circle cx="30" cy="80" r="1" fill="%233b401b" opacity="0.06"/><circle cx="70" cy="70" r="2.5" fill="%23c17624" opacity="0.05"/></svg>');
     pointer-events: none;
     will-change: auto;
 }
@@ -396,8 +403,9 @@ body {
     right: 0;
     bottom: 0;
     background: 
-        radial-gradient(circle at 30% 30%, rgba(193, 118, 36, 0.04) 0%, transparent 60%),
-        radial-gradient(circle at 70% 70%, rgba(59, 64, 27, 0.04) 0%, transparent 60%);
+        radial-gradient(circle at 30% 30%, rgba(193, 118, 36, 0.03) 0%, transparent 60%),
+        radial-gradient(circle at 70% 70%, rgba(59, 64, 27, 0.03) 0%, transparent 60%),
+        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80"><rect x="10" y="10" width="8" height="8" fill="%23c17624" opacity="0.05" rx="2"/><rect x="60" y="20" width="6" height="6" fill="%233b401b" opacity="0.04" rx="1"/><rect x="20" y="60" width="10" height="10" fill="%23c17624" opacity="0.03" rx="2"/></svg>');
     pointer-events: none;
     will-change: auto;
 }
@@ -532,8 +540,9 @@ body {
     right: 0;
     bottom: 0;
     background: 
-        radial-gradient(circle at 20% 20%, rgba(59, 64, 27, 0.03) 0%, transparent 50%),
-        radial-gradient(circle at 80% 80%, rgba(193, 118, 36, 0.03) 0%, transparent 50%);
+        radial-gradient(circle at 20% 20%, rgba(59, 64, 27, 0.02) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(193, 118, 36, 0.02) 0%, transparent 50%),
+        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60"><polygon points="30,5 40,20 55,20 45,30 50,45 30,35 10,45 15,30 5,20 20,20" fill="%233b401b" opacity="0.04"/><polygon points="30,15 35,25 45,25 37,32 40,42 30,37 20,42 23,32 15,25 25,25" fill="%23c17624" opacity="0.03"/></svg>');
     pointer-events: none;
     will-change: auto;
 }
@@ -682,9 +691,21 @@ body {
     color: var(--secondary-color);
     margin-bottom: var(--spacing-lg);
     padding: var(--spacing-md);
+    user-select: all;
+    -webkit-user-select: all;
+    -moz-user-select: all;
+    -ms-user-select: all;
+    cursor: pointer;
     background: var(--background-light);
-    border-radius: var(--border-radius);
     border: 2px dashed var(--secondary-color);
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+}
+
+.pix-key:hover {
+    background: var(--secondary-color);
+    color: white;
+    transform: translateY(-2px);
 }
 
 .qr-code {
@@ -710,9 +731,9 @@ body {
 
 @media (max-width: 768px) {
     .qr-code-img {
-        width: 180px;
-        height: 180px;
-        padding: 8px;
+        width: 250px;
+        height: 250px;
+        padding: 10px;
     }
     
     /* Botões otimizados para mobile */
@@ -767,8 +788,9 @@ body {
     .contato-item {
         flex-direction: column;
         text-align: center;
-        gap: var(--spacing-sm);
-        padding: var(--spacing-md);
+        gap: 1rem;
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
     }
     
     .contato-details {
@@ -821,9 +843,9 @@ body {
     }
     
     .qr-code-img {
-        width: 160px;
-        height: 160px;
-        padding: 6px;
+        width: 220px;
+        height: 220px;
+        padding: 8px;
     }
 }
 
@@ -889,8 +911,9 @@ body {
     right: 0;
     bottom: 0;
     background: 
-        radial-gradient(circle at 20% 20%, rgba(59, 64, 27, 0.03) 0%, transparent 50%),
-        radial-gradient(circle at 80% 80%, rgba(193, 118, 36, 0.03) 0%, transparent 50%);
+        radial-gradient(circle at 20% 20%, rgba(59, 64, 27, 0.02) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(193, 118, 36, 0.02) 0%, transparent 50%),
+        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 70 70"><path d="M35,10 Q45,20 35,30 Q25,20 35,10 Z" fill="%23c17624" opacity="0.04"/><path d="M35,40 Q50,50 35,60 Q20,50 35,40 Z" fill="%233b401b" opacity="0.03"/><circle cx="35" cy="35" r="8" fill="%23c17624" opacity="0.02"/></svg>');
     pointer-events: none;
     will-change: auto;
 }
@@ -925,37 +948,135 @@ body {
 .contato-item {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
-    padding: 0.75rem;
-    background: var(--background-light);
+    gap: 1.5rem;
+    padding: 2rem;
+    background: linear-gradient(135deg, var(--background) 0%, rgba(248, 250, 252, 0.8) 100%);
     border-radius: var(--border-radius-lg);
-    border: 1px solid var(--border-light);
+    border: 2px solid var(--border-color);
     transition: var(--transition);
-    justify-content: space-between;
+    box-shadow: var(--shadow-sm);
+    margin-bottom: 1.5rem;
+    position: relative;
+    overflow: hidden;
 }
 
 .contato-item:hover {
-    box-shadow: var(--shadow-sm);
+    box-shadow: var(--shadow-md);
     border-color: var(--secondary-color);
+    transform: translateY(-3px);
+    background: linear-gradient(135deg, rgba(248, 250, 252, 0.95) 0%, var(--background) 100%);
 }
 
+.contato-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    opacity: 0;
+    transition: var(--transition);
+}
+
+.contato-item:hover::before {
+    opacity: 1;
+}
+
+
 .contato-icon {
-    font-size: 1.25rem;
-    min-width: 32px;
+    font-size: 1.5rem;
+    min-width: 48px;
+    min-height: 48px;
     text-align: center;
     flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    border-radius: 50%;
+    color: white;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+}
+
+.contato-item:hover .contato-icon {
+    transform: scale(1.1);
+    box-shadow: var(--shadow-md);
 }
 
 .contato-details {
     flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 }
 
 .contato-details h3 {
-    font-size: 1rem;
-    color: var(--primary-color);
-    margin-bottom: 2px;
-    font-weight: 600;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-color);
+    margin: 0;
+    line-height: 1.2;
 }
+
+.contato-details p {
+    font-size: 1rem;
+    color: var(--text-muted);
+    margin: 0;
+    font-weight: 500;
+}
+
+.contato-note {
+    font-size: 0.9rem !important;
+    color: var(--secondary-color) !important;
+    font-weight: 600 !important;
+}
+
+/* Mapa de Localização */
+.mapa-container {
+    margin-top: 3rem;
+    text-align: center;
+    padding: 2rem;
+    background: linear-gradient(135deg, var(--background) 0%, rgba(248, 250, 252, 0.8) 100%);
+    border-radius: var(--border-radius-lg);
+    border: 2px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
+}
+
+.mapa-container h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.mapa-container p {
+    font-size: 1rem;
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+}
+
+.mapa-wrapper {
+    border-radius: var(--border-radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    border: 2px solid var(--border-color);
+}
+
+.mapa-wrapper iframe {
+    display: block;
+    width: 100%;
+    height: 300px;
+    border: none;
+}
+
+.mapa-container .btn {
+    margin-top: 2rem;
+}
+
+
 
 .contato-details p {
     color: var(--text-light);
@@ -1044,8 +1165,8 @@ body {
 
 /* FOOTER */
 .footer {
-    background: var(--background);
-    border-top: 1px solid var(--border-color);
+    background: linear-gradient(135deg, #3b401a 0%, #4a4f1f 100%);
+    border-top: 1px solid #5a5f2f;
     padding: 2rem 0;
     margin-top: 2rem;
 }
@@ -1078,7 +1199,7 @@ body {
 
 .footer-brand span {
     font-size: 0.875rem;
-    color: var(--text-light);
+    color: #e8f5e8;
     font-weight: 400;
 }
 
@@ -1093,7 +1214,7 @@ body {
 }
 
 .footer-link {
-    color: var(--text-light);
+    color: #d4e6d4;
     text-decoration: none;
     font-size: 0.875rem;
     font-weight: 400;
@@ -1102,31 +1223,31 @@ body {
 }
 
 .footer-link:hover {
-    color: var(--secondary-color);
+    color: #f0f8f0;
     text-decoration: underline;
 }
 
 .footer-bottom {
     text-align: center;
     padding-top: 1rem;
-    border-top: 1px solid var(--border-light);
+    border-top: 1px solid #5a5f2f;
 }
 
 .footer-bottom p {
     font-size: 0.75rem;
-    color: var(--text-muted);
+    color: #c4d4c4;
     margin: 0;
 }
 
 .credits-link {
-    color: var(--secondary-color);
+    color: #f0f8f0;
     text-decoration: none;
     font-weight: 500;
     transition: color 0.2s ease;
 }
 
 .credits-link:hover {
-    color: var(--primary-color);
+    color: #ffffff;
     text-decoration: underline;
 }
 
@@ -1158,9 +1279,9 @@ body {
         top: 60px;
         left: 0;
         right: 0;
-        background: rgba(255, 255, 255, 0.98);
-        backdrop-filter: blur(5px);
-        border-bottom: 1px solid var(--border-light);
+        background: rgba(248, 250, 252, 0.98);
+        backdrop-filter: blur(10px);
+        border-bottom: 2px solid var(--primary-color);
         transform: translateY(-100%);
         opacity: 0;
         visibility: hidden;
@@ -1168,7 +1289,7 @@ body {
         flex-direction: column;
         padding: 1rem 1.5rem;
         gap: 0.5rem;
-        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 4px 16px rgba(59, 64, 27, 0.15);
         z-index: 999;
         border-radius: 0 0 12px 12px;
         display: flex;
@@ -1204,6 +1325,7 @@ body {
     .hero {
         padding: 100px 0 60px;
         margin-top: 60px;
+        background-attachment: scroll;
     }
     
     .hero-buttons {
@@ -1275,6 +1397,24 @@ body {
     .contato-item {
         padding: var(--spacing-md);
     }
+    
+    .mapa-container {
+        margin-top: 2rem;
+        padding: 1.5rem;
+    }
+    
+    .mapa-container h3 {
+        font-size: 1.25rem;
+    }
+    
+    .mapa-container p {
+        font-size: 0.9rem;
+    }
+    
+    .mapa-wrapper iframe {
+        height: 250px;
+    }
+    
     
     .pagamento-info {
         padding: var(--spacing-lg);
