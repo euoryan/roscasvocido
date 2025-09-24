@@ -102,6 +102,13 @@ body {
     gap: 0.75rem;
     flex-shrink: 0;
     text-decoration: none;
+    transition: var(--transition);
+    color: var(--primary-color);
+}
+
+.logo:hover {
+    color: var(--secondary-color);
+    transform: scale(1.02);
 }
 
 .logo-img {
@@ -610,11 +617,12 @@ body {
 }
 
 /* PAGAMENTO */
+/* PAGAMENTO - NOVO DESIGN */
 .pagamento {
-    background: var(--background-light);
-    padding: 100px 0;
+    padding: var(--spacing-xl) 0;
+    background: var(--background);
     position: relative;
-    overflow: hidden;
+    z-index: 1;
 }
 
 .pagamento::before {
@@ -659,14 +667,129 @@ body {
     background: linear-gradient(90deg, transparent, rgba(59, 64, 27, 0.1), transparent);
 }
 
-.pagamento-content {
+/* NOVO DESIGN PIX */
+.pagamento-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: var(--spacing-2xl);
-    margin-top: var(--spacing-xl);
-    align-items: center;
+    gap: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.pix-card, .qr-card {
+    background: linear-gradient(135deg, var(--background) 0%, rgba(248, 250, 252, 0.8) 100%);
+    border-radius: var(--border-radius-lg);
+    border: 2px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+    transition: var(--transition);
     position: relative;
-    z-index: 1;
+}
+
+.pix-card:hover, .qr-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--secondary-color);
+}
+
+.pix-header, .qr-header {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.pix-icon, .qr-icon {
+    width: 48px;
+    height: 48px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.pix-header h3, .qr-header h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.pix-content, .qr-content {
+    padding: 2rem;
+}
+
+.pix-key-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: var(--background-light);
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    border: 2px solid var(--border-color);
+    margin-bottom: 1rem;
+}
+
+.pix-key {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-color);
+    flex: 1;
+    word-break: break-all;
+    user-select: all;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.pix-key:hover {
+    color: var(--primary-color);
+}
+
+.btn-copy {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.btn-copy:hover {
+    background: var(--secondary-color);
+    transform: scale(1.05);
+}
+
+.pix-description, .qr-description {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    text-align: center;
+    margin: 0;
+    font-weight: 500;
+}
+
+.qr-image-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.qr-code-img {
+    width: 180px;
+    height: 180px;
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-sm);
+    object-fit: contain;
+    background: white;
+    padding: 10px;
+    border: 2px solid var(--border-color);
 }
 
 .pix-info {
@@ -1072,9 +1195,34 @@ body {
     border: none;
 }
 
-.mapa-container .btn {
-    margin-top: 2rem;
-}
+    .mapa-container .btn {
+        margin-top: 2rem;
+    }
+    
+    /* Responsividade PIX */
+    .pagamento-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .pix-content, .qr-content {
+        padding: 1.5rem;
+    }
+    
+    .pix-key-container {
+        flex-direction: column;
+        gap: 0.75rem;
+        text-align: center;
+    }
+    
+    .pix-key {
+        font-size: 1rem;
+    }
+    
+    .qr-code-img {
+        width: 200px;
+        height: 200px;
+    }
 
 
 

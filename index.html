@@ -123,10 +123,10 @@
 <body>
     <header class="header">
         <div class="container">
-            <div class="logo">
+            <a href="#home" class="logo">
                 <img src="assets/logo/logo.ico" alt="roscasvocido" class="logo-img">
                 <h1>Roscas Vo Cido</h1>
-            </div>
+            </a>
                 <nav class="nav" id="nav">
                     <a href="#home" class="nav-link">Início</a>
                     <a href="#catalogo" class="nav-link">Cardápio</a>
@@ -262,18 +262,46 @@
         <section id="pagamento" class="pagamento">
             <div class="container">
                 <h2>Pagamentos</h2>
-                <div class="pagamento-content">
-                    <div class="pix-info">
-                        <h3>Chave PIX</h3>
-                        <p class="pix-key">+55 48 8803-0687</p>
-                        <button class="btn btn-copy" onclick="copiarPix()">Copiar Chave PIX</button>
-                    </div>
-                    <div class="qr-code">
-                        <h3>QR Code</h3>
-                        <div class="qr-image">
-                            <img src="assets/qr-code-pix/qrcode.png" alt="QR Code PIX" class="qr-code-img">
+                <div class="pagamento-grid">
+                    <!-- Chave PIX -->
+                    <div class="pix-card">
+                        <div class="pix-header">
+                            <div class="pix-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                </svg>
+                            </div>
+                            <h3>Chave PIX</h3>
                         </div>
-                        <p>Escaneie o QR Code para pagar</p>
+                        <div class="pix-content">
+                            <div class="pix-key-container">
+                                <span class="pix-key">+55 48 8803-0687</span>
+                                <button class="btn-copy" onclick="copiarPix()" title="Copiar chave PIX">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+                                    </svg>
+                                </button>
+                            </div>
+                            <p class="pix-description">Copie a chave PIX e cole no seu aplicativo bancário</p>
+                        </div>
+                    </div>
+
+                    <!-- QR Code -->
+                    <div class="qr-card">
+                        <div class="qr-header">
+                            <div class="qr-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M3 11h8V3H3v8zm2-6h4v4H5V5zm8 12h8v8h-8v-8zm2 2h4v4h-4v-4zM3 21h8v-8H3v8zm2-6h4v4H5v-4zm8-8v2h2V7h-2zm0 4v2h2v-2h-2zm-4-4v2h2V7h-2zm0 4v2h2v-2h-2zm4 4v2h2v-2h-2zm-4 0v2h2v-2h-2z"/>
+                                </svg>
+                            </div>
+                            <h3>QR Code</h3>
+                        </div>
+                        <div class="qr-content">
+                            <div class="qr-image-container">
+                                <img src="assets/qr-code-pix/qrcode.png" alt="QR Code PIX" class="qr-code-img">
+                            </div>
+                            <p class="qr-description">Escaneie com seu aplicativo bancário</p>
+                        </div>
                     </div>
                 </div>
             </div>
