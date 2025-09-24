@@ -1,0 +1,35 @@
+# Configuração para GitHub Pages
+title: RoscasVocido
+description: Site da loja de roscas artesanais RoscasVocido
+baseurl: ""
+url: ""
+
+# Configurações do site
+markdown: kramdown
+highlighter: rouge
+theme: minima
+
+# Configurações de plugins
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+
+# Configurações de build
+exclude:
+  - README.md
+  - .gitignore
+  - _config.yml
+
+# Configurações de coleções
+collections:
+  produtos:
+    output: true
+    permalink: /:collection/:name/
+
+# Configurações de defaults
+defaults:
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "default"
