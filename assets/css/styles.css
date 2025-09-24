@@ -210,8 +210,28 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="0.5" fill="%233b401b" opacity="0.05"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+    background: 
+        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="wood" width="100" height="100" patternUnits="userSpaceOnUse"><rect width="100" height="100" fill="%23f5f1e8"/><path d="M0,20 L100,20 M0,40 L100,40 M0,60 L100,60 M0,80 L100,80" stroke="%23d4c4a8" stroke-width="0.5" opacity="0.3"/></pattern></defs><rect width="100" height="100" fill="url(%23wood)"/></svg>'),
+        radial-gradient(circle at 20% 20%, rgba(59, 64, 27, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(193, 118, 36, 0.08) 0%, transparent 50%);
     pointer-events: none;
+}
+
+.hero::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><defs><pattern id="bread-texture" width="200" height="200" patternUnits="userSpaceOnUse"><circle cx="100" cy="100" r="60" fill="%23f7f3e9" opacity="0.4"/><path d="M70,100 Q85,85 100,100 Q115,115 130,100" stroke="%23d4c4a8" stroke-width="1" fill="none" opacity="0.3"/><path d="M80,80 Q90,90 100,100 Q110,110 120,120" stroke="%23c17624" stroke-width="0.5" fill="none" opacity="0.2"/></pattern></defs><rect width="200" height="200" fill="url(%23bread-texture)"/></svg>');
+    animation: float 30s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes float {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    50% { transform: translate(-15px, -15px) rotate(0.5deg); }
 }
 
 .hero-content {
@@ -372,12 +392,40 @@ body {
 .catalogo {
     background: var(--background);
     padding: 100px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.catalogo::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80"><defs><pattern id="brick" width="80" height="80" patternUnits="userSpaceOnUse"><rect width="80" height="80" fill="%23f8f5f0"/><rect x="0" y="0" width="40" height="20" fill="%23e8ddd4" opacity="0.3"/><rect x="40" y="20" width="40" height="20" fill="%23e8ddd4" opacity="0.3"/><rect x="0" y="40" width="40" height="20" fill="%23e8ddd4" opacity="0.3"/><rect x="40" y="60" width="40" height="20" fill="%23e8ddd4" opacity="0.3"/></pattern></defs><rect width="80" height="80" fill="url(%23brick)"/></svg>'),
+        radial-gradient(circle at 30% 30%, rgba(193, 118, 36, 0.06) 0%, transparent 60%),
+        radial-gradient(circle at 70% 70%, rgba(59, 64, 27, 0.06) 0%, transparent 60%);
+    pointer-events: none;
+}
+
+.catalogo::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 150"><defs><pattern id="flour" width="150" height="150" patternUnits="userSpaceOnUse"><circle cx="75" cy="75" r="50" fill="%23faf7f2" opacity="0.3"/><circle cx="30" cy="30" r="8" fill="%23d4c4a8" opacity="0.2"/><circle cx="120" cy="40" r="6" fill="%23c17624" opacity="0.15"/><circle cx="40" cy="120" r="5" fill="%233b401b" opacity="0.1"/><circle cx="110" cy="110" r="7" fill="%23d4c4a8" opacity="0.18"/></pattern></defs><rect width="150" height="150" fill="url(%23flour)"/></svg>');
+    pointer-events: none;
 }
 
 .catalogo h2 {
     text-align: center;
     position: relative;
     padding-bottom: 1rem;
+    z-index: 1;
 }
 
 .catalogo h2::after {
@@ -397,6 +445,8 @@ body {
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: var(--spacing-lg);
     margin-top: var(--spacing-xl);
+    position: relative;
+    z-index: 1;
 }
 
 .produto-card {
@@ -489,6 +539,33 @@ body {
 .videos {
     background: var(--background-light);
     padding: 100px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.videos::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60"><defs><pattern id="canvas" width="60" height="60" patternUnits="userSpaceOnUse"><rect width="60" height="60" fill="%23f9f6f1"/><path d="M0,0 L60,60 M60,0 L0,60" stroke="%23e8ddd4" stroke-width="0.3" opacity="0.2"/><circle cx="30" cy="30" r="15" fill="%23f5f1e8" opacity="0.3"/></pattern></defs><rect width="60" height="60" fill="url(%23canvas)"/></svg>'),
+        radial-gradient(circle at 20% 20%, rgba(59, 64, 27, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(193, 118, 36, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.videos::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120"><defs><pattern id="oven" width="120" height="120" patternUnits="userSpaceOnUse"><rect width="120" height="120" fill="%23f7f3e9" opacity="0.2"/><rect x="20" y="20" width="80" height="80" fill="none" stroke="%23d4c4a8" stroke-width="1" opacity="0.3"/><circle cx="60" cy="60" r="30" fill="none" stroke="%23c17624" stroke-width="0.5" opacity="0.2"/><path d="M30,30 Q45,45 60,60 Q75,75 90,90" stroke="%233b401b" stroke-width="0.3" fill="none" opacity="0.15"/></pattern></defs><rect width="120" height="120" fill="url(%23oven)"/></svg>');
+    pointer-events: none;
 }
 
 .videos h2 {
@@ -514,6 +591,8 @@ body {
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: var(--spacing-lg);
     margin-top: var(--spacing-xl);
+    position: relative;
+    z-index: 1;
 }
 
 .video-card {
@@ -555,6 +634,32 @@ body {
 .pagamento {
     background: var(--background-light);
     padding: 100px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.pagamento::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 50% 50%, rgba(193, 118, 36, 0.02) 0%, transparent 70%),
+        radial-gradient(circle at 30% 70%, rgba(59, 64, 27, 0.02) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.pagamento::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: none;
+    pointer-events: none;
 }
 
 .pagamento h2 {
@@ -581,6 +686,8 @@ body {
     gap: var(--spacing-2xl);
     margin-top: var(--spacing-xl);
     align-items: center;
+    position: relative;
+    z-index: 1;
 }
 
 .pix-info {
@@ -800,6 +907,33 @@ body {
 .contato {
     background: var(--background);
     padding: 100px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.contato::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120"><defs><pattern id="linen" width="120" height="120" patternUnits="userSpaceOnUse"><rect width="120" height="120" fill="%23f8f5f0"/><path d="M0,20 L120,20 M0,40 L120,40 M0,60 L120,60 M0,80 L120,80 M0,100 L120,100" stroke="%23e8ddd4" stroke-width="0.4" opacity="0.3"/><path d="M20,0 L20,120 M40,0 L40,120 M60,0 L60,120 M80,0 L80,120 M100,0 L100,120" stroke="%23d4c4a8" stroke-width="0.2" opacity="0.2"/></pattern></defs><rect width="120" height="120" fill="url(%23linen)"/></svg>'),
+        radial-gradient(circle at 20% 20%, rgba(59, 64, 27, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(193, 118, 36, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.contato::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="tablecloth" width="100" height="100" patternUnits="userSpaceOnUse"><rect width="100" height="100" fill="%23f7f3e9" opacity="0.4"/><circle cx="50" cy="50" r="40" fill="none" stroke="%23d4c4a8" stroke-width="0.5" opacity="0.2"/><path d="M20,20 Q30,30 40,40 Q50,50 60,60 Q70,70 80,80" stroke="%23c17624" stroke-width="0.3" fill="none" opacity="0.15"/><path d="M80,20 Q70,30 60,40 Q50,50 40,60 Q30,70 20,80" stroke="%233b401b" stroke-width="0.3" fill="none" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23tablecloth)"/></svg>');
+    pointer-events: none;
 }
 
 .contato h2 {
@@ -825,6 +959,8 @@ body {
     flex-direction: column;
     gap: var(--spacing-md);
     margin-top: var(--spacing-xl);
+    position: relative;
+    z-index: 1;
 }
 
 .contato-item {
