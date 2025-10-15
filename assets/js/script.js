@@ -389,30 +389,7 @@ document.addEventListener('touchend', function (event) {
     lastTouchEnd = now;
 }, false);
 
-// Service Worker for caching (optional)
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', function() {
-        navigator.serviceWorker.register('/sw.js')
-            .then(function(registration) {
-                console.log('ServiceWorker registrado com sucesso');
-            })
-            .catch(function(err) {
-                console.log('Falha no registro do ServiceWorker');
-            });
-    });
-}
-
-// Performance monitoring
-if ('performance' in window) {
-    window.addEventListener('load', function() {
-        setTimeout(function() {
-            const perfData = performance.getEntriesByType('navigation')[0];
-            if (perfData.loadEventEnd - perfData.loadEventStart > 3000) {
-                console.log('Site carregado em:', perfData.loadEventEnd - perfData.loadEventStart, 'ms');
-            }
-        }, 0);
-    });
-}
+// Service Worker removido para evitar avisos desnecessários
 
 // ===== SISTEMA DE MODAIS PROFISSIONAIS =====
 
@@ -494,25 +471,249 @@ function abrirModalProduto(tipo) {
     }
 }
 
+// Controle do passo atual
+let passoAtualIndex = 0;
+
 // Abrir modal de passo
 function abrirModalPasso(numero) {
-    const passo = passosData[numero - 1];
-    if (!passo) return;
+    passoAtualIndex = numero - 1;
+    atualizarPasso();
     
     const modal = document.getElementById('modalPasso');
-    document.getElementById('modalPassoTitulo').textContent = passo.titulo;
-    document.getElementById('modalPassoDesc').textContent = passo.descricao;
-    document.getElementById('modalPassoImg').src = passo.imagem;
-    document.getElementById('modalPassoImg').alt = passo.titulo;
-    document.getElementById('modalPassoBadge').textContent = `Passo ${passo.numero}`;
-    
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
+    
+    // Adicionar suporte a swipe/arrastar
+    adicionarSwipeSupport();
     
     // Haptic feedback
     if (navigator.vibrate) {
         navigator.vibrate(30);
     }
+}
+
+// Atualizar conteúdo do passo
+function atualizarPasso() {
+    const passo = passosData[passoAtualIndex];
+    if (!passo) return;
+    
+    document.getElementById('modalPassoTitulo').textContent = passo.titulo;
+    document.getElementById('modalPassoDesc').textContent = passo.descricao;
+    document.getElementById('modalPassoImg').src = passo.imagem;
+    document.getElementById('modalPassoImg').alt = passo.titulo;
+    document.getElementById('passoAtual').textContent = passo.numero;
+    document.getElementById('passoTotal').textContent = passosData.length;
+    
+    // Atualizar estado dos botões
+    const btnAnterior = document.getElementById('btnPassoAnterior');
+    const btnProximo = document.getElementById('btnPassoProximo');
+    
+    // Clonar ambos os botões para remover todos os event listeners antigos
+    const btnAnteriorNovo = btnAnterior.cloneNode(true);
+    const btnProximoNovo = btnProximo.cloneNode(true);
+    btnAnterior.parentNode.replaceChild(btnAnteriorNovo, btnAnterior);
+    btnProximo.parentNode.replaceChild(btnProximoNovo, btnProximo);
+    
+    // Obter novas referências
+    const btnAnt = document.getElementById('btnPassoAnterior');
+    const btnProx = document.getElementById('btnPassoProximo');
+    
+    // Configurar botão "Anterior" (sempre com mesmo comportamento)
+    btnAnt.addEventListener('click', () => {
+        navegarPasso(-1);
+    });
+    
+    // Mostrar/esconder botões baseado no passo
+    if (passoAtualIndex === passosData.length - 1) {
+        // Último passo: mostrar botão "Concluir"
+        btnAnt.classList.remove('hidden');
+        btnProx.classList.remove('hidden');
+        btnAnt.disabled = false;
+        btnProx.disabled = false;
+        
+        // Transformar botão "Próximo" em "Concluir"
+        btnProx.innerHTML = `
+            Concluir
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+            </svg>
+        `;
+        
+        // Adicionar comportamento de conclusão
+        btnProx.addEventListener('click', function() {
+            console.log('Botão concluir clicado - disparando confete');
+            mostrarConfete();
+            setTimeout(() => {
+                console.log('Fechando modal');
+                fecharModal('modalPasso');
+            }, 800);
+        });
+    } else {
+        // Outros passos: mostrar botões normais
+        btnAnt.classList.remove('hidden');
+        btnProx.classList.remove('hidden');
+        
+        // Desabilitar anterior no primeiro passo
+        btnAnt.disabled = passoAtualIndex === 0;
+        btnProx.disabled = false;
+        
+        // Texto sempre "Próximo"
+        btnProx.innerHTML = `
+            Próximo
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+            </svg>
+        `;
+        
+        // Adicionar listener para navegar
+        btnProx.addEventListener('click', () => {
+            navegarPasso(1);
+        });
+    }
+}
+
+// Efeito de confete
+function mostrarConfete() {
+    console.log('Função mostrarConfete chamada');
+    const cores = ['#3b401b', '#C17624', '#9E6132'];
+    const quantidade = 20;
+    
+    // Criar confetes de forma mais visível
+    for (let i = 0; i < quantidade; i++) {
+        const confete = document.createElement('div');
+        confete.className = 'confetti';
+        
+        // Posição inicial aleatória no topo da tela
+        const posX = Math.random() * window.innerWidth;
+        confete.style.left = posX + 'px';
+        confete.style.top = '-20px';
+        
+        // Estilo do confete
+        confete.style.background = cores[Math.floor(Math.random() * cores.length)];
+        confete.style.width = (Math.random() * 8 + 4) + 'px'; // 4-12px
+        confete.style.height = (Math.random() * 8 + 4) + 'px';
+        confete.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+        
+        // Animação
+        const duracao = Math.random() * 1 + 1.5; // 1.5-2.5s
+        const delay = Math.random() * 0.3; // 0-0.3s
+        confete.style.animation = `confetti-fall ${duracao}s ease-out ${delay}s forwards`;
+        
+        document.body.appendChild(confete);
+        console.log('Confete criado:', i + 1);
+        
+        // Remover após animação completa
+        setTimeout(() => {
+            confete.remove();
+        }, (duracao + delay) * 1000 + 100);
+    }
+    
+    console.log(quantidade + ' confetes criados!');
+    
+    // Haptic feedback suave
+    if (navigator.vibrate) {
+        navigator.vibrate([50, 30, 50]);
+    }
+}
+
+// Navegar entre passos
+function navegarPasso(direcao) {
+    const novoIndex = passoAtualIndex + direcao;
+    
+    if (novoIndex >= 0 && novoIndex < passosData.length) {
+        passoAtualIndex = novoIndex;
+        
+        // Animação de transição
+        const img = document.getElementById('modalPassoImg');
+        img.style.transform = direcao > 0 ? 'translateX(20px)' : 'translateX(-20px)';
+        img.style.opacity = '0';
+        
+        setTimeout(() => {
+            atualizarPasso();
+            img.style.transform = 'translateX(0)';
+            img.style.opacity = '1';
+        }, 150);
+        
+        // Haptic feedback
+        if (navigator.vibrate) {
+            navigator.vibrate(30);
+        }
+    }
+}
+
+// Adicionar suporte a swipe/arrastar
+function adicionarSwipeSupport() {
+    const container = document.getElementById('modalPassoImg');
+    let startX = 0;
+    let currentX = 0;
+    let isDragging = false;
+    
+    container.addEventListener('touchstart', (e) => {
+        startX = e.touches[0].clientX;
+        isDragging = true;
+    });
+    
+    container.addEventListener('touchmove', (e) => {
+        if (!isDragging) return;
+        currentX = e.touches[0].clientX;
+        const diff = currentX - startX;
+        container.style.transform = `translateX(${diff}px)`;
+    });
+    
+    container.addEventListener('touchend', () => {
+        if (!isDragging) return;
+        const diff = currentX - startX;
+        
+        if (Math.abs(diff) > 50) {
+            if (diff > 0 && passoAtualIndex > 0) {
+                navegarPasso(-1);
+            } else if (diff < 0 && passoAtualIndex < passosData.length - 1) {
+                navegarPasso(1);
+            }
+        }
+        
+        container.style.transform = 'translateX(0)';
+        isDragging = false;
+    });
+    
+    // Suporte a mouse drag (desktop)
+    container.addEventListener('mousedown', (e) => {
+        startX = e.clientX;
+        isDragging = true;
+        container.style.cursor = 'grabbing';
+    });
+    
+    container.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        currentX = e.clientX;
+        const diff = currentX - startX;
+        container.style.transform = `translateX(${diff}px)`;
+    });
+    
+    container.addEventListener('mouseup', () => {
+        if (!isDragging) return;
+        const diff = currentX - startX;
+        
+        if (Math.abs(diff) > 50) {
+            if (diff > 0 && passoAtualIndex > 0) {
+                navegarPasso(-1);
+            } else if (diff < 0 && passoAtualIndex < passosData.length - 1) {
+                navegarPasso(1);
+            }
+        }
+        
+        container.style.transform = 'translateX(0)';
+        container.style.cursor = 'grab';
+        isDragging = false;
+    });
+    
+    container.addEventListener('mouseleave', () => {
+        if (isDragging) {
+            container.style.transform = 'translateX(0)';
+            container.style.cursor = 'grab';
+            isDragging = false;
+        }
+    });
 }
 
 // Fechar modal
@@ -520,61 +721,6 @@ function fecharModal(modalId) {
     const modal = document.getElementById(modalId);
     modal.classList.remove('active');
     document.body.style.overflow = '';
-    
-    // Resetar zoom se houver
-    const img = modal.querySelector('.modal-image');
-    if (img && img.classList.contains('zoomed')) {
-        img.classList.remove('zoomed');
-    }
-    
-    // Resetar botões de zoom
-    if (modalId === 'modalProduto') {
-        document.getElementById('zoomInProduto').classList.remove('hidden');
-        document.getElementById('zoomOutProduto').classList.add('hidden');
-    } else if (modalId === 'modalPasso') {
-        document.getElementById('zoomInPasso').classList.remove('hidden');
-        document.getElementById('zoomOutPasso').classList.add('hidden');
-    }
-}
-
-// Zoom in na imagem
-function zoomIn(imgId) {
-    const img = document.getElementById(imgId);
-    img.classList.add('zoomed');
-    
-    // Mostrar botão de zoom out, esconder zoom in
-    if (imgId === 'modalProdutoImg') {
-        document.getElementById('zoomInProduto').classList.add('hidden');
-        document.getElementById('zoomOutProduto').classList.remove('hidden');
-    } else if (imgId === 'modalPassoImg') {
-        document.getElementById('zoomInPasso').classList.add('hidden');
-        document.getElementById('zoomOutPasso').classList.remove('hidden');
-    }
-    
-    // Haptic feedback
-    if (navigator.vibrate) {
-        navigator.vibrate(30);
-    }
-}
-
-// Zoom out na imagem
-function zoomOut(imgId) {
-    const img = document.getElementById(imgId);
-    img.classList.remove('zoomed');
-    
-    // Mostrar botão de zoom in, esconder zoom out
-    if (imgId === 'modalProdutoImg') {
-        document.getElementById('zoomInProduto').classList.remove('hidden');
-        document.getElementById('zoomOutProduto').classList.add('hidden');
-    } else if (imgId === 'modalPassoImg') {
-        document.getElementById('zoomInPasso').classList.remove('hidden');
-        document.getElementById('zoomOutPasso').classList.add('hidden');
-    }
-    
-    // Haptic feedback
-    if (navigator.vibrate) {
-        navigator.vibrate(30);
-    }
 }
 
 // Fechar modal ao clicar fora

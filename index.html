@@ -447,12 +447,7 @@
             <span class="modal-close" onclick="fecharModal('modalProduto')">&times;</span>
             <div class="modal-body">
                 <div class="modal-image-container">
-                    <span class="modal-badge">Rosca</span>
                     <img id="modalProdutoImg" class="modal-image" src="" alt="">
-                    <div class="modal-zoom-controls">
-                        <button class="zoom-btn" id="zoomInProduto" onclick="zoomIn('modalProdutoImg')" title="Aumentar zoom">+</button>
-                        <button class="zoom-btn hidden" id="zoomOutProduto" onclick="zoomOut('modalProdutoImg')" title="Diminuir zoom">−</button>
-                    </div>
                 </div>
                 <div class="modal-info">
                     <h3 id="modalProdutoNome"></h3>
@@ -481,16 +476,31 @@
             <span class="modal-close" onclick="fecharModal('modalPasso')">&times;</span>
             <div class="modal-body">
                 <div class="modal-image-container">
-                    <span class="modal-badge" id="modalPassoBadge">Passo 1</span>
                     <img id="modalPassoImg" class="modal-image" src="" alt="">
-                    <div class="modal-zoom-controls">
-                        <button class="zoom-btn" id="zoomInPasso" onclick="zoomIn('modalPassoImg')" title="Aumentar zoom">+</button>
-                        <button class="zoom-btn hidden" id="zoomOutPasso" onclick="zoomOut('modalPassoImg')" title="Diminuir zoom">−</button>
+                    <!-- Indicador de Passo -->
+                    <div class="passo-indicador">
+                        <span id="passoAtual">1</span> / <span id="passoTotal">4</span>
                     </div>
                 </div>
                 <div class="modal-info">
                     <h3 id="modalPassoTitulo"></h3>
                     <p id="modalPassoDesc"></p>
+                    
+                    <!-- Navegação entre passos -->
+                    <div class="modal-navegacao">
+                        <button class="btn-nav-passo" id="btnPassoAnterior">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+                            </svg>
+                            Anterior
+                        </button>
+                        <button class="btn-nav-passo btn-proximo" id="btnPassoProximo">
+                            Próximo
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+                            </svg>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
