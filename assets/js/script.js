@@ -628,11 +628,14 @@ function abrirModalProduto(tipo) {
     modal.classList.add('active');
     modal.setAttribute('aria-hidden', 'false');
     
+    // Salvar posição atual do scroll ANTES de fixar o body
+    scrollPosition = window.scrollY;
+    
     // Corrigir scroll no iPhone
     document.body.style.overflow = 'hidden';
     document.body.style.position = 'fixed';
     document.body.style.width = '100%';
-    document.body.style.top = `-${window.scrollY}px`;
+    document.body.style.top = `-${scrollPosition}px`;
     
     // Focar no modal para acessibilidade
     const modalContent = modal.querySelector('.modal-content');
@@ -966,11 +969,53 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Passos
+    // Passos - Corrigir para mobile com distinção entre clique e arraste
     const passoItems = document.querySelectorAll('.passo-item');
     passoItems.forEach((item, index) => {
-        item.addEventListener('click', function() {
-            abrirModalPasso(index + 1);
+        let touchStartX = 0;
+        let touchStartY = 0;
+        let touchStartTime = 0;
+        let hasMoved = false;
+        
+        // Touch start
+        item.addEventListener('touchstart', function(e) {
+            touchStartX = e.touches[0].clientX;
+            touchStartY = e.touches[0].clientY;
+            touchStartTime = Date.now();
+            hasMoved = false;
+        }, { passive: true });
+        
+        // Touch move
+        item.addEventListener('touchmove', function(e) {
+            const touchX = e.touches[0].clientX;
+            const touchY = e.touches[0].clientY;
+            const diffX = Math.abs(touchX - touchStartX);
+            const diffY = Math.abs(touchY - touchStartY);
+            
+            // Se moveu mais de 10px, considerar como arraste
+            if (diffX > 10 || diffY > 10) {
+                hasMoved = true;
+            }
+        }, { passive: true });
+        
+        // Touch end - só abrir modal se não arrastou
+        item.addEventListener('touchend', function(e) {
+            const touchDuration = Date.now() - touchStartTime;
+            
+            // Só abrir se não moveu e foi um toque rápido (menos de 300ms)
+            if (!hasMoved && touchDuration < 300) {
+                e.preventDefault();
+                e.stopPropagation();
+                abrirModalPasso(index + 1);
+            }
+        });
+        
+        // Mouse click para desktop
+        item.addEventListener('click', function(e) {
+            // Verificar se não é touch device
+            if (!('ontouchstart' in window)) {
+                abrirModalPasso(index + 1);
+            }
         });
     });
 

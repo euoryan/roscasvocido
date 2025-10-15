@@ -29,7 +29,7 @@ html {
 }
 
 body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-family: 'Ubuntu', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     line-height: 1.7;
     color: var(--text-dark);
     background-color: var(--background);
@@ -69,15 +69,21 @@ body {
 
 /* ===== HEADER ===== */
 .header {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(8px);
     border-bottom: 1px solid var(--border-light);
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 1000;
-    box-shadow: var(--shadow-sm);
+    box-shadow: none;
+    transition: all 0.3s ease;
+}
+
+.header.scrolled {
+    background: rgba(255, 255, 255, 0.98);
+    box-shadow: 0 1px 3px rgba(59, 64, 27, 0.08);
 }
 
 .header .container {
@@ -85,7 +91,7 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 1rem 2rem;
-    min-height: 70px;
+    min-height: 75px;
 }
 
 .logo {
@@ -107,6 +113,7 @@ body {
 }
 
 .logo h1 {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     font-size: 1.4rem;
     font-weight: 600;
     color: var(--primary-color);
@@ -122,14 +129,20 @@ body {
 .nav-link {
     text-decoration: none;
     color: var(--text-dark);
-    font-weight: 500;
-    font-size: 0.95rem;
-    padding: 0.5rem 0.75rem;
-    transition: color 0.3s ease;
+    font-weight: 400;
+    font-size: 0.875rem;
+    padding: 0.35rem 0.65rem;
+    transition: color 0.2s ease;
+    letter-spacing: 0.02em;
 }
 
-.nav-link:hover, .nav-link.active {
+.nav-link:hover {
     color: var(--secondary-color);
+}
+
+.nav-link.active {
+    color: var(--primary-color);
+    font-weight: 500;
 }
 
 .menu-toggle {
@@ -174,7 +187,7 @@ body {
 /* ===== HERO ===== */
 .hero {
     background: var(--background);
-    padding: 100px 0 80px;
+    padding: 120px 0 100px;
     text-align: center;
     margin-top: 70px;
     border-bottom: 1px solid var(--border-light);
@@ -195,21 +208,27 @@ body {
     font-size: 0.875rem;
     font-weight: 500;
     margin-bottom: 1.5rem;
-    box-shadow: var(--shadow-sm);
+    box-shadow: 0 2px 4px rgba(59, 64, 27, 0.12);
 }
 
 .hero-title {
-    font-family: 'Dancing Script', cursive;
-    font-size: 3.2rem;
-    font-weight: 700;
+    font-family: 'Great Vibes', cursive;
+    font-size: 3.8rem;
+    font-weight: 400;
     color: var(--primary-color);
-    margin-bottom: 1.25rem;
+    margin-bottom: 1.5rem;
     line-height: 1.1;
     letter-spacing: 0.02em;
     white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    overflow: visible;
+    text-overflow: clip;
+    display: inline-block;
+    text-shadow: 
+        0 0 0 var(--primary-color),
+        1px 1px 0 var(--primary-color),
+        2px 2px 0 var(--primary-color),
+        0 2px 4px rgba(0, 0, 0, 0.2);
+    filter: contrast(1.1);
 }
 
 .hero-subtitle {
@@ -217,6 +236,7 @@ body {
     color: var(--text-light);
     margin-bottom: 2.5rem;
     line-height: 1.6;
+    letter-spacing: 0.01em;
 }
 
 /* ===== PADRÃO DE BOTÕES DO SITE ===== */
@@ -237,7 +257,7 @@ body {
     gap: 0.5rem;
     background: var(--primary-color);
     color: white;
-    padding: 0.75rem 1.5rem;
+    padding: 0.85rem 1.75rem;
     border-radius: 6px;
     font-size: 0.95rem;
     font-weight: 500;
@@ -247,10 +267,13 @@ body {
     white-space: nowrap;
     flex: 1;
     min-width: 180px;
+    box-shadow: 0 2px 4px rgba(59, 64, 27, 0.12);
 }
 
 .btn-hero-compact:hover {
     background: var(--secondary-color);
+    box-shadow: 0 4px 8px rgba(59, 64, 27, 0.15);
+    transform: translateY(-1px);
 }
 
 .btn-hero-compact svg {
@@ -303,7 +326,7 @@ section {
     background: white;
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: var(--shadow-sm);
+    box-shadow: 0 1px 3px rgba(59, 64, 27, 0.1), 0 3px 8px rgba(59, 64, 27, 0.1), 0 0 1px rgba(0, 0, 0, 0.08);
     border: 1px solid var(--border-light);
     transition: var(--transition);
     display: flex;
@@ -313,6 +336,8 @@ section {
 .produto-item:hover {
     border-color: var(--secondary-color);
     background-color: var(--background-light);
+    box-shadow: 0 4px 12px rgba(59, 64, 27, 0.15), 0 8px 20px rgba(59, 64, 27, 0.12), 0 0 1px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
 }
 
 .produto-foto {
@@ -458,16 +483,28 @@ section {
 
 /* Indicador de scroll */
 .passos-carousel-container::after {
-    content: '';
+    content: '→';
     position: absolute;
     top: 50%;
-    right: 0;
+    right: 20px;
     transform: translateY(-50%);
-    width: 30px;
-    height: 60px;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8));
+    font-size: 2rem;
+    color: var(--secondary-color);
     pointer-events: none;
     z-index: 10;
+    opacity: 0.7;
+    animation: arrowPulse 2s ease-in-out infinite;
+}
+
+@keyframes arrowPulse {
+    0%, 100% {
+        opacity: 0.7;
+        transform: translateY(-50%);
+    }
+    50% {
+        opacity: 1;
+        transform: translateY(-50%) translateX(5px);
+    }
 }
 
 .passos-carousel {
@@ -493,13 +530,13 @@ section {
 }
 
 .passo-item {
-    flex: 0 0 calc(66.666% - 1rem);
-    min-width: 500px;
-    max-width: 600px;
+    flex: 0 0 calc(50% - 0.75rem);
+    min-width: 450px;
+    max-width: 550px;
     background: white;
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: var(--shadow-sm);
+    box-shadow: 0 1px 3px rgba(59, 64, 27, 0.1), 0 3px 8px rgba(59, 64, 27, 0.1), 0 0 1px rgba(0, 0, 0, 0.08);
     border: 1px solid var(--border-light);
     scroll-snap-align: start;
     transition: var(--transition);
@@ -513,6 +550,7 @@ section {
 .passo-item:hover {
     border-color: var(--secondary-color);
     background-color: var(--background-light);
+    box-shadow: 0 4px 12px rgba(59, 64, 27, 0.15), 0 8px 20px rgba(59, 64, 27, 0.12), 0 0 1px rgba(0, 0, 0, 0.1);
 }
 
 .passo-foto {
@@ -950,13 +988,13 @@ section {
     background: white;
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: var(--shadow-sm);
+    box-shadow: 0 1px 3px rgba(59, 64, 27, 0.1), 0 3px 8px rgba(59, 64, 27, 0.1), 0 0 1px rgba(0, 0, 0, 0.08);
     border: 1px solid var(--border-light);
 }
 
 .maps-embed-container {
     width: 100%;
-    height: 400px;
+    height: 500px;
     position: relative;
 }
 
@@ -1164,10 +1202,16 @@ section {
     }
     
     .hero-title {
-        font-size: 2.4rem;
-        white-space: normal;
-        text-overflow: initial;
+        font-size: 1.85rem;
+        white-space: nowrap;
+        text-overflow: clip;
         overflow: visible;
+        margin-bottom: 1.25rem;
+        line-height: 1.25;
+        text-shadow: 
+            0 0 0 var(--primary-color),
+            1px 1px 0 var(--primary-color),
+            0 2px 4px rgba(0, 0, 0, 0.2);
     }
     
     .hero-subtitle {
@@ -1219,9 +1263,13 @@ section {
         gap: 1rem;
     }
 
+    .passos-carousel-container::after {
+        display: none;
+    }
+
     .passo-item {
         flex: 0 0 calc(85% - 1rem);
-        min-width: 320px;
+        min-width: 300px;
         max-width: 400px;
         flex-direction: column;
         min-height: auto;
@@ -1262,6 +1310,8 @@ section {
     /* Pagamento mobile */
     .pagamento-container {
         padding: 0 1rem;
+        display: flex;
+        justify-content: center;
     }
 
     .pix-card-novo {
@@ -1346,7 +1396,7 @@ section {
     }
 
     .maps-embed-container {
-        height: 300px;
+        height: 400px;
     }
 
     .maps-info {
@@ -1403,9 +1453,15 @@ section {
     
     .hero-title {
         font-size: 2rem;
-        white-space: normal;
-        text-overflow: initial;
+        white-space: nowrap;
+        text-overflow: clip;
         overflow: visible;
+        margin-bottom: 1.25rem;
+        line-height: 1.25;
+        text-shadow: 
+            0 0 0 var(--primary-color),
+            1px 1px 0 var(--primary-color),
+            0 2px 4px rgba(0, 0, 0, 0.2);
     }
     
     .hero-subtitle {
@@ -1519,7 +1575,7 @@ section {
     background: white;
     border-radius: 12px;
     padding: 2rem;
-    box-shadow: var(--shadow-sm);
+    box-shadow: 0 1px 3px rgba(59, 64, 27, 0.1), 0 3px 8px rgba(59, 64, 27, 0.1), 0 0 1px rgba(0, 0, 0, 0.08);
     max-width: 800px;
     width: 100%;
     margin: 0 auto;
@@ -1530,6 +1586,7 @@ section {
 .contato-card:hover {
     border-color: var(--secondary-color);
     background-color: var(--background-light);
+    box-shadow: 0 4px 12px rgba(59, 64, 27, 0.15), 0 8px 20px rgba(59, 64, 27, 0.12), 0 0 1px rgba(0, 0, 0, 0.1);
 }
 
 .contato-info {
@@ -1649,7 +1706,7 @@ section {
     background: white;
     border-radius: 12px;
     padding: 2rem;
-    box-shadow: var(--shadow-sm);
+    box-shadow: 0 1px 3px rgba(59, 64, 27, 0.1), 0 3px 8px rgba(59, 64, 27, 0.1), 0 0 1px rgba(0, 0, 0, 0.08);
     max-width: 800px;
     width: 100%;
     margin: 0 auto;
@@ -1660,6 +1717,7 @@ section {
 .pix-card-simples:hover {
     border-color: var(--secondary-color);
     background-color: var(--background-light);
+    box-shadow: 0 4px 12px rgba(59, 64, 27, 0.15), 0 8px 20px rgba(59, 64, 27, 0.12), 0 0 1px rgba(0, 0, 0, 0.1);
 }
 
 .pix-header-simples h3 {
@@ -1815,7 +1873,8 @@ section {
 @media (max-width: 768px) {
     .pix-card-simples {
         padding: 1.75rem;
-        margin: 0 1rem;
+        margin: 0 auto;
+        max-width: calc(100% - 2rem);
     }
     
     .pix-content-simples {
@@ -1942,7 +2001,7 @@ section {
 
     /* Maps 480px */
     .maps-embed-container {
-        height: 250px;
+        height: 350px;
     }
 
     .maps-info {
