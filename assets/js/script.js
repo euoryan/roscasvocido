@@ -923,14 +923,19 @@ function fecharModal(modalId) {
     modal.classList.remove('active');
     modal.setAttribute('aria-hidden', 'true');
     
-    // Restaurar scroll para a posição salva
+    // Restaurar estilos do body
     document.body.style.overflow = '';
     document.body.style.position = '';
     document.body.style.width = '';
     document.body.style.top = '';
     
-    // Restaurar para a posição exata onde estava
-    window.scrollTo(0, scrollPosition);
+    // Restaurar scroll de forma suave para evitar "pulo"
+    requestAnimationFrame(() => {
+        window.scrollTo({
+            top: scrollPosition,
+            behavior: 'instant'
+        });
+    });
     
     // Remover foco do modal
     if (document.activeElement && modal.contains(document.activeElement)) {
