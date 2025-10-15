@@ -90,30 +90,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     window.addEventListener('scroll', updateActiveNav);
     
-    // Product card interactions
-    const produtoCards = document.querySelectorAll('.produto-card');
-    produtoCards.forEach(card => {
-        card.addEventListener('click', function() {
-            const produtoNome = this.querySelector('h3').textContent;
-            const produtoPreco = this.querySelector('.preco').textContent;
-            
-            // Haptic feedback on mobile
-            if (navigator.vibrate) {
-                navigator.vibrate(50);
-            }
-            
-            mostrarNotificacao(`Produto: ${produtoNome}\nPreço: ${produtoPreco}\n\nEntre em contato via WhatsApp para fazer seu pedido!`);
-        });
-    });
-    
-    // Video card interactions
-    const videoCards = document.querySelectorAll('.video-card');
-    videoCards.forEach(card => {
-        card.addEventListener('click', function() {
-            const videoTitulo = this.querySelector('h3').textContent;
-            mostrarNotificacao(`Vídeo: ${videoTitulo}\n\nEm breve disponível!`);
-        });
-    });
+    // Remover interações de card - sem notificações
     
     // Lazy loading for images
     const images = document.querySelectorAll('img[data-src]');
@@ -133,7 +110,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Scroll animations
-    const animateElements = document.querySelectorAll('.produto-card, .video-card, .contato-item');
+    const animateElements = document.querySelectorAll('.produto-item, .passo-item, .whatsapp-card-pix-style, .pix-card-novo, .maps-wrapper');
     const animationObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -147,13 +124,17 @@ document.addEventListener('DOMContentLoaded', function() {
     
     animateElements.forEach(el => animationObserver.observe(el));
     
-    // Generate QR Code pattern
-    gerarQRCode();
+    // PIX key click to copy
+    const pixKey = document.querySelector('.pix-key');
+    if (pixKey) {
+        pixKey.addEventListener('click', copiarPix);
+        pixKey.style.cursor = 'pointer';
+    }
 });
 
 // WhatsApp order function
 function pedirWhatsApp(produto, preco) {
-    const numero = '5511999999999';
+    const numero = '554888030687';
     const mensagem = `Olá! Gostaria de fazer um pedido de ${produto} (${preco}).`;
     const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
     
@@ -165,42 +146,148 @@ function pedirWhatsApp(produto, preco) {
     window.open(url, '_blank');
 }
 
-// Copy PIX function
-function copiarPix() {
-    const chavePix = '+55 48 8803-0687';
-    const button = document.querySelector('.btn-copy');
-    const originalText = button.textContent;
+// ===== CARROSSEL COM ARRASTE =====
+let currentSlideIndex = 0;
+const carousel = document.getElementById('passosCarousel');
+let isDown = false;
+let startX;
+let scrollLeft;
+
+function updateCarouselDots() {
+    const dots = document.querySelectorAll('.carousel-dot');
+    const slides = document.querySelectorAll('.passo-item');
     
-    if (navigator.clipboard && window.isSecureContext) {
-        navigator.clipboard.writeText(chavePix).then(() => {
-            button.textContent = 'PIX copiado!';
-            button.style.background = '#4CAF50';
-            setTimeout(() => {
-                button.textContent = originalText;
-                button.style.background = '';
-            }, 2000);
-        }).catch(() => {
-            fallbackCopyTextToClipboard(chavePix);
-            button.textContent = 'PIX copiado!';
-            button.style.background = '#4CAF50';
-            setTimeout(() => {
-                button.textContent = originalText;
-                button.style.background = '';
-            }, 2000);
-        });
-    } else {
-        fallbackCopyTextToClipboard(chavePix);
-        button.textContent = 'PIX copiado!';
-        button.style.background = '#4CAF50';
-        setTimeout(() => {
-            button.textContent = originalText;
-            button.style.background = '';
-        }, 2000);
+    if (!carousel || slides.length === 0) return;
+    
+    // Calcular qual slide está visível
+    const scrollPosition = carousel.scrollLeft;
+    const slideWidth = slides[0].offsetWidth + parseFloat(getComputedStyle(carousel).gap);
+    currentSlideIndex = Math.round(scrollPosition / slideWidth);
+    
+    // Atualizar dots
+    dots.forEach((dot, index) => {
+        if (index === currentSlideIndex) {
+            dot.classList.add('active');
+        } else {
+            dot.classList.remove('active');
+        }
+    });
+}
+
+function scrollPassos(direction) {
+    if (!carousel) return;
+    
+    const slides = document.querySelectorAll('.passo-item');
+    if (slides.length === 0) return;
+    
+    const slideWidth = slides[0].offsetWidth + parseFloat(getComputedStyle(carousel).gap);
+    carousel.scrollBy({
+        left: direction * slideWidth,
+        behavior: 'smooth'
+    });
+    
+    // Haptic feedback
+    if (navigator.vibrate) {
+        navigator.vibrate(30);
     }
 }
 
+function goToSlide(index) {
+    if (!carousel) return;
+    
+    const slides = document.querySelectorAll('.passo-item');
+    if (slides.length === 0) return;
+    
+    const slideWidth = slides[0].offsetWidth + parseFloat(getComputedStyle(carousel).gap);
+    carousel.scrollTo({
+        left: index * slideWidth,
+        behavior: 'smooth'
+    });
+    
+    // Haptic feedback
+    if (navigator.vibrate) {
+        navigator.vibrate(30);
+    }
+}
+
+// Arrastar com mouse
+if (carousel) {
+    carousel.addEventListener('mousedown', (e) => {
+        isDown = true;
+        carousel.style.cursor = 'grabbing';
+        startX = e.pageX - carousel.offsetLeft;
+        scrollLeft = carousel.scrollLeft;
+    });
+
+    carousel.addEventListener('mouseleave', () => {
+        isDown = false;
+        carousel.style.cursor = 'grab';
+    });
+
+    carousel.addEventListener('mouseup', () => {
+        isDown = false;
+        carousel.style.cursor = 'grab';
+    });
+
+    carousel.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - carousel.offsetLeft;
+        const walk = (x - startX) * 2;
+        carousel.scrollLeft = scrollLeft - walk;
+    });
+
+    // Atualizar dots ao scrollar
+    carousel.addEventListener('scroll', () => {
+        updateCarouselDots();
+    });
+
+    // Inicializar
+    updateCarouselDots();
+}
+
+// Copy PIX function - Feedback direto no botão
+function copiarPix() {
+    const chavePix = '+55 48 8803-0687';
+    const button = document.querySelector('.btn-copy-pix');
+    
+    if (!button) return;
+    
+    const originalHTML = button.innerHTML;
+    const originalBg = button.style.background;
+    
+    if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(chavePix).then(() => {
+            showCopySuccess(button, originalHTML, originalBg);
+        }).catch(() => {
+            fallbackCopyTextToClipboard(chavePix, button, originalHTML, originalBg);
+        });
+    } else {
+        fallbackCopyTextToClipboard(chavePix, button, originalHTML, originalBg);
+    }
+    
+    // Haptic feedback
+    if (navigator.vibrate) {
+        navigator.vibrate(50);
+    }
+}
+
+function showCopySuccess(button, originalHTML, originalBg) {
+    button.innerHTML = `
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+        </svg>
+        Copiado!
+    `;
+    button.style.background = '#4CAF50';
+    setTimeout(() => {
+        button.innerHTML = originalHTML;
+        button.style.background = originalBg;
+    }, 2500);
+}
+
 // Fallback copy function
-function fallbackCopyTextToClipboard(text) {
+function fallbackCopyTextToClipboard(text, button, originalHTML, originalBg) {
     const textArea = document.createElement('textarea');
     textArea.value = text;
     textArea.style.top = '0';
@@ -213,62 +300,19 @@ function fallbackCopyTextToClipboard(text) {
     
     try {
         document.execCommand('copy');
-        mostrarNotificacao('Chave PIX copiada com sucesso!');
+        if (button) {
+            showCopySuccess(button, originalHTML, originalBg);
+        }
     } catch (err) {
-        mostrarNotificacao('Erro ao copiar. Tente novamente.');
+        if (button) {
+            button.innerHTML = 'Erro ao copiar';
+            setTimeout(() => {
+                button.innerHTML = originalHTML;
+            }, 2000);
+        }
     }
     
     document.body.removeChild(textArea);
-}
-
-// Notification system
-function mostrarNotificacao(mensagem) {
-    // Remove existing notification
-    const notificacaoExistente = document.querySelector('.notificacao');
-    if (notificacaoExistente) {
-        notificacaoExistente.remove();
-    }
-    
-    const notificacao = document.createElement('div');
-    notificacao.className = 'notificacao';
-    notificacao.style.cssText = `
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        left: 20px;
-        background: var(--primary-color);
-        color: white;
-        padding: 16px 20px;
-        border-radius: 12px;
-        z-index: 10000;
-        font-weight: 500;
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-        transform: translateX(100%);
-        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        font-size: 0.9rem;
-        line-height: 1.4;
-        white-space: pre-line;
-        max-width: 400px;
-        margin: 0 auto;
-    `;
-    notificacao.textContent = mensagem;
-    
-    document.body.appendChild(notificacao);
-    
-    // Animate in
-    setTimeout(() => {
-        notificacao.style.transform = 'translateX(0)';
-    }, 100);
-    
-    // Remove after 4 seconds
-    setTimeout(() => {
-        notificacao.style.transform = 'translateX(100%)';
-        setTimeout(() => {
-            if (notificacao.parentNode) {
-                notificacao.parentNode.removeChild(notificacao);
-            }
-        }, 300);
-    }, 4000);
 }
 
 // Generate QR Code visual

@@ -66,7 +66,7 @@
             "addressCountry": "BR"
         },
         "openingHours": "Mo-Su",
-        "priceRange": "R$ 8,00 - R$ 12,00",
+        "priceRange": "R$ 4,00 - R$ 5,00",
         "servesCuisine": "Brasileira",
         "hasMenu": {
             "@type": "Menu",
@@ -76,41 +76,31 @@
                 "hasMenuItem": [
                     {
                         "@type": "MenuItem",
-                        "name": "Rosca Tradicional",
-                        "description": "Nossa receita clássica, macia e saborosa",
+                        "name": "Rosca de Banana",
+                        "description": "Sabor tradicional com banana fresquinha",
                         "offers": {
                             "@type": "Offer",
-                            "price": "8.00",
+                            "price": "4.00",
                             "priceCurrency": "BRL"
                         }
                     },
                     {
                         "@type": "MenuItem",
-                        "name": "Rosca de Canela",
-                        "description": "Deliciosa rosca com canela e açúcar",
+                        "name": "Rosca de Nata",
+                        "description": "Cremosa e irresistível, feita com nata pura",
                         "offers": {
                             "@type": "Offer",
-                            "price": "10.00",
+                            "price": "4.00",
                             "priceCurrency": "BRL"
                         }
                     },
                     {
                         "@type": "MenuItem",
-                        "name": "Rosca de Chocolate",
-                        "description": "Irresistível rosca com gotas de chocolate",
+                        "name": "Rosca de Calabresa com Queijo",
+                        "description": "Saborosa combinação de calabresa e queijo",
                         "offers": {
                             "@type": "Offer",
-                            "price": "12.00",
-                            "priceCurrency": "BRL"
-                        }
-                    },
-                    {
-                        "@type": "MenuItem",
-                        "name": "Rosca de Queijo",
-                        "description": "Salgada e saborosa, perfeita para o café",
-                        "offers": {
-                            "@type": "Offer",
-                            "price": "9.00",
+                            "price": "5.00",
                             "priceCurrency": "BRL"
                         }
                     }
@@ -130,7 +120,7 @@
                 <nav class="nav" id="nav">
                     <a href="#home" class="nav-link">Início</a>
                     <a href="#catalogo" class="nav-link">Cardápio</a>
-                    <a href="#videos" class="nav-link">Preparo</a>
+                    <a href="#preparo" class="nav-link">Preparo</a>
                     <a href="#pagamento" class="nav-link">Pagamentos</a>
                         <a href="#contato" class="nav-link">Contatos</a>
                 </nav>
@@ -146,11 +136,35 @@
         <section id="home" class="hero">
             <div class="container">
                 <div class="hero-content">
-                    <h2>Roscas Artesanais</h2>
-                    <p>Feitas com carinho, congeladas e prontas para assar em casa!</p>
-                    <div class="hero-buttons">
-                        <a href="#catalogo" class="btn btn-primary btn-hero">Ver Catálogo</a>
-                        <a href="#pagamento" class="btn btn-secondary btn-hero">Pagamentos</a>
+                    <span class="hero-badge">Feitas com Carinho</span>
+                    <h2 class="hero-title">Roscas Artesanais Congeladas</h2>
+                    <p class="hero-subtitle">Prontas para assar em casa! Sabor tradicional, qualidade artesanal.</p>
+                    
+                    <div class="hero-cta-primary">
+                        <a href="#preparo" class="btn-hero-main">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                            </svg>
+                            <span>
+                                <strong>Como Preparar</strong>
+                                <small>Veja o passo a passo</small>
+                            </span>
+                        </a>
+                    </div>
+                    
+                    <div class="hero-actions">
+                        <a href="#catalogo" class="btn-hero-secondary">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                            </svg>
+                            Ver Cardápio
+                        </a>
+                        <a href="#contato" class="btn-hero-secondary">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
+                            </svg>
+                            Fazer Pedido
+                        </a>
                     </div>
                 </div>
             </div>
@@ -158,102 +172,149 @@
 
         <section id="catalogo" class="catalogo">
             <div class="container">
-                <h2>Cardápio</h2>
-                <div class="catalogo-grid">
-                    <div class="produto-card" data-produto="rosca-tradicional">
-                        <div class="produto-image">
-                            <img src="assets/images/rosca-tradicional/rosca-tradicional.jpg" alt="Rosca Tradicional" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                            <div class="placeholder-image" style="display: none;">🍞</div>
+                <div class="section-header">
+                    <h2 class="section-title">Nosso Cardápio</h2>
+                    <p class="section-description">Roscas artesanais congeladas, prontas para assar</p>
+                </div>
+                <div class="produtos-grid">
+                    <div class="produto-item">
+                        <div class="produto-foto">
+                            <img src="assets/images/banana/banana.png" alt="Rosca de Banana">
                         </div>
-                        <h3>Rosca Tradicional</h3>
-                        <p>Nossa receita clássica, macia e saborosa</p>
-                        <span class="preco">R$ 8,00</span>
-                        <button class="btn btn-secondary btn-small" onclick="pedirWhatsApp('Rosca Tradicional', 'R$ 8,00')">
-                            Pedir
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
-                            </svg>
-                        </button>
+                        <div class="produto-info">
+                            <h3 class="produto-nome">Rosca de Banana</h3>
+                            <p class="produto-desc">Sabor tradicional com banana fresquinha</p>
+                            <div class="produto-preco-wrapper">
+                                <div class="preco-principal">
+                                    <span class="produto-preco">R$ 4,00</span>
+                                    <span class="produto-un">unid.</span>
+                                </div>
+                                <span class="produto-frete">+ frete</span>
+                            </div>
+                            <button class="btn-pedir" onclick="pedirWhatsApp('Rosca de Banana', 'R$ 4,00')">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
+                                </svg>
+                                Pedir
+                            </button>
+                        </div>
                     </div>
-                    <div class="produto-card" data-produto="rosca-canela">
-                        <div class="produto-image">
-                            <img src="assets/images/rosca-canela/rosca-canela.jpg" alt="Rosca de Canela" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                            <div class="placeholder-image" style="display: none;">🥖</div>
+                    <div class="produto-item">
+                        <div class="produto-foto">
+                            <img src="assets/images/nata/nata.png" alt="Rosca de Nata">
                         </div>
-                        <h3>Rosca de Canela</h3>
-                        <p>Deliciosa rosca com canela e açúcar</p>
-                        <span class="preco">R$ 10,00</span>
-                        <button class="btn btn-secondary btn-small" onclick="pedirWhatsApp('Rosca de Canela', 'R$ 10,00')">
-                            Pedir
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
-                            </svg>
-                        </button>
+                        <div class="produto-info">
+                            <h3 class="produto-nome">Rosca de Nata</h3>
+                            <p class="produto-desc">Cremosa e irresistível, feita com nata pura</p>
+                            <div class="produto-preco-wrapper">
+                                <div class="preco-principal">
+                                    <span class="produto-preco">R$ 4,00</span>
+                                    <span class="produto-un">unid.</span>
+                                </div>
+                                <span class="produto-frete">+ frete</span>
+                            </div>
+                            <button class="btn-pedir" onclick="pedirWhatsApp('Rosca de Nata', 'R$ 4,00')">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
+                                </svg>
+                                Pedir
+                            </button>
+                        </div>
                     </div>
-                    <div class="produto-card" data-produto="rosca-chocolate">
-                        <div class="produto-image">
-                            <img src="assets/images/rosca-chocolate/rosca-chocolate.jpg" alt="Rosca de Chocolate" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                            <div class="placeholder-image" style="display: none;">🥐</div>
+                    <div class="produto-item">
+                        <div class="produto-foto">
+                            <img src="assets/images/calabresa-com-queijo/calabresa-com-queijo.png" alt="Rosca de Calabresa com Queijo">
                         </div>
-                        <h3>Rosca de Chocolate</h3>
-                        <p>Irresistível rosca com gotas de chocolate</p>
-                        <span class="preco">R$ 12,00</span>
-                        <button class="btn btn-secondary btn-small" onclick="pedirWhatsApp('Rosca de Chocolate', 'R$ 12,00')">
-                            Pedir
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
-                            </svg>
-                        </button>
-                    </div>
-                    <div class="produto-card" data-produto="rosca-queijo">
-                        <div class="produto-image">
-                            <img src="assets/images/rosca-queijo/rosca-queijo.jpg" alt="Rosca de Queijo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                            <div class="placeholder-image" style="display: none;">🧀</div>
+                        <div class="produto-info">
+                            <h3 class="produto-nome">Rosca de Calabresa com Queijo</h3>
+                            <p class="produto-desc">Saborosa combinação de calabresa e queijo</p>
+                            <div class="produto-preco-wrapper">
+                                <div class="preco-principal">
+                                    <span class="produto-preco">R$ 5,00</span>
+                                    <span class="produto-un">unid.</span>
+                                </div>
+                                <span class="produto-frete">+ frete</span>
+                            </div>
+                            <button class="btn-pedir" onclick="pedirWhatsApp('Rosca de Calabresa com Queijo', 'R$ 5,00')">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
+                                </svg>
+                                Pedir
+                            </button>
                         </div>
-                        <h3>Rosca de Queijo</h3>
-                        <p>Salgada e saborosa, perfeita para o café</p>
-                        <span class="preco">R$ 9,00</span>
-                        <button class="btn btn-secondary btn-small" onclick="pedirWhatsApp('Rosca de Queijo', 'R$ 9,00')">
-                            Pedir
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
-                            </svg>
-                        </button>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="videos" class="videos">
+        <section id="preparo" class="videos">
             <div class="container">
-                <h2>Preparo</h2>
-                <div class="video-grid">
-                    <div class="video-card">
-                        <video controls class="video-player" preload="metadata">
-                            <source src="assets/videos/preparo-basico/preparo-basico.mp4" type="video/mp4">
-                            <source src="assets/videos/preparo-basico/preparo-basico.webm" type="video/webm">
-                            Seu navegador não suporta vídeos.
-                        </video>
-                        <h3>Preparo Básico</h3>
-                        <p>Passo a passo para assar suas roscas</p>
+                <div class="section-header">
+                    <h2 class="section-title">Como Assar</h2>
+                    <p class="section-description">Passo a passo simples para deixar suas roscas perfeitas</p>
+                </div>
+                <div class="passos-carousel-container">
+                    <div class="passos-carousel" id="passosCarousel">
+                        <div class="passo-item">
+                            <div class="passo-foto">
+                                <img src="assets/images/como-assar/passo1.png" alt="Passo 1 - Aquecer forno a 200°C" draggable="false">
+                                <span class="passo-numero">1</span>
+                            </div>
+                            <div class="passo-conteudo">
+                                <h3>Aqueça o Forno a 200°C</h3>
+                                <p>Coloque a rosca no forno ou air fryer pré-aquecido a 200°C. <strong>Importante:</strong> mantenha o papel manteiga embaixo da rosca.</p>
+                            </div>
+                        </div>
+                        <div class="passo-item">
+                            <div class="passo-foto">
+                                <img src="assets/images/como-assar/passo2.png" alt="Passo 2 - Deixe dourar" draggable="false">
+                                <span class="passo-numero">2</span>
+                            </div>
+                            <div class="passo-conteudo">
+                                <h3>Deixe Dourar em Cima</h3>
+                                <p>Aguarde até que a parte superior da rosca fique bem douradinha. Este processo leva aproximadamente 10 a 15 minutos.</p>
+                            </div>
+                        </div>
+                        <div class="passo-item">
+                            <div class="passo-foto">
+                                <img src="assets/images/como-assar/passo3.png" alt="Passo 3 - Virar a rosca" draggable="false">
+                                <span class="passo-numero">3</span>
+                            </div>
+                            <div class="passo-conteudo">
+                                <h3>Vire a Rosca</h3>
+                                <p>Quando o topo estiver dourado, vire a rosca de cabeça para baixo com cuidado. A parte crua ficará para cima e ela começará a crescer.</p>
+                            </div>
+                        </div>
+                        <div class="passo-item">
+                            <div class="passo-foto">
+                                <img src="assets/images/como-assar/passo4.png" alt="Passo 4 - Rosca pronta" draggable="false">
+                                <span class="passo-numero">4</span>
+                            </div>
+                            <div class="passo-conteudo">
+                                <h3>Está Pronta!</h3>
+                                <p>Aguarde dourar também por baixo. Sua rosca estará inchada, macia e dourada dos dois lados. Está pronta para servir!</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="video-card">
-                        <video controls class="video-player" preload="metadata">
-                            <source src="assets/videos/temperatura-ideal/temperatura-ideal.mp4" type="video/mp4">
-                            <source src="assets/videos/temperatura-ideal/temperatura-ideal.webm" type="video/webm">
-                            Seu navegador não suporta vídeos.
-                        </video>
-                        <h3>Temperatura Ideal</h3>
-                        <p>Como controlar a temperatura do forno</p>
-                    </div>
-                    <div class="video-card">
-                        <video controls class="video-player" preload="metadata">
-                            <source src="assets/videos/dicas-especiais/dicas-especiais.mp4" type="video/mp4">
-                            <source src="assets/videos/dicas-especiais/dicas-especiais.webm" type="video/webm">
-                            Seu navegador não suporta vídeos.
-                        </video>
-                        <h3>Dicas Especiais</h3>
-                        <p>Truques para roscas perfeitas</p>
+                    
+                    <!-- Navegação inferior -->
+                    <div class="carousel-navigation">
+                        <button class="carousel-nav-btn carousel-nav-prev" onclick="scrollPassos(-1)" aria-label="Anterior">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+                            </svg>
+                        </button>
+                        <div class="carousel-dots">
+                            <span class="carousel-dot active" onclick="goToSlide(0)" aria-label="Ir para passo 1"></span>
+                            <span class="carousel-dot" onclick="goToSlide(1)" aria-label="Ir para passo 2"></span>
+                            <span class="carousel-dot" onclick="goToSlide(2)" aria-label="Ir para passo 3"></span>
+                            <span class="carousel-dot" onclick="goToSlide(3)" aria-label="Ir para passo 4"></span>
+                        </div>
+                        <button class="carousel-nav-btn carousel-nav-next" onclick="scrollPassos(1)" aria-label="Próximo">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+                            </svg>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -261,46 +322,37 @@
 
         <section id="pagamento" class="pagamento">
             <div class="container">
-                <h2>Pagamentos</h2>
-                <div class="pagamento-grid">
-                    <!-- Chave PIX -->
-                    <div class="pix-card">
+                <div class="section-header">
+                    <h2 class="section-title">Formas de Pagamento</h2>
+                </div>
+                <div class="pagamento-container">
+                    <div class="pix-card-novo">
                         <div class="pix-header">
-                            <div class="pix-icon">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-                                </svg>
-                            </div>
-                            <h3>Chave PIX</h3>
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor" class="pix-icon">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1.41 16.09V20h-2.67v-1.93c-1.71-.36-3.16-1.46-3.27-3.4h1.96c.1 1.05.82 1.87 2.65 1.87 1.96 0 2.4-.98 2.4-1.59 0-.83-.44-1.61-2.67-2.14-2.48-.6-4.18-1.62-4.18-3.67 0-1.72 1.39-2.84 3.11-3.21V4h2.67v1.95c1.86.45 2.79 1.86 2.85 3.39H14.3c-.05-1.11-.64-1.87-2.22-1.87-1.5 0-2.4.68-2.4 1.64 0 .84.65 1.39 2.67 1.91s4.18 1.39 4.18 3.91c-.01 1.83-1.38 2.83-3.12 3.16z"/>
+                            </svg>
+                            <h3>Pagamento via PIX</h3>
                         </div>
                         <div class="pix-content">
-                            <div class="pix-key-container">
-                                <span class="pix-key">+55 48 8803-0687</span>
-                                <button class="btn-copy" onclick="copiarPix()" title="Copiar chave PIX">
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                                        <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
-                                    </svg>
-                                </button>
+                            <div class="pix-qr-section">
+                                <img src="assets/qr-code-pix/qrcode.png" alt="QR Code PIX" class="pix-qr">
+                                <p class="pix-qr-label">Escaneie o código</p>
                             </div>
-                            <p class="pix-description">Copie a chave PIX e cole no seu aplicativo bancário</p>
-                        </div>
-                    </div>
-
-                    <!-- QR Code -->
-                    <div class="qr-card">
-                        <div class="qr-header">
-                            <div class="qr-icon">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M3 11h8V3H3v8zm2-6h4v4H5V5zm8 12h8v8h-8v-8zm2 2h4v4h-4v-4zM3 21h8v-8H3v8zm2-6h4v4H5v-4zm8-8v2h2V7h-2zm0 4v2h2v-2h-2zm-4-4v2h2V7h-2zm0 4v2h2v-2h-2zm4 4v2h2v-2h-2zm-4 0v2h2v-2h-2z"/>
-                                </svg>
+                            <div class="pix-divider">
+                                <span>ou</span>
                             </div>
-                            <h3>QR Code</h3>
-                        </div>
-                        <div class="qr-content">
-                            <div class="qr-image-container">
-                                <img src="assets/qr-code-pix/qrcode.png" alt="QR Code PIX" class="qr-code-img">
+                            <div class="pix-key-section">
+                                <p class="pix-label">Chave PIX (Telefone):</p>
+                                <div class="pix-key-box">
+                                    <code class="pix-key" id="pixKey">+55 48 8803-0687</code>
+                                    <button class="btn-copy-pix" onclick="copiarPix()" title="Copiar chave PIX">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+                                        </svg>
+                                        Copiar
+                                    </button>
+                                </div>
                             </div>
-                            <p class="qr-description">Escaneie com seu aplicativo bancário</p>
                         </div>
                     </div>
                 </div>
@@ -309,85 +361,68 @@
 
         <section id="contato" class="contato">
             <div class="container">
-                <h2>Contatos</h2>
-                <div class="contato-content">
-                    <div class="contato-item">
-                        <div class="contato-icon">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
-                            </svg>
-                        </div>
-                        <div class="contato-details">
-                            <h3>WhatsApp</h3>
-                            <p>+55 48 8803-0687</p>
-                        </div>
-                        <a href="https://wa.me/554888030687?text=Olá! Gostaria de fazer um pedido de roscas" class="btn btn-secondary btn-hero" target="_blank">
-                            Abrir WhatsApp
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
-                            </svg>
-                        </a>
-                    </div>
-                    <div class="contato-item">
-                        <div class="contato-icon">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                            </svg>
-                        </div>
-                        <div class="contato-details">
-                            <h3>Instagram</h3>
-                            <p>@roscasvocido</p>
-                        </div>
-                        <a href="https://instagram.com/roscasvocido" class="btn btn-secondary btn-hero" target="_blank">
-                            Ver Instagram
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                            </svg>
-                        </a>
-                    </div>
-                    <div class="contato-item">
-                        <div class="contato-icon">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M20 8h-3V4H3c-1.1 0-2 .9-2 2v11h2c0 1.66 1.34 3 3 3s3-1.34 3-3h6c0 1.66 1.34 3 3 3s3-1.34 3-3h2v-5l-3-4zM6 18.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm13.5-9l1.96 2.5H17V9.5h2.5zm-1.5 9c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/>
-                            </svg>
-                        </div>
-                        <div class="contato-details">
-                            <h3>Entrega</h3>
-                            <p class="contato-note">Consulte disponibilidade</p>
-                        </div>
-                        <a href="https://wa.me/554888030687?text=Olá! Gostaria de consultar sobre entrega das roscas" class="btn btn-secondary btn-hero" target="_blank">
-                            Consultar Entrega
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
-                            </svg>
-                        </a>
-                    </div>
+                <div class="section-header">
+                    <h2 class="section-title">Fale Conosco</h2>
+                    <p class="section-description">Entre em contato para fazer seu pedido</p>
                 </div>
                 
-                <!-- Mapa de Localização -->
-                <div class="mapa-container">
-                    <h3>Nossa Localização</h3>
-                    <p>Venha nos visitar em São José - SC</p>
-                    <div class="mapa-wrapper">
+                <!-- WhatsApp Card (estilo PIX) -->
+                <div class="whatsapp-container">
+                    <div class="whatsapp-card-pix-style">
+                        <div class="whatsapp-header-pix">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor" class="whatsapp-icon-header">
+                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
+                            </svg>
+                            <h3>Atendimento WhatsApp</h3>
+                        </div>
+                        <div class="whatsapp-content-pix">
+                            <div class="whatsapp-info-section">
+                                <p class="whatsapp-label">Número:</p>
+                                <div class="whatsapp-numero-box">
+                                    <code class="whatsapp-numero-display">(48) 8803-0687</code>
+                                </div>
+                                <p class="whatsapp-desc-pix">Envie uma mensagem pelo WhatsApp para fazer seu pedido ou tirar dúvidas</p>
+                            </div>
+                            <a href="https://wa.me/554888030687?text=Olá! Gostaria de fazer um pedido de roscas" class="btn-whatsapp-pix" target="_blank">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
+                                </svg>
+                                Enviar Mensagem
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="localizacao" class="localizacao">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Nossa Localização</h2>
+                    <p class="section-description">Visite-nos ou veja nossa região de entrega</p>
+                </div>
+                <div class="maps-wrapper">
+                    <div class="maps-embed-container">
                         <iframe 
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14143.487005522871!2d-48.648914250000004!3d-27.59750545!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95274a06db263169%3A0xe9de3bbc0052e27b!2sR.%20Manoel%20Francisco%20de%20Souza%2C%20397%20-%20Forquilhinhas%2C%20S%C3%A3o%20Jos%C3%A9%20-%20SC%2C%2088106-755!5e0!3m2!1spt-BR!2sbr!4v1758746463770!5m2!1spt-BR!2sbr" 
                             width="100%" 
-                            height="300" 
+                            height="100%" 
                             style="border:0;" 
                             allowfullscreen="" 
                             loading="lazy" 
                             referrerpolicy="no-referrer-when-downgrade">
                         </iframe>
                     </div>
-                    <a href="https://www.google.com/maps/place/R.+Manoel+Francisco+de+Souza,+397+-+Forquilhinhas,+S%C3%A3o+Jos%C3%A9+-+SC,+88106-755" 
-                       class="btn btn-secondary btn-hero" 
-                       target="_blank" 
-                       rel="noopener noreferrer">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
-                        </svg>
-                        Abrir no Maps
-                    </a>
+                    <div class="maps-info">
+                        <h3>Forquilhinhas, São José - SC</h3>
+                        <p>Entrega para toda a região de São José e Florianópolis</p>
+                        <a href="https://www.google.com/maps/place/R.+Manoel+Francisco+de+Souza,+397+-+Forquilhinhas,+S%C3%A3o+Jos%C3%A9+-+SC,+88106-755" class="btn-maps-abrir" target="_blank" rel="noopener noreferrer">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                            </svg>
+                            Abrir no Google Maps
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>
@@ -406,7 +441,7 @@
                     <ul class="footer-nav" aria-labelledby="sr-footer-heading">
                         <li><a href="#home" class="footer-link">Início</a></li>
                         <li><a href="#catalogo" class="footer-link">Catálogo</a></li>
-                        <li><a href="#videos" class="footer-link">Preparo</a></li>
+                        <li><a href="#preparo" class="footer-link">Preparo</a></li>
                         <li><a href="#pagamento" class="footer-link">Pagamentos</a></li>
                             <li><a href="#contato" class="footer-link">Contatos</a></li>
                     </ul>
