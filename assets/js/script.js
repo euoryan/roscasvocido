@@ -153,10 +153,12 @@ function pedirWhatsApp(produto, preco) {
 
 // ===== CARROSSEL COM ARRASTE =====
 let currentSlideIndex = 0;
+const totalSlides = 4;
 const carousel = document.getElementById('passosCarousel');
 let isDown = false;
 let startX;
 let scrollLeft;
+let isNavigating = false; // Flag para evitar conflitos
 
 function updateCarouselDots() {
     const dots = document.querySelectorAll('.carousel-dot');
@@ -164,18 +166,43 @@ function updateCarouselDots() {
     
     if (!carousel || slides.length === 0) return;
     
-    // Calcular qual slide está visível
+    // Se estamos navegando programaticamente, não atualizar o índice
+    if (isNavigating) return;
+    
+    // Calcular qual slide está mais visível
     const scrollPosition = carousel.scrollLeft;
+    const containerWidth = carousel.offsetWidth;
     const slideWidth = slides[0].offsetWidth + parseFloat(getComputedStyle(carousel).gap);
-    currentSlideIndex = Math.round(scrollPosition / slideWidth);
+    
+    // Encontrar o slide que está mais centralizado na tela
+    let bestIndex = 0;
+    let minDistance = Infinity;
+    
+    slides.forEach((slide, index) => {
+        const slideLeft = index * slideWidth;
+        const slideCenter = slideLeft + (slideWidth / 2);
+        const containerCenter = scrollPosition + (containerWidth / 2);
+        const distance = Math.abs(slideCenter - containerCenter);
+        
+        if (distance < minDistance) {
+            minDistance = distance;
+            bestIndex = index;
+        }
+    });
+    
+    // Atualizar índice atual
+    currentSlideIndex = bestIndex;
     
     // Atualizar dots
     dots.forEach((dot, index) => {
-        if (index === currentSlideIndex) {
-            dot.classList.add('active');
-        } else {
-            dot.classList.remove('active');
-        }
+        dot.classList.toggle('active', index === currentSlideIndex);
+    });
+}
+
+function updateDots(activeIndex) {
+    const dots = document.querySelectorAll('.carousel-dot');
+    dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === activeIndex);
     });
 }
 
@@ -185,11 +212,22 @@ function scrollPassos(direction) {
     const slides = document.querySelectorAll('.passo-item');
     if (slides.length === 0) return;
     
-    const slideWidth = slides[0].offsetWidth + parseFloat(getComputedStyle(carousel).gap);
-    carousel.scrollBy({
-        left: direction * slideWidth,
-        behavior: 'smooth'
-    });
+    // Ativar flag de navegação
+    isNavigating = true;
+    
+    // Calcular próximo índice com loop infinito
+    if (direction === 1) {
+        currentSlideIndex = (currentSlideIndex + 1) % totalSlides;
+    } else {
+        currentSlideIndex = (currentSlideIndex - 1 + totalSlides) % totalSlides;
+    }
+    
+    goToSlide(currentSlideIndex);
+    
+    // Desativar flag após um tempo
+    setTimeout(() => {
+        isNavigating = false;
+    }, 500);
     
     // Haptic feedback
     if (navigator.vibrate) {
@@ -203,11 +241,25 @@ function goToSlide(index) {
     const slides = document.querySelectorAll('.passo-item');
     if (slides.length === 0) return;
     
+    // Ativar flag de navegação
+    isNavigating = true;
+    
+    // Atualizar índice atual
+    currentSlideIndex = index;
+    
     const slideWidth = slides[0].offsetWidth + parseFloat(getComputedStyle(carousel).gap);
     carousel.scrollTo({
         left: index * slideWidth,
         behavior: 'smooth'
     });
+    
+    // Atualizar dots
+    updateDots(index);
+    
+    // Desativar flag após um tempo
+    setTimeout(() => {
+        isNavigating = false;
+    }, 500);
     
     // Haptic feedback
     if (navigator.vibrate) {
@@ -215,41 +267,101 @@ function goToSlide(index) {
     }
 }
 
-// Arrastar com mouse
-if (carousel) {
-    carousel.addEventListener('mousedown', (e) => {
-        isDown = true;
-        carousel.style.cursor = 'grabbing';
-        startX = e.pageX - carousel.offsetLeft;
-        scrollLeft = carousel.scrollLeft;
-    });
+// Inicializar carrossel quando DOM estiver pronto
+document.addEventListener('DOMContentLoaded', function() {
+    if (carousel) {
+        // Event listeners para arrastar com mouse
+        carousel.addEventListener('mousedown', (e) => {
+            isDown = true;
+            carousel.style.cursor = 'grabbing';
+            startX = e.pageX - carousel.offsetLeft;
+            scrollLeft = carousel.scrollLeft;
+        });
 
-    carousel.addEventListener('mouseleave', () => {
-        isDown = false;
-        carousel.style.cursor = 'grab';
-    });
+        carousel.addEventListener('mouseleave', () => {
+            isDown = false;
+            carousel.style.cursor = 'grab';
+        });
 
-    carousel.addEventListener('mouseup', () => {
-        isDown = false;
-        carousel.style.cursor = 'grab';
-    });
+        carousel.addEventListener('mouseup', () => {
+            isDown = false;
+            carousel.style.cursor = 'grab';
+        });
 
-    carousel.addEventListener('mousemove', (e) => {
-        if (!isDown) return;
-        e.preventDefault();
-        const x = e.pageX - carousel.offsetLeft;
-        const walk = (x - startX) * 1.2;
-        carousel.scrollLeft = scrollLeft - walk;
-    });
+        carousel.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - carousel.offsetLeft;
+            const walk = (x - startX) * 1.2;
+            carousel.scrollLeft = scrollLeft - walk;
+        });
 
-    // Atualizar dots ao scrollar
-    carousel.addEventListener('scroll', () => {
+        // Atualizar dots ao scrollar com debounce
+        let scrollTimeout;
+        carousel.addEventListener('scroll', () => {
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(() => {
+                updateCarouselDots();
+            }, 100);
+        });
+
+        // Suporte para touch (mobile) melhorado
+        let startTouchX = 0;
+        let startScrollLeft = 0;
+        let isTouching = false;
+
+        carousel.addEventListener('touchstart', (e) => {
+            startTouchX = e.touches[0].clientX;
+            startScrollLeft = carousel.scrollLeft;
+            isTouching = true;
+            e.preventDefault();
+        });
+
+        carousel.addEventListener('touchmove', (e) => {
+            if (!isTouching) return;
+            e.preventDefault();
+            const currentTouchX = e.touches[0].clientX;
+            const diff = startTouchX - currentTouchX;
+            carousel.scrollLeft = startScrollLeft + diff;
+        });
+
+        carousel.addEventListener('touchend', (e) => {
+            if (!isTouching) return;
+            isTouching = false;
+            
+            // Snapping para o slide mais próximo
+            const slideWidth = carousel.querySelector('.passo-item').offsetWidth + parseFloat(getComputedStyle(carousel).gap);
+            const currentScroll = carousel.scrollLeft;
+            const targetIndex = Math.round(currentScroll / slideWidth);
+            
+            carousel.scrollTo({
+                left: targetIndex * slideWidth,
+                behavior: 'smooth'
+            });
+        });
+
+        // Event listeners para botões de navegação
+        const btnAnterior = document.querySelector('.carousel-nav-prev');
+        const btnProximo = document.querySelector('.carousel-nav-next');
+        
+        if (btnAnterior) {
+            btnAnterior.addEventListener('click', () => scrollPassos(-1));
+        }
+        
+        if (btnProximo) {
+            btnProximo.addEventListener('click', () => scrollPassos(1));
+        }
+
+        // Event listeners para dots
+        const dots = document.querySelectorAll('.carousel-dot');
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => goToSlide(index));
+        });
+
+        // Inicializar
         updateCarouselDots();
-    });
-
-    // Inicializar
-    updateCarouselDots();
-}
+    }
+});
 
 // Copy PIX function - Feedback direto no botão
 function copiarPix() {
@@ -463,7 +575,12 @@ function abrirModalProduto(tipo) {
     };
     
     modal.classList.add('active');
+    modal.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
+    
+    // Focar no modal para acessibilidade
+    const modalContent = modal.querySelector('.modal-content');
+    modalContent.focus();
     
     // Haptic feedback
     if (navigator.vibrate) {
@@ -481,7 +598,12 @@ function abrirModalPasso(numero) {
     
     const modal = document.getElementById('modalPasso');
     modal.classList.add('active');
+    modal.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
+    
+    // Focar no modal para acessibilidade
+    const modalContent = modal.querySelector('.modal-content');
+    modalContent.focus();
     
     // Adicionar suporte a swipe/arrastar
     adicionarSwipeSupport();
@@ -725,14 +847,22 @@ function adicionarSwipeSupport() {
 function fecharModal(modalId) {
     const modal = document.getElementById(modalId);
     modal.classList.remove('active');
+    modal.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
+    
+    // Remover foco do modal
+    if (document.activeElement && modal.contains(document.activeElement)) {
+        document.activeElement.blur();
+    }
 }
 
 // Fechar modal ao clicar fora
 window.addEventListener('click', function(event) {
-    if (event.target.classList.contains('modal')) {
-        const modalId = event.target.id;
-        fecharModal(modalId);
+    if (event.target.classList.contains('modal-backdrop')) {
+        const modal = event.target.closest('.modal');
+        if (modal) {
+            fecharModal(modal.id);
+        }
     }
 });
 
