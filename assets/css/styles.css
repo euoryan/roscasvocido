@@ -1,19 +1,19 @@
 :root {
-    --primary-color: #3b401b;
-    --secondary-color: #c17624;
-    --accent-color: #8b4513;
-    --text-dark: #2c2c2c;
-    --text-light: #666666;
-    --text-muted: #999999;
+    --primary-color: #8b4513;
+    --secondary-color: #d2691e;
+    --accent-color: #cd853f;
+    --text-dark: #2c1810;
+    --text-light: #5d4037;
+    --text-muted: #8d6e63;
     --background: #ffffff;
-    --background-light: #fafafa;
-    --background-dark: #f5f5f5;
-    --border-color: #e8e8e8;
-    --border-light: #f0f0f0;
-    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
-    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
-    --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
-    --transition: all 0.2s ease;
+    --background-light: #fefdf8;
+    --background-dark: #f5f3f0;
+    --border-color: #e8ddd4;
+    --border-light: #f0ebe5;
+    --shadow-sm: 0 1px 2px rgba(139, 69, 19, 0.08);
+    --shadow-md: 0 2px 4px rgba(139, 69, 19, 0.1);
+    --shadow-lg: 0 4px 8px rgba(139, 69, 19, 0.12);
+    --transition: all 0.15s ease;
 }
 
 * {
@@ -30,10 +30,12 @@ html {
 
 body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    line-height: 1.6;
+    line-height: 1.7;
     color: var(--text-dark);
     background-color: var(--background);
     overflow-x: hidden;
+    font-weight: 400;
+    letter-spacing: -0.01em;
 }
 
 .container {
@@ -44,7 +46,7 @@ body {
 
 /* ===== HEADER ===== */
 .header {
-    background: rgba(255, 255, 255, 0.98);
+    background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--border-light);
     position: fixed;
@@ -52,7 +54,7 @@ body {
     left: 0;
     right: 0;
     z-index: 1000;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    box-shadow: var(--shadow-sm);
 }
 
 .header .container {
@@ -129,11 +131,11 @@ body {
 
 /* ===== HERO ===== */
 .hero {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(250, 250, 250, 0.9) 100%), 
-                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><defs><pattern id="bread-pattern" width="200" height="200" patternUnits="userSpaceOnUse"><circle cx="100" cy="100" r="40" fill="%23f5f1e8" opacity="0.3"/></pattern></defs><rect width="1200" height="800" fill="url(%23bread-pattern)"/></svg>');
-    padding: 90px 0 70px;
+    background: var(--background);
+    padding: 100px 0 80px;
     text-align: center;
     margin-top: 70px;
+    border-bottom: 1px solid var(--border-light);
 }
 
 .hero-content {
@@ -143,22 +145,23 @@ body {
 
 .hero-badge {
     display: inline-block;
-    background: linear-gradient(135deg, var(--secondary-color), #d4861f);
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     color: white;
     padding: 0.5rem 1.25rem;
-    border-radius: 50px;
+    border-radius: 6px;
     font-size: 0.875rem;
-    font-weight: 600;
+    font-weight: 500;
     margin-bottom: 1.5rem;
-    box-shadow: 0 2px 8px rgba(193, 118, 36, 0.3);
+    box-shadow: var(--shadow-sm);
 }
 
 .hero-title {
     font-size: 2.5rem;
-    font-weight: 700;
+    font-weight: 600;
     color: var(--primary-color);
-    margin-bottom: 1rem;
-    line-height: 1.2;
+    margin-bottom: 1.25rem;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
 }
 
 .hero-subtitle {
@@ -168,87 +171,42 @@ body {
     line-height: 1.6;
 }
 
-/* Botão principal - Como Preparar */
-.hero-cta-primary {
-    margin-bottom: 1.5rem;
-}
-
-.btn-hero-main {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.75rem;
-    background: var(--secondary-color);
-    color: white;
-    padding: 0.75rem 1.5rem;
-    border-radius: 8px;
-    font-size: 0.95rem;
-    text-decoration: none;
-    transition: background 0.3s ease, border-color 0.3s ease;
-    border: 2px solid var(--secondary-color);
-    white-space: nowrap;
-}
-
-.btn-hero-main:hover {
-    background: var(--primary-color);
-    border-color: var(--primary-color);
-}
-
-.btn-hero-main svg {
-    flex-shrink: 0;
-    width: 20px;
-    height: 20px;
-}
-
-.btn-hero-main span {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    text-align: left;
-    gap: 0.1rem;
-}
-
-.btn-hero-main strong {
-    font-size: 0.95rem;
-    font-weight: 700;
-}
-
-.btn-hero-main small {
-    font-size: 0.75rem;
-    opacity: 0.9;
-    font-weight: 400;
-}
-
-/* Botões secundários */
+/* ===== PADRÃO DE BOTÕES DO SITE ===== */
+/* Botões Hero - Compactos e Idênticos */
 .hero-actions {
     display: flex;
-    gap: 1rem;
+    gap: 0.75rem;
     justify-content: center;
     flex-wrap: wrap;
+    max-width: 400px;
+    margin: 0 auto;
 }
 
-.btn-hero-secondary {
+.btn-hero-compact {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 0.5rem;
-    background: white;
-    color: var(--primary-color);
-    padding: 0.65rem 1.25rem;
-    border-radius: 8px;
-    font-size: 0.9rem;
-    font-weight: 600;
-    text-decoration: none;
-    transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
-    border: 2px solid var(--primary-color);
-    white-space: nowrap;
-}
-
-.btn-hero-secondary:hover {
     background: var(--primary-color);
     color: white;
-    border-color: var(--primary-color);
+    padding: 0.75rem 1.25rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: var(--transition);
+    border: none;
+    white-space: nowrap;
+    flex: 1;
+    min-width: 0;
 }
 
-.btn-hero-secondary svg {
+.btn-hero-compact:hover {
+    background: var(--secondary-color);
+    opacity: 0.9;
+}
+
+.btn-hero-compact svg {
     flex-shrink: 0;
     width: 18px;
     height: 18px;
@@ -266,16 +224,17 @@ section {
 
 .section-title {
     font-size: 2.25rem;
-    font-weight: 700;
+    font-weight: 600;
     color: var(--primary-color);
-    margin-bottom: 0.75rem;
-    letter-spacing: -0.01em;
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+    line-height: 1.3;
 }
 
 .section-description {
     font-size: 1.05rem;
     color: var(--text-light);
-    max-width: 600px;
+    max-width: 580px;
     margin: 0 auto;
 }
 
@@ -287,17 +246,17 @@ section {
 
 .produtos-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    max-width: 1100px;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2.5rem;
+    max-width: 1200px;
     margin: 0 auto;
 }
 
 .produto-item {
     background: white;
-    border-radius: 14px;
+    border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    box-shadow: var(--shadow-sm);
     border: 1px solid var(--border-light);
     transition: var(--transition);
     display: flex;
@@ -305,8 +264,8 @@ section {
 }
 
 .produto-item:hover {
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
     border-color: var(--secondary-color);
+    background-color: var(--background-light);
 }
 
 .produto-foto {
@@ -324,28 +283,29 @@ section {
 }
 
 .produto-item:hover .produto-foto img {
-    opacity: 0.95;
+    opacity: 1;
 }
 
 .produto-info {
-    padding: 1.5rem;
+    padding: 2rem;
     display: flex;
     flex-direction: column;
-    gap: 0.875rem;
+    gap: 1rem;
     flex-grow: 1;
 }
 
 .produto-nome {
-    font-size: 1.4rem;
-    font-weight: 700;
+    font-size: 1.35rem;
+    font-weight: 600;
     color: var(--primary-color);
-    line-height: 1.3;
+    line-height: 1.4;
+    letter-spacing: -0.01em;
 }
 
 .produto-desc {
-    font-size: 0.95rem;
+    font-size: 1rem;
     color: var(--text-light);
-    line-height: 1.6;
+    line-height: 1.7;
     flex-grow: 1;
 }
 
@@ -385,25 +345,33 @@ section {
 
 .btn-pedir {
     width: 100%;
-    background: var(--secondary-color);
+    background: var(--primary-color);
     color: white;
     border: none;
-    padding: 0.875rem 1.25rem;
-    border-radius: 8px;
-    font-size: 0.95rem;
-    font-weight: 600;
+    padding: 0.75rem 1.25rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 500;
     cursor: pointer;
-    transition: background 0.3s ease;
+    transition: var(--transition);
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    margin-top: 0.875rem;
+    margin-top: 1rem;
     white-space: nowrap;
+    min-height: 44px;
 }
 
 .btn-pedir:hover {
-    background: var(--primary-color);
+    background: var(--secondary-color);
+    opacity: 0.9;
+}
+
+.btn-pedir svg {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
 }
 
 /* ===== COMO ASSAR - CARROSSEL COM ARRASTE ===== */
@@ -442,18 +410,18 @@ section {
     flex: 0 0 calc(50% - 0.625rem);
     min-width: 360px;
     background: white;
-    border-radius: 14px;
+    border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
-    border: 2px solid var(--border-light);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-light);
     scroll-snap-align: start;
-    transition: all 0.3s ease;
+    transition: var(--transition);
     user-select: none;
 }
 
 .passo-item:hover {
     border-color: var(--secondary-color);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+    background-color: var(--background-light);
 }
 
 .passo-foto {
@@ -486,24 +454,25 @@ section {
     justify-content: center;
     font-size: 1.5rem;
     font-weight: 700;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 12px rgba(139, 69, 19, 0.4);
 }
 
 .passo-conteudo {
-    padding: 1.5rem;
+    padding: 2rem;
 }
 
 .passo-conteudo h3 {
     font-size: 1.25rem;
-    font-weight: 700;
+    font-weight: 600;
     color: var(--primary-color);
-    margin-bottom: 0.625rem;
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.01em;
 }
 
 .passo-conteudo p {
-    font-size: 0.95rem;
+    font-size: 1rem;
     color: var(--text-light);
-    line-height: 1.65;
+    line-height: 1.7;
 }
 
 /* Navegação inferior do carrossel */
@@ -581,37 +550,41 @@ section {
 
 .pix-card-novo {
     background: white;
-    border-radius: 14px;
-    padding: 2rem;
-    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
-    border: 2px solid var(--border-light);
+    border-radius: 12px;
+    padding: 2.5rem;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-light);
     transition: var(--transition);
 }
 
 .pix-card-novo:hover {
     border-color: var(--secondary-color);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+    background-color: var(--background-light);
 }
 
 .pix-header {
     display: flex;
     align-items: center;
-    gap: 1rem;
-    margin-bottom: 2rem;
-    padding-bottom: 1.5rem;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-bottom: 1.75rem;
+    padding-bottom: 1.25rem;
     border-bottom: 2px solid var(--border-light);
 }
 
 .pix-icon {
-    color: var(--secondary-color);
+    color: var(--primary-color);
     flex-shrink: 0;
+    width: 32px;
+    height: 32px;
 }
 
 .pix-header h3 {
-    font-size: 1.5rem;
-    font-weight: 700;
+    font-size: 1.35rem;
+    font-weight: 600;
     color: var(--primary-color);
     margin: 0;
+    letter-spacing: -0.01em;
 }
 
 .pix-content {
@@ -703,17 +676,19 @@ section {
 .btn-copy-pix {
     display: flex;
     align-items: center;
-    gap: 0.45rem;
-    background: var(--secondary-color);
+    justify-content: center;
+    gap: 0.5rem;
+    background: var(--primary-color);
     color: white;
     border: none;
-    padding: 0.55rem 0.95rem;
-    border-radius: 8px;
-    font-size: 0.85rem;
-    font-weight: 600;
+    padding: 0.65rem 1rem;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    font-weight: 500;
     cursor: pointer;
-    transition: background 0.3s ease;
+    transition: var(--transition);
     white-space: nowrap;
+    min-height: 42px;
 }
 
 .btn-copy-pix svg {
@@ -723,7 +698,8 @@ section {
 }
 
 .btn-copy-pix:hover {
-    background: var(--primary-color);
+    background: var(--secondary-color);
+    opacity: 0.9;
 }
 
 /* ===== CONTATO / WHATSAPP ===== */
@@ -739,37 +715,41 @@ section {
 
 .whatsapp-card-pix-style {
     background: white;
-    border-radius: 14px;
-    padding: 2rem;
-    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
-    border: 2px solid var(--border-light);
+    border-radius: 12px;
+    padding: 2.5rem;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-light);
     transition: var(--transition);
 }
 
 .whatsapp-card-pix-style:hover {
     border-color: var(--secondary-color);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+    background-color: var(--background-light);
 }
 
 .whatsapp-header-pix {
     display: flex;
     align-items: center;
-    gap: 1rem;
-    margin-bottom: 2rem;
-    padding-bottom: 1.5rem;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-bottom: 1.75rem;
+    padding-bottom: 1.25rem;
     border-bottom: 2px solid var(--border-light);
 }
 
 .whatsapp-icon-header {
     color: #25D366;
     flex-shrink: 0;
+    width: 32px;
+    height: 32px;
 }
 
 .whatsapp-header-pix h3 {
-    font-size: 1.5rem;
-    font-weight: 700;
+    font-size: 1.35rem;
+    font-weight: 600;
     color: var(--primary-color);
     margin: 0;
+    letter-spacing: -0.01em;
 }
 
 .whatsapp-content-pix {
@@ -829,15 +809,16 @@ section {
     background: #25D366;
     color: white;
     border: none;
-    padding: 0.65rem 1.25rem;
-    border-radius: 8px;
+    padding: 0.7rem 1.25rem;
+    border-radius: 6px;
     font-size: 0.9rem;
-    font-weight: 600;
+    font-weight: 500;
     cursor: pointer;
-    transition: background 0.3s ease;
+    transition: var(--transition);
     text-decoration: none;
     width: 100%;
     white-space: nowrap;
+    min-height: 44px;
 }
 
 .btn-whatsapp-pix:hover {
@@ -860,10 +841,10 @@ section {
     max-width: 950px;
     margin: 0 auto;
     background: white;
-    border-radius: 14px;
+    border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
-    border: 2px solid var(--border-light);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-light);
 }
 
 .maps-embed-container {
@@ -880,9 +861,10 @@ section {
 
 .maps-info h3 {
     font-size: 1.3rem;
-    font-weight: 700;
+    font-weight: 600;
     color: var(--primary-color);
-    margin-bottom: 0.625rem;
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.01em;
 }
 
 .maps-info p {
@@ -897,31 +879,34 @@ section {
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    background: var(--secondary-color);
+    background: var(--primary-color);
     color: white;
-    padding: 0.65rem 1.5rem;
-    border-radius: 8px;
+    padding: 0.7rem 1.5rem;
+    border-radius: 6px;
     font-size: 0.9rem;
-    font-weight: 600;
+    font-weight: 500;
     text-decoration: none;
-    transition: background 0.3s ease;
+    transition: var(--transition);
     white-space: nowrap;
+    min-height: 44px;
 }
 
 .btn-maps-abrir:hover {
-    background: var(--primary-color);
+    background: var(--secondary-color);
+    opacity: 0.9;
 }
 
 .btn-maps-abrir svg {
     width: 16px;
     height: 16px;
+    flex-shrink: 0;
 }
 
 /* ===== FOOTER ===== */
 .footer {
-    background: linear-gradient(135deg, #3b401a 0%, #4a4f1f 100%);
-    border-top: 1px solid #5a5f2f;
-    padding: 1.75rem 0;
+    background: var(--primary-color);
+    border-top: 1px solid var(--border-color);
+    padding: 2rem 0;
 }
 
 .footer-main {
@@ -947,7 +932,8 @@ section {
 
 .footer-brand span {
     font-size: 0.875rem;
-    color: #e8f5e8;
+    color: white;
+    opacity: 0.9;
 }
 
 .footer-nav {
@@ -958,29 +944,38 @@ section {
 }
 
 .footer-link {
-    color: #d4e6d4;
+    color: white;
     text-decoration: none;
     font-size: 0.875rem;
+    opacity: 0.8;
+    transition: var(--transition);
 }
 
 .footer-link:hover {
-    color: #f0f8f0;
+    opacity: 1;
 }
 
 .footer-bottom {
     text-align: center;
-    padding-top: 1rem;
-    border-top: 1px solid #5a5f2f;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-color);
 }
 
 .footer-bottom p {
-    font-size: 0.75rem;
-    color: #c4d4c4;
+    font-size: 0.8rem;
+    color: white;
+    opacity: 0.7;
 }
 
 .credits-link {
-    color: #f0f8f0;
+    color: white;
     text-decoration: none;
+    opacity: 0.9;
+    transition: var(--transition);
+}
+
+.credits-link:hover {
+    opacity: 1;
 }
 
 .sr-only {
@@ -1041,7 +1036,7 @@ section {
     }
 
     .hero {
-        padding: 70px 0 50px;
+        padding: 80px 0 60px;
     }
     
     .hero-title {
@@ -1053,42 +1048,23 @@ section {
         margin-bottom: 2rem;
     }
     
-    .btn-hero-main {
-        padding: 0.7rem 1.5rem;
-        font-size: 0.9rem;
-    }
-    
-    .btn-hero-main svg {
-        width: 18px;
-        height: 18px;
-    }
-    
-    .btn-hero-main strong {
-        font-size: 0.9rem;
-    }
-    
-    .btn-hero-main small {
-        font-size: 0.75rem;
-    }
-    
     .hero-actions {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 0.75rem;
+        gap: 0.65rem;
+        max-width: 350px;
     }
     
-    .btn-hero-secondary {
-        padding: 0.6rem 1.15rem;
-        font-size: 0.875rem;
+    .btn-hero-compact {
+        padding: 0.6rem 0.9rem;
+        font-size: 0.85rem;
     }
     
-    .btn-hero-secondary svg {
+    .btn-hero-compact svg {
         width: 16px;
         height: 16px;
     }
 
     .catalogo, .videos, .pagamento, .contato, .localizacao {
-        padding: 50px 0;
+        padding: 60px 0;
     }
 
     .section-header {
@@ -1105,7 +1081,7 @@ section {
 
     .produtos-grid {
         grid-template-columns: 1fr;
-        gap: 2rem;
+        gap: 2.5rem;
     }
 
     /* Carrossel mobile */
@@ -1124,7 +1100,7 @@ section {
     }
 
     .passo-conteudo {
-        padding: 1.5rem;
+        padding: 1.75rem;
     }
 
     .passo-conteudo h3 {
@@ -1294,31 +1270,22 @@ section {
         font-size: 0.95rem;
     }
     
-    .btn-hero-main {
-        padding: 0.65rem 1.35rem;
-        gap: 0.65rem;
-        font-size: 0.875rem;
+    .hero-actions {
+        gap: 0.6rem;
+        max-width: 100%;
+        flex-direction: column;
     }
     
-    .btn-hero-main svg {
-        width: 16px;
-        height: 16px;
+    .btn-hero-compact {
+        padding: 0.55rem 0.85rem;
+        font-size: 0.8rem;
+        flex: none;
+        width: 100%;
+        max-width: 280px;
+        margin: 0 auto;
     }
     
-    .btn-hero-main strong {
-        font-size: 0.875rem;
-    }
-    
-    .btn-hero-main small {
-        font-size: 0.7rem;
-    }
-    
-    .btn-hero-secondary {
-        padding: 0.55rem 1rem;
-        font-size: 0.85rem;
-    }
-    
-    .btn-hero-secondary svg {
+    .btn-hero-compact svg {
         width: 15px;
         height: 15px;
     }
