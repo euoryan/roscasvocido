@@ -689,11 +689,6 @@ section {
     background: var(--background-light);
 }
 
-.pagamento-container {
-    max-width: 800px;
-    margin: 0 auto;
-}
-
 .pix-card-novo {
     background: white;
     border-radius: 12px;
@@ -1309,7 +1304,7 @@ section {
 
     /* Pagamento mobile */
     .pagamento-container {
-        padding: 0 1rem;
+        padding: 0;
         display: flex;
         justify-content: center;
     }
@@ -1568,7 +1563,7 @@ section {
 .contato-simples {
     display: flex;
     justify-content: center;
-    margin-top: 2rem;
+    margin-top: 0;
 }
 
 .contato-card {
@@ -1703,6 +1698,12 @@ section {
 }
 
 /* ===== PIX - PADRÃO LEGACY MINIMALISTA ===== */
+.pagamento-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 0;
+}
+
 .pix-card-simples {
     background: white;
     border-radius: 12px;
@@ -2447,10 +2448,10 @@ section {
     }
     
     .modal-image-container {
-        aspect-ratio: 1;
         flex: none;
         min-height: 200px;
-        max-height: 200px;
+        height: 200px;
+        width: 100%;
     }
     
     .modal-info {
@@ -2506,10 +2507,10 @@ section {
     }
     
     .modal-image-container {
-        aspect-ratio: 1;
         flex: none;
-        min-height: 150px;
-        max-height: 150px;
+        min-height: 180px;
+        height: 180px;
+        width: 100%;
     }
     
     .modal-info {
