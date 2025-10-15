@@ -29,8 +29,13 @@ document.addEventListener('DOMContentLoaded', function() {
     // Mobile menu toggle
     if (menuToggle && nav) {
         menuToggle.addEventListener('click', function() {
-            menuToggle.classList.toggle('active');
+            const isActive = menuToggle.classList.toggle('active');
             nav.classList.toggle('active');
+            
+            // Haptic feedback
+            if (navigator.vibrate) {
+                navigator.vibrate(20);
+            }
         });
     }
     
@@ -408,3 +413,204 @@ if ('performance' in window) {
         }, 0);
     });
 }
+
+// ===== SISTEMA DE MODAIS PROFISSIONAIS =====
+
+// Dados dos produtos
+const produtosData = {
+    'banana': {
+        nome: 'Rosca de Banana',
+        descricao: 'Sabor tradicional com banana fresquinha. Massa macia e saborosa, perfeita para o café da manhã ou lanche da tarde.',
+        preco: 'R$ 4,00',
+        imagem: 'assets/images/banana/banana.png'
+    },
+    'nata': {
+        nome: 'Rosca de Nata',
+        descricao: 'Cremosa e irresistível, feita com nata pura. Uma experiência única de sabor e textura que derrete na boca.',
+        preco: 'R$ 4,00',
+        imagem: 'assets/images/nata/nata.png'
+    },
+    'calabresa': {
+        nome: 'Rosca de Calabresa com Queijo',
+        descricao: 'Saborosa combinação de calabresa e queijo. Perfeita para quem gosta de sabores marcantes e queijo derretido.',
+        preco: 'R$ 5,00',
+        imagem: 'assets/images/calabresa-com-queijo/calabresa-com-queijo.png'
+    }
+};
+
+// Dados dos passos
+const passosData = [
+    {
+        numero: 1,
+        titulo: 'Aqueça o Forno a 200°C',
+        descricao: 'Coloque a rosca no forno ou air fryer pré-aquecido a 200°C. Importante: mantenha o papel manteiga embaixo da rosca para evitar que grude e facilitar o manuseio.',
+        imagem: 'assets/images/como-assar/passo1.png'
+    },
+    {
+        numero: 2,
+        titulo: 'Deixe Dourar em Cima',
+        descricao: 'Aguarde até que a parte superior da rosca fique bem douradinha. Este processo leva aproximadamente 10 a 15 minutos, dependendo da potência do seu forno.',
+        imagem: 'assets/images/como-assar/passo2.png'
+    },
+    {
+        numero: 3,
+        titulo: 'Vire a Rosca',
+        descricao: 'Quando o topo estiver dourado, vire a rosca de cabeça para baixo com cuidado. A parte crua ficará para cima e ela começará a crescer, criando aquela textura macia por dentro.',
+        imagem: 'assets/images/como-assar/passo3.png'
+    },
+    {
+        numero: 4,
+        titulo: 'Está Pronta!',
+        descricao: 'Aguarde dourar também por baixo. Sua rosca estará inchada, macia e dourada dos dois lados. Está pronta para servir! Aproveite ainda quentinha.',
+        imagem: 'assets/images/como-assar/passo4.png'
+    }
+];
+
+// Abrir modal de produto
+function abrirModalProduto(tipo) {
+    const produto = produtosData[tipo];
+    if (!produto) return;
+    
+    const modal = document.getElementById('modalProduto');
+    document.getElementById('modalProdutoNome').textContent = produto.nome;
+    document.getElementById('modalProdutoDesc').textContent = produto.descricao;
+    document.getElementById('modalProdutoPreco').textContent = produto.preco;
+    document.getElementById('modalProdutoImg').src = produto.imagem;
+    document.getElementById('modalProdutoImg').alt = produto.nome;
+    
+    // Configurar botão de pedido
+    const btnPedir = document.getElementById('modalProdutoBtnPedir');
+    btnPedir.onclick = function() {
+        pedirWhatsApp(produto.nome, produto.preco);
+        fecharModal('modalProduto');
+    };
+    
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    
+    // Haptic feedback
+    if (navigator.vibrate) {
+        navigator.vibrate(30);
+    }
+}
+
+// Abrir modal de passo
+function abrirModalPasso(numero) {
+    const passo = passosData[numero - 1];
+    if (!passo) return;
+    
+    const modal = document.getElementById('modalPasso');
+    document.getElementById('modalPassoTitulo').textContent = passo.titulo;
+    document.getElementById('modalPassoDesc').textContent = passo.descricao;
+    document.getElementById('modalPassoImg').src = passo.imagem;
+    document.getElementById('modalPassoImg').alt = passo.titulo;
+    document.getElementById('modalPassoBadge').textContent = `Passo ${passo.numero}`;
+    
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    
+    // Haptic feedback
+    if (navigator.vibrate) {
+        navigator.vibrate(30);
+    }
+}
+
+// Fechar modal
+function fecharModal(modalId) {
+    const modal = document.getElementById(modalId);
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+    
+    // Resetar zoom se houver
+    const img = modal.querySelector('.modal-image');
+    if (img && img.classList.contains('zoomed')) {
+        img.classList.remove('zoomed');
+    }
+    
+    // Resetar botões de zoom
+    if (modalId === 'modalProduto') {
+        document.getElementById('zoomInProduto').classList.remove('hidden');
+        document.getElementById('zoomOutProduto').classList.add('hidden');
+    } else if (modalId === 'modalPasso') {
+        document.getElementById('zoomInPasso').classList.remove('hidden');
+        document.getElementById('zoomOutPasso').classList.add('hidden');
+    }
+}
+
+// Zoom in na imagem
+function zoomIn(imgId) {
+    const img = document.getElementById(imgId);
+    img.classList.add('zoomed');
+    
+    // Mostrar botão de zoom out, esconder zoom in
+    if (imgId === 'modalProdutoImg') {
+        document.getElementById('zoomInProduto').classList.add('hidden');
+        document.getElementById('zoomOutProduto').classList.remove('hidden');
+    } else if (imgId === 'modalPassoImg') {
+        document.getElementById('zoomInPasso').classList.add('hidden');
+        document.getElementById('zoomOutPasso').classList.remove('hidden');
+    }
+    
+    // Haptic feedback
+    if (navigator.vibrate) {
+        navigator.vibrate(30);
+    }
+}
+
+// Zoom out na imagem
+function zoomOut(imgId) {
+    const img = document.getElementById(imgId);
+    img.classList.remove('zoomed');
+    
+    // Mostrar botão de zoom in, esconder zoom out
+    if (imgId === 'modalProdutoImg') {
+        document.getElementById('zoomInProduto').classList.remove('hidden');
+        document.getElementById('zoomOutProduto').classList.add('hidden');
+    } else if (imgId === 'modalPassoImg') {
+        document.getElementById('zoomInPasso').classList.remove('hidden');
+        document.getElementById('zoomOutPasso').classList.add('hidden');
+    }
+    
+    // Haptic feedback
+    if (navigator.vibrate) {
+        navigator.vibrate(30);
+    }
+}
+
+// Fechar modal ao clicar fora
+window.addEventListener('click', function(event) {
+    if (event.target.classList.contains('modal')) {
+        const modalId = event.target.id;
+        fecharModal(modalId);
+    }
+});
+
+// Fechar modal com ESC
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+        fecharModal('modalProduto');
+        fecharModal('modalPasso');
+    }
+});
+
+// Adicionar event listeners aos produtos
+document.addEventListener('DOMContentLoaded', function() {
+    // Produtos
+    const produtoItems = document.querySelectorAll('.produto-item');
+    produtoItems.forEach((item, index) => {
+        const tipos = ['banana', 'nata', 'calabresa'];
+        item.addEventListener('click', function(e) {
+            // Não abrir modal se clicar no botão
+            if (e.target.closest('.btn-pedir')) return;
+            abrirModalProduto(tipos[index]);
+        });
+    });
+    
+    // Passos
+    const passoItems = document.querySelectorAll('.passo-item');
+    passoItems.forEach((item, index) => {
+        item.addEventListener('click', function() {
+            abrirModalPasso(index + 1);
+        });
+    });
+});
