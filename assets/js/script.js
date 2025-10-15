@@ -305,34 +305,65 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 100);
         });
 
-        // Suporte para touch (mobile) melhorado
+        // Suporte para touch (mobile) melhorado - compatível com iPhone
         let startTouchX = 0;
         let startScrollLeft = 0;
         let isTouching = false;
+        let touchStartTime = 0;
 
         carousel.addEventListener('touchstart', (e) => {
             startTouchX = e.touches[0].clientX;
             startScrollLeft = carousel.scrollLeft;
             isTouching = true;
-            e.preventDefault();
-        });
+            touchStartTime = Date.now();
+            
+            // Não prevenir default imediatamente para permitir scroll nativo
+            if (e.touches.length === 1) {
+                e.preventDefault();
+            }
+        }, { passive: false });
 
         carousel.addEventListener('touchmove', (e) => {
             if (!isTouching) return;
-            e.preventDefault();
+            
+            // Prevenir scroll da página apenas se estiver arrastando horizontalmente
             const currentTouchX = e.touches[0].clientX;
-            const diff = startTouchX - currentTouchX;
-            carousel.scrollLeft = startScrollLeft + diff;
-        });
+            const diffX = Math.abs(currentTouchX - startTouchX);
+            const diffY = Math.abs(e.touches[0].clientY - (e.touches[0].clientY || 0));
+            
+            if (diffX > diffY) {
+                e.preventDefault();
+                const diff = startTouchX - currentTouchX;
+                carousel.scrollLeft = startScrollLeft + diff;
+            }
+        }, { passive: false });
 
         carousel.addEventListener('touchend', (e) => {
             if (!isTouching) return;
             isTouching = false;
             
+            const touchDuration = Date.now() - touchStartTime;
+            const currentTouchX = e.changedTouches[0].clientX;
+            const diff = startTouchX - currentTouchX;
+            const velocity = Math.abs(diff) / touchDuration;
+            
             // Snapping para o slide mais próximo
             const slideWidth = carousel.querySelector('.passo-item').offsetWidth + parseFloat(getComputedStyle(carousel).gap);
             const currentScroll = carousel.scrollLeft;
-            const targetIndex = Math.round(currentScroll / slideWidth);
+            let targetIndex = Math.round(currentScroll / slideWidth);
+            
+            // Se a velocidade for alta, ir para o próximo slide
+            if (velocity > 0.5) {
+                if (diff > 0) {
+                    targetIndex = Math.min(targetIndex + 1, totalSlides - 1);
+                } else {
+                    targetIndex = Math.max(targetIndex - 1, 0);
+                }
+            }
+            
+            // Aplicar loop infinito
+            targetIndex = targetIndex % totalSlides;
+            if (targetIndex < 0) targetIndex = totalSlides - 1;
             
             carousel.scrollTo({
                 left: targetIndex * slideWidth,
@@ -363,24 +394,25 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// Copy PIX function - Feedback direto no botão
+// Copy PIX function - Feedback visual aprimorado
 function copiarPix() {
     const chavePix = '+55 48 8803-0687';
-    const button = document.querySelector('.btn-copy-pix');
+    const button = document.getElementById('btnCopyPix');
     
-    if (!button) return;
-    
-    const originalHTML = button.innerHTML;
-    const originalBg = button.style.background;
+    if (!button) {
+        console.error('Botão de copiar não encontrado');
+        return;
+    }
     
     if (navigator.clipboard && window.isSecureContext) {
         navigator.clipboard.writeText(chavePix).then(() => {
-            showCopySuccess(button, originalHTML, originalBg);
-        }).catch(() => {
-            fallbackCopyTextToClipboard(chavePix, button, originalHTML, originalBg);
+            showCopySuccess(button);
+        }).catch((err) => {
+            console.error('Erro ao copiar:', err);
+            fallbackCopyTextToClipboard(chavePix, button);
         });
     } else {
-        fallbackCopyTextToClipboard(chavePix, button, originalHTML, originalBg);
+        fallbackCopyTextToClipboard(chavePix, button);
     }
     
     // Haptic feedback
@@ -389,22 +421,36 @@ function copiarPix() {
     }
 }
 
-function showCopySuccess(button, originalHTML, originalBg) {
-    button.innerHTML = `
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
-        </svg>
-        Copiado!
-    `;
-    button.style.background = '#4CAF50';
+function showCopySuccess(button) {
+    // Adicionar classe de copiado
+    button.classList.add('copied');
+    
+    // Mudar conteúdo do botão
+    const buttonText = button.querySelector('.btn-copy-text');
+    const buttonIcon = button.querySelector('svg path');
+    
+    if (buttonText) {
+        buttonText.textContent = 'Copiado!';
+    }
+    
+    if (buttonIcon) {
+        buttonIcon.setAttribute('d', 'M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z');
+    }
+    
+    // Reverter após 2 segundos
     setTimeout(() => {
-        button.innerHTML = originalHTML;
-        button.style.background = originalBg;
-    }, 2500);
+        button.classList.remove('copied');
+        if (buttonText) {
+            buttonText.textContent = 'Copiar';
+        }
+        if (buttonIcon) {
+            buttonIcon.setAttribute('d', 'M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z');
+        }
+    }, 2000);
 }
 
 // Fallback copy function
-function fallbackCopyTextToClipboard(text, button, originalHTML, originalBg) {
+function fallbackCopyTextToClipboard(text, button) {
     const textArea = document.createElement('textarea');
     textArea.value = text;
     textArea.style.top = '0';
@@ -418,14 +464,19 @@ function fallbackCopyTextToClipboard(text, button, originalHTML, originalBg) {
     try {
         document.execCommand('copy');
         if (button) {
-            showCopySuccess(button, originalHTML, originalBg);
+            showCopySuccess(button);
         }
     } catch (err) {
+        console.error('Erro ao copiar:', err);
         if (button) {
-            button.innerHTML = 'Erro ao copiar';
-            setTimeout(() => {
-                button.innerHTML = originalHTML;
-            }, 2000);
+            const buttonText = button.querySelector('.btn-copy-text');
+            if (buttonText) {
+                const originalText = buttonText.textContent;
+                buttonText.textContent = 'Erro';
+                setTimeout(() => {
+                    buttonText.textContent = originalText;
+                }, 2000);
+            }
         }
     }
     
@@ -576,11 +627,18 @@ function abrirModalProduto(tipo) {
     
     modal.classList.add('active');
     modal.setAttribute('aria-hidden', 'false');
+    
+    // Corrigir scroll no iPhone
     document.body.style.overflow = 'hidden';
+    document.body.style.position = 'fixed';
+    document.body.style.width = '100%';
+    document.body.style.top = `-${window.scrollY}px`;
     
     // Focar no modal para acessibilidade
     const modalContent = modal.querySelector('.modal-content');
-    modalContent.focus();
+    if (modalContent) {
+        modalContent.focus();
+    }
     
     // Haptic feedback
     if (navigator.vibrate) {
@@ -591,6 +649,9 @@ function abrirModalProduto(tipo) {
 // Controle do passo atual
 let passoAtualIndex = 0;
 
+// Variável para armazenar a posição do scroll
+let scrollPosition = 0;
+
 // Abrir modal de passo
 function abrirModalPasso(numero) {
     passoAtualIndex = numero - 1;
@@ -599,11 +660,21 @@ function abrirModalPasso(numero) {
     const modal = document.getElementById('modalPasso');
     modal.classList.add('active');
     modal.setAttribute('aria-hidden', 'false');
+    
+    // Salvar posição atual do scroll
+    scrollPosition = window.scrollY;
+    
+    // Corrigir scroll no iPhone
     document.body.style.overflow = 'hidden';
+    document.body.style.position = 'fixed';
+    document.body.style.width = '100%';
+    document.body.style.top = `-${scrollPosition}px`;
     
     // Focar no modal para acessibilidade
     const modalContent = modal.querySelector('.modal-content');
-    modalContent.focus();
+    if (modalContent) {
+        modalContent.focus();
+    }
     
     // Adicionar suporte a swipe/arrastar
     adicionarSwipeSupport();
@@ -848,7 +919,15 @@ function fecharModal(modalId) {
     const modal = document.getElementById(modalId);
     modal.classList.remove('active');
     modal.setAttribute('aria-hidden', 'true');
+    
+    // Restaurar scroll para a posição salva
     document.body.style.overflow = '';
+    document.body.style.position = '';
+    document.body.style.width = '';
+    document.body.style.top = '';
+    
+    // Restaurar para a posição exata onde estava
+    window.scrollTo(0, scrollPosition);
     
     // Remover foco do modal
     if (document.activeElement && modal.contains(document.activeElement)) {
@@ -894,4 +973,6 @@ document.addEventListener('DOMContentLoaded', function() {
             abrirModalPasso(index + 1);
         });
     });
+
+
 });
