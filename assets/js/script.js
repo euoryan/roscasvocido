@@ -542,11 +542,14 @@ function atualizarPasso() {
         // Adicionar comportamento de conclusão
         btnProx.addEventListener('click', function() {
             console.log('Botão concluir clicado - disparando confete');
-            mostrarConfete();
+            
+            // Fechar modal ANTES do confete para vê-lo
+            fecharModal('modalPasso');
+            
+            // Disparar confete após fechar
             setTimeout(() => {
-                console.log('Fechando modal');
-                fecharModal('modalPasso');
-            }, 800);
+                mostrarConfete();
+            }, 100);
         });
     } else {
         // Outros passos: mostrar botões normais
@@ -575,40 +578,42 @@ function atualizarPasso() {
 // Efeito de confete
 function mostrarConfete() {
     console.log('Função mostrarConfete chamada');
-    const cores = ['#3b401b', '#C17624', '#9E6132'];
-    const quantidade = 20;
+    const cores = ['#C17624', '#9E6132', '#3b401b', '#f4a460'];
+    const quantidade = 25;
     
     // Criar confetes de forma mais visível
     for (let i = 0; i < quantidade; i++) {
-        const confete = document.createElement('div');
-        confete.className = 'confetti';
-        
-        // Posição inicial aleatória no topo da tela
-        const posX = Math.random() * window.innerWidth;
-        confete.style.left = posX + 'px';
-        confete.style.top = '-20px';
-        
-        // Estilo do confete
-        confete.style.background = cores[Math.floor(Math.random() * cores.length)];
-        confete.style.width = (Math.random() * 8 + 4) + 'px'; // 4-12px
-        confete.style.height = (Math.random() * 8 + 4) + 'px';
-        confete.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
-        
-        // Animação
-        const duracao = Math.random() * 1 + 1.5; // 1.5-2.5s
-        const delay = Math.random() * 0.3; // 0-0.3s
-        confete.style.animation = `confetti-fall ${duracao}s ease-out ${delay}s forwards`;
-        
-        document.body.appendChild(confete);
-        console.log('Confete criado:', i + 1);
-        
-        // Remover após animação completa
         setTimeout(() => {
-            confete.remove();
-        }, (duracao + delay) * 1000 + 100);
+            const confete = document.createElement('div');
+            confete.className = 'confetti';
+            
+            // Posição inicial aleatória no topo da tela
+            const posX = Math.random() * window.innerWidth;
+            confete.style.left = posX + 'px';
+            confete.style.top = '0px';
+            
+            // Estilo do confete - MAIS VISÍVEL
+            confete.style.background = cores[Math.floor(Math.random() * cores.length)];
+            confete.style.width = (Math.random() * 10 + 6) + 'px'; // 6-16px (maior)
+            confete.style.height = (Math.random() * 10 + 6) + 'px';
+            confete.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+            confete.style.opacity = '0.85'; // Mais visível
+            
+            // Animação
+            const duracao = Math.random() * 1.5 + 2; // 2-3.5s (mais lento para ver melhor)
+            confete.style.animation = `confetti-fall ${duracao}s ease-out forwards`;
+            
+            document.body.appendChild(confete);
+            console.log('Confete', i + 1, 'adicionado ao DOM em:', confete.style.left);
+            
+            // Remover após animação completa
+            setTimeout(() => {
+                confete.remove();
+            }, duracao * 1000 + 200);
+        }, i * 30); // Delay escalonado de 30ms entre cada confete
     }
     
-    console.log(quantidade + ' confetes criados!');
+    console.log('Processo de criação de', quantidade, 'confetes iniciado!');
     
     // Haptic feedback suave
     if (navigator.vibrate) {
