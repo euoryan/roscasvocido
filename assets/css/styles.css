@@ -110,17 +110,17 @@ body {
 .menu-toggle {
     display: none;
     flex-direction: column;
-    gap: 4px;
+    gap: 3.5px;
     background: none;
     border: none;
     cursor: pointer;
-    padding: 8px;
+    padding: 6px;
     z-index: 1001;
     position: relative;
 }
 
 .menu-toggle span {
-    width: 22px;
+    width: 20px;
     height: 2px;
     background: var(--primary-color);
     border-radius: 1px;
@@ -176,27 +176,27 @@ body {
 .btn-hero-main {
     display: inline-flex;
     align-items: center;
-    gap: 1rem;
-    background: linear-gradient(135deg, var(--secondary-color) 0%, #d4861f 100%);
+    gap: 0.75rem;
+    background: var(--secondary-color);
     color: white;
-    padding: 1.15rem 2.25rem;
-    border-radius: 12px;
-    font-size: 1.05rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-size: 0.95rem;
     text-decoration: none;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 16px rgba(193, 118, 36, 0.3);
+    transition: background 0.3s ease, border-color 0.3s ease;
     border: 2px solid var(--secondary-color);
+    white-space: nowrap;
 }
 
 .btn-hero-main:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(193, 118, 36, 0.4);
-    background: linear-gradient(135deg, var(--primary-color) 0%, #4a4f1f 100%);
+    background: var(--primary-color);
     border-color: var(--primary-color);
 }
 
 .btn-hero-main svg {
     flex-shrink: 0;
+    width: 20px;
+    height: 20px;
 }
 
 .btn-hero-main span {
@@ -204,16 +204,16 @@ body {
     flex-direction: column;
     align-items: flex-start;
     text-align: left;
-    gap: 0.15rem;
+    gap: 0.1rem;
 }
 
 .btn-hero-main strong {
-    font-size: 1.05rem;
+    font-size: 0.95rem;
     font-weight: 700;
 }
 
 .btn-hero-main small {
-    font-size: 0.85rem;
+    font-size: 0.75rem;
     opacity: 0.9;
     font-weight: 400;
 }
@@ -232,25 +232,26 @@ body {
     gap: 0.5rem;
     background: white;
     color: var(--primary-color);
-    padding: 0.875rem 1.75rem;
+    padding: 0.65rem 1.25rem;
     border-radius: 8px;
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-weight: 600;
     text-decoration: none;
-    transition: all 0.3s ease;
-    border: 2px solid var(--border-color);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    border: 2px solid var(--primary-color);
+    white-space: nowrap;
 }
 
 .btn-hero-secondary:hover {
-    border-color: var(--secondary-color);
-    color: var(--secondary-color);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
 }
 
 .btn-hero-secondary svg {
     flex-shrink: 0;
+    width: 18px;
+    height: 18px;
 }
 
 /* ===== SECTION COMMON ===== */
@@ -392,16 +393,17 @@ section {
     font-size: 0.95rem;
     font-weight: 600;
     cursor: pointer;
-    transition: var(--transition);
+    transition: background 0.3s ease;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
     margin-top: 0.875rem;
+    white-space: nowrap;
 }
 
 .btn-pedir:hover {
-    background: #a85f1f;
+    background: var(--primary-color);
 }
 
 /* ===== COMO ASSAR - CARROSSEL COM ARRASTE ===== */
@@ -451,7 +453,6 @@ section {
 
 .passo-item:hover {
     border-color: var(--secondary-color);
-    transform: translateY(-4px);
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
 }
 
@@ -524,7 +525,7 @@ section {
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transition: var(--transition);
+    transition: background 0.3s ease, border-color 0.3s ease;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
@@ -702,27 +703,27 @@ section {
 .btn-copy-pix {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.45rem;
     background: var(--secondary-color);
     color: white;
     border: none;
-    padding: 0.6rem 1rem;
+    padding: 0.55rem 0.95rem;
     border-radius: 8px;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     font-weight: 600;
     cursor: pointer;
-    transition: var(--transition);
+    transition: background 0.3s ease;
     white-space: nowrap;
+}
+
+.btn-copy-pix svg {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
 }
 
 .btn-copy-pix:hover {
     background: var(--primary-color);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-
-.btn-copy-pix svg {
-    flex-shrink: 0;
 }
 
 /* ===== CONTATO / WHATSAPP ===== */
@@ -828,24 +829,25 @@ section {
     background: #25D366;
     color: white;
     border: none;
-    padding: 0.875rem 2rem;
-    border-radius: 10px;
-    font-size: 1rem;
+    padding: 0.65rem 1.25rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
     font-weight: 600;
     cursor: pointer;
-    transition: var(--transition);
+    transition: background 0.3s ease;
     text-decoration: none;
     width: 100%;
+    white-space: nowrap;
 }
 
 .btn-whatsapp-pix:hover {
     background: #128C7E;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(37, 211, 102, 0.3);
 }
 
 .btn-whatsapp-pix svg {
     flex-shrink: 0;
+    width: 18px;
+    height: 18px;
 }
 
 /* ===== LOCALIZAÇÃO / MAPS ===== */
@@ -895,20 +897,24 @@ section {
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    background: var(--primary-color);
+    background: var(--secondary-color);
     color: white;
-    padding: 0.875rem 2.5rem;
-    border-radius: 10px;
-    font-size: 1rem;
+    padding: 0.65rem 1.5rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
     font-weight: 600;
     text-decoration: none;
-    transition: var(--transition);
+    transition: background 0.3s ease;
+    white-space: nowrap;
 }
 
 .btn-maps-abrir:hover {
-    background: var(--secondary-color);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+    background: var(--primary-color);
+}
+
+.btn-maps-abrir svg {
+    width: 16px;
+    height: 16px;
 }
 
 /* ===== FOOTER ===== */
@@ -1048,27 +1054,37 @@ section {
     }
     
     .btn-hero-main {
-        padding: 1rem 2rem;
-        font-size: 1rem;
+        padding: 0.7rem 1.5rem;
+        font-size: 0.9rem;
+    }
+    
+    .btn-hero-main svg {
+        width: 18px;
+        height: 18px;
     }
     
     .btn-hero-main strong {
-        font-size: 1rem;
+        font-size: 0.9rem;
     }
     
     .btn-hero-main small {
-        font-size: 0.8rem;
+        font-size: 0.75rem;
     }
     
     .hero-actions {
         flex-direction: column;
         align-items: stretch;
-        gap: 0.875rem;
+        gap: 0.75rem;
     }
     
     .btn-hero-secondary {
-        padding: 0.75rem 1.5rem;
-        font-size: 0.95rem;
+        padding: 0.6rem 1.15rem;
+        font-size: 0.875rem;
+    }
+    
+    .btn-hero-secondary svg {
+        width: 16px;
+        height: 16px;
     }
 
     .catalogo, .videos, .pagamento, .contato, .localizacao {
@@ -1279,8 +1295,32 @@ section {
     }
     
     .btn-hero-main {
-        padding: 0.875rem 1.75rem;
-        gap: 0.875rem;
+        padding: 0.65rem 1.35rem;
+        gap: 0.65rem;
+        font-size: 0.875rem;
+    }
+    
+    .btn-hero-main svg {
+        width: 16px;
+        height: 16px;
+    }
+    
+    .btn-hero-main strong {
+        font-size: 0.875rem;
+    }
+    
+    .btn-hero-main small {
+        font-size: 0.7rem;
+    }
+    
+    .btn-hero-secondary {
+        padding: 0.55rem 1rem;
+        font-size: 0.85rem;
+    }
+    
+    .btn-hero-secondary svg {
+        width: 15px;
+        height: 15px;
     }
     
     .catalogo, .videos, .pagamento, .contato, .localizacao {
