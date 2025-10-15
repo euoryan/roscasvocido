@@ -1678,7 +1678,8 @@ section {
 @media (max-width: 768px) {
     .contato-card {
         padding: 1.75rem;
-        margin: 0 1rem;
+        margin: 0 auto;
+        max-width: calc(100% - 2rem);
     }
     
     .contato-telefone {
@@ -1987,6 +1988,12 @@ section {
     }
 
     /* Contato 480px */
+    .contato-card {
+        padding: 1.5rem;
+        margin: 0 auto;
+        max-width: calc(100% - 2rem);
+    }
+
     .whatsapp-card-pix-style {
         padding: 1.5rem 1.25rem;
     }
@@ -1997,6 +2004,13 @@ section {
 
     .whatsapp-numero-display {
         font-size: 0.95rem;
+    }
+
+    /* PIX 480px */
+    .pix-card-simples {
+        padding: 1.5rem;
+        margin: 0 auto;
+        max-width: calc(100% - 2rem);
     }
 
     /* Maps 480px */
@@ -2435,12 +2449,13 @@ section {
     .modal-image-container {
         aspect-ratio: 1;
         flex: none;
-        min-height: 250px;
+        min-height: 200px;
+        max-height: 200px;
     }
     
     .modal-info {
-        padding: 2rem;
-        gap: 1.5rem;
+        padding: 1.5rem;
+        gap: 1rem;
         flex: 1;
         min-height: auto;
     }
@@ -2493,36 +2508,37 @@ section {
     .modal-image-container {
         aspect-ratio: 1;
         flex: none;
-        min-height: 180px;
+        min-height: 150px;
+        max-height: 150px;
     }
     
     .modal-info {
-        padding: 1.5rem;
-        gap: 1.25rem;
+        padding: 1.25rem;
+        gap: 1rem;
         flex: 1;
         min-height: auto;
     }
     
     .modal-title {
-        font-size: 1.3rem;
+        font-size: 1.2rem;
     }
     
     .modal-description {
-        font-size: 0.95rem;
+        font-size: 0.875rem;
     }
     
     .modal-preco-valor {
-        font-size: 1.8rem;
+        font-size: 1.6rem;
     }
     
     .modal-preco-wrapper {
-        padding: 1rem;
+        padding: 0.875rem;
     }
     
     .btn-modal-pedir {
-        padding: 0.75rem 1.25rem;
-        font-size: 0.9rem;
-        min-height: 44px;
+        padding: 0.65rem 1rem;
+        font-size: 0.875rem;
+        min-height: 40px;
     }
     
     .modal-navegacao {
