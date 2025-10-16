@@ -655,11 +655,15 @@ let scrollPosition = 0;
 // Abrir modal de passo
 function abrirModalPasso(numero) {
     passoAtualIndex = numero - 1;
-    atualizarPasso();
     
     const modal = document.getElementById('modalPasso');
     modal.classList.add('active');
     modal.setAttribute('aria-hidden', 'false');
+    
+    // Aguardar o modal estar visível antes de atualizar o conteúdo
+    setTimeout(() => {
+        atualizarPasso();
+    }, 50);
     
     // Salvar posição atual do scroll
     scrollPosition = window.scrollY;
@@ -688,14 +692,27 @@ function abrirModalPasso(numero) {
 // Atualizar conteúdo do passo
 function atualizarPasso() {
     const passo = passosData[passoAtualIndex];
-    if (!passo) return;
     
-    document.getElementById('modalPassoTitulo').textContent = passo.titulo;
-    document.getElementById('modalPassoDesc').textContent = passo.descricao;
-    document.getElementById('modalPassoImg').src = passo.imagem;
-    document.getElementById('modalPassoImg').alt = passo.titulo;
-    document.getElementById('passoAtual').textContent = passo.numero;
-    document.getElementById('passoTotal').textContent = passosData.length;
+    if (!passo) {
+        console.error('Passo não encontrado para índice:', passoAtualIndex);
+        return;
+    }
+    
+    // Verificar se os elementos existem antes de tentar atualizá-los
+    const tituloEl = document.getElementById('modalPassoTitulo');
+    const descEl = document.getElementById('modalPassoDesc');
+    const imgEl = document.getElementById('modalPassoImg');
+    const passoAtualEl = document.getElementById('passoAtual');
+    const passoTotalEl = document.getElementById('passoTotal');
+    
+    if (tituloEl) tituloEl.textContent = passo.titulo;
+    if (descEl) descEl.textContent = passo.descricao;
+    if (imgEl) {
+        imgEl.src = passo.imagem;
+        imgEl.alt = passo.titulo;
+    }
+    if (passoAtualEl) passoAtualEl.textContent = passo.numero;
+    if (passoTotalEl) passoTotalEl.textContent = passosData.length;
     
     // Atualizar estado dos botões
     const btnAnterior = document.getElementById('btnPassoAnterior');
@@ -979,6 +996,16 @@ document.addEventListener('DOMContentLoaded', function() {
         let touchStartTime = 0;
         let hasMoved = false;
         
+        // Função para determinar o número do passo baseado no conteúdo
+        function getPassoNumber(element) {
+            const passoNumero = element.querySelector('.passo-numero');
+            if (passoNumero) {
+                return parseInt(passoNumero.textContent);
+            }
+            // Fallback: usar o índice + 1, mas limitado a 4
+            return Math.min(index + 1, 4);
+        }
+        
         // Touch start
         item.addEventListener('touchstart', function(e) {
             touchStartX = e.touches[0].clientX;
@@ -1008,7 +1035,8 @@ document.addEventListener('DOMContentLoaded', function() {
             if (!hasMoved && touchDuration < 300) {
                 e.preventDefault();
                 e.stopPropagation();
-                abrirModalPasso(index + 1);
+                const passoNumber = getPassoNumber(item);
+                abrirModalPasso(passoNumber);
             }
         });
         
@@ -1016,7 +1044,8 @@ document.addEventListener('DOMContentLoaded', function() {
         item.addEventListener('click', function(e) {
             // Verificar se não é touch device
             if (!('ontouchstart' in window)) {
-                abrirModalPasso(index + 1);
+                const passoNumber = getPassoNumber(item);
+                abrirModalPasso(passoNumber);
             }
         });
     });
