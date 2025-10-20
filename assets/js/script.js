@@ -139,7 +139,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // WhatsApp order function
 function pedirWhatsApp(produto, preco) {
-    const numero = '554888030687';
+    const numero = '5548988030687';
     const mensagem = `Olá! Gostaria de fazer um pedido de ${produto} (${preco}).`;
     const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
     
@@ -393,7 +393,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Copy PIX function - Feedback visual aprimorado
 function copiarPix() {
-    const chavePix = '+55 48 8803-0687';
+    const chavePix = '48988030687';
     const button = document.getElementById('btnCopyPix');
     
     if (!button) {
