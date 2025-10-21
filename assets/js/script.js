@@ -391,9 +391,11 @@ document.addEventListener('DOMContentLoaded', function() {
     smoothCarousel = new SmoothInfiniteCarousel();
 });
 
-// Copy PIX function - Feedback visual aprimorado
+// Copy PIX function - Feedback visual aprimorado - Updated 2025-01-27
 function copiarPix() {
     const chavePix = '48988030687';
+    console.log('Copiando PIX:', chavePix);
+    console.log('Valor esperado: 48988030687');
     const button = document.getElementById('btnCopyPix');
     
     if (!button) {
