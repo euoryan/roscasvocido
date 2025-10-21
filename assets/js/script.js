@@ -391,15 +391,23 @@ document.addEventListener('DOMContentLoaded', function() {
     smoothCarousel = new SmoothInfiniteCarousel();
 });
 
-// Copy PIX function - Feedback visual aprimorado - Updated 2025-01-27
+// Copy PIX function - Feedback visual aprimorado - Updated 2025-01-27 - GitHub Pages Fix
 function copiarPix() {
     const chavePix = '48988030687';
+    console.log('=== PIX COPY DEBUG ===');
     console.log('Copiando PIX:', chavePix);
     console.log('Valor esperado: 48988030687');
+    console.log('Timestamp:', new Date().toISOString());
     const button = document.getElementById('btnCopyPix');
     
     if (!button) {
         console.error('Botão de copiar não encontrado');
+        return;
+    }
+    
+    // Verificação adicional para garantir o valor correto
+    if (chavePix !== '48988030687') {
+        console.error('ERRO: Valor PIX incorreto!', chavePix);
         return;
     }
     
@@ -419,6 +427,17 @@ function copiarPix() {
         navigator.vibrate(50);
     }
 }
+
+// Função de teste para debug
+function testarPix() {
+    console.log('=== TESTE PIX ===');
+    console.log('Valor atual:', '48988030687');
+    console.log('Função copiarPix:', typeof copiarPix);
+    copiarPix();
+}
+
+// Disponibilizar função de teste globalmente
+window.testarPix = testarPix;
 
 function showCopySuccess(button) {
     // Adicionar classe de copiado
