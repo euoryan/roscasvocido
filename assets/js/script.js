@@ -151,48 +151,87 @@ function pedirWhatsApp(produto, preco) {
     window.open(url, '_blank');
 }
 
-// ===== CARROSSEL INFINITO SUAVE =====
+// ===== CARROSSEL INFINITO SUAVE E PRECISO =====
 class SmoothInfiniteCarousel {
     constructor() {
         this.carousel = document.getElementById('passosCarousel');
         if (!this.carousel) return;
         
+        // Obter slides originais
         this.originalSlides = Array.from(this.carousel.querySelectorAll('.passo-item'));
         this.totalSlides = this.originalSlides.length;
-        this.currentIndex = 0;
+        
+        // Estado do carrossel
+        this.currentIndex = 0; // Índice real (0-3)
         this.isTransitioning = false;
-        this.visibleSlides = window.innerWidth <= 768 ? 1 : 2;
-        this.totalDots = window.innerWidth <= 768 ? 4 : 2;
+        this.slideWidth = 0;
+        this.gap = 0;
+        
+        // Detectar se é mobile
+        this.isMobile = window.innerWidth <= 768;
         
         this.init();
     }
     
     init() {
-        this.cloneSlides();
+        // Limpar clones anteriores se existirem
+        this.cleanup();
+        
+        // Calcular dimensões
         this.calculateDimensions();
+        
+        // Criar clones para loop infinito
+        this.createClones();
+        
+        // Criar dots
         this.createDots();
+        
+        // Configurar event listeners
         this.setupEventListeners();
-        // Posicionar no primeiro slide real (após os clones)
-        this.setPosition(this.totalSlides, false);
-        this.updateDots();
+        
+        // Posicionar no primeiro slide real (após os clones do início)
+        this.goToSlide(0, false);
+        
+        // Atualizar UI
+        this.updateUI();
     }
     
-    cloneSlides() {
-        // Clonar slides: adicionar cópias antes e depois
-        this.originalSlides.forEach(slide => {
-            const cloneBefore = slide.cloneNode(true);
-            const cloneAfter = slide.cloneNode(true);
-            this.carousel.insertBefore(cloneBefore, this.carousel.firstChild);
-            this.carousel.appendChild(cloneAfter);
+    cleanup() {
+        // Remover todos os slides clonados
+        const allSlides = this.carousel.querySelectorAll('.passo-item');
+        allSlides.forEach((slide, index) => {
+            if (index >= this.totalSlides) {
+                slide.remove();
+            }
         });
     }
     
     calculateDimensions() {
-        const slides = this.carousel.querySelectorAll('.passo-item');
-        if (slides.length > 0) {
-            const gap = parseFloat(getComputedStyle(this.carousel).gap) || 0;
-            this.slideWidth = slides[0].offsetWidth + gap;
-        }
+        if (this.originalSlides.length === 0) return;
+        
+        // Calcular gap
+        const computedStyle = getComputedStyle(this.carousel);
+        this.gap = parseFloat(computedStyle.gap) || 0;
+        
+        // Calcular largura do slide
+        const firstSlide = this.originalSlides[0];
+        this.slideWidth = firstSlide.offsetWidth + this.gap;
+    }
+    
+    createClones() {
+        // Clonar todos os slides e adicionar no início
+        this.originalSlides.forEach((slide, index) => {
+            const clone = slide.cloneNode(true);
+            clone.classList.add('clone-start');
+            this.carousel.insertBefore(clone, this.carousel.firstChild);
+        });
+        
+        // Clonar todos os slides e adicionar no final
+        this.originalSlides.forEach((slide, index) => {
+            const clone = slide.cloneNode(true);
+            clone.classList.add('clone-end');
+            this.carousel.appendChild(clone);
+        });
     }
     
     createDots() {
@@ -201,186 +240,203 @@ class SmoothInfiniteCarousel {
         
         dotsContainer.innerHTML = '';
         
-        for (let i = 0; i < this.totalDots; i++) {
+        // Sempre criar 4 dots (um para cada passo)
+        for (let i = 0; i < this.totalSlides; i++) {
             const dot = document.createElement('span');
             dot.className = 'carousel-dot';
-            dot.setAttribute('aria-label', `Grupo ${i + 1}`);
-            dot.addEventListener('click', () => this.goToGroup(i));
+            dot.setAttribute('aria-label', `Ir para passo ${i + 1}`);
+            dot.addEventListener('click', () => this.goToSlide(i, true));
             dotsContainer.appendChild(dot);
         }
     }
     
     setupEventListeners() {
+        // Botões de navegação
         const prevBtn = document.querySelector('.carousel-nav-prev');
         const nextBtn = document.querySelector('.carousel-nav-next');
         
-        if (prevBtn) prevBtn.addEventListener('click', () => this.navigate(-1));
-        if (nextBtn) nextBtn.addEventListener('click', () => this.navigate(1));
+        if (prevBtn) {
+            prevBtn.addEventListener('click', () => this.navigate(-1));
+        }
         
-        // Listener para detectar fim da transição
-        this.carousel.addEventListener('scrollend', () => this.handleScrollEnd());
+        if (nextBtn) {
+            nextBtn.addEventListener('click', () => this.navigate(1));
+        }
         
-        // Fallback para navegadores sem scrollend
+        // Detectar fim do scroll para reposicionar
         let scrollTimeout;
+        let isUserScrolling = false;
+        
         this.carousel.addEventListener('scroll', () => {
+            if (this.isTransitioning && !isUserScrolling) return;
+            
+            isUserScrolling = true;
             clearTimeout(scrollTimeout);
             scrollTimeout = setTimeout(() => {
-                if (!this.isTransitioning) {
-                    this.handleScrollEnd();
-                }
+                this.handleScrollEnd();
+                isUserScrolling = false;
             }, 150);
         });
         
-        // Resize
+        // Suporte para scrollend (navegadores modernos)
+        if ('onscrollend' in window) {
+            this.carousel.addEventListener('scrollend', () => {
+                if (isUserScrolling) {
+                    this.handleScrollEnd();
+                    isUserScrolling = false;
+                }
+            });
+        }
+        
+        // Resize handler
+        let resizeTimeout;
         window.addEventListener('resize', () => {
-            this.visibleSlides = window.innerWidth <= 768 ? 1 : 2;
-            this.totalDots = window.innerWidth <= 768 ? 4 : 2;
-            this.calculateDimensions();
-            this.createDots();
-            this.setPosition(this.currentIndex + this.totalSlides, false);
-            this.updateDots();
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                const wasMobile = this.isMobile;
+                this.isMobile = window.innerWidth <= 768;
+                
+                if (wasMobile !== this.isMobile) {
+                    this.calculateDimensions();
+                    this.cleanup();
+                    this.createClones();
+                    this.goToSlide(this.currentIndex, false);
+                } else {
+                    this.calculateDimensions();
+                    this.goToSlide(this.currentIndex, false);
+                }
+            }, 250);
         });
     }
     
     navigate(direction) {
         if (this.isTransitioning) return;
         
-        this.isTransitioning = true;
-        
-        // Calcular próximo índice
-    if (direction === 1) {
-            this.currentIndex = (this.currentIndex + this.visibleSlides) % this.totalSlides;
-    } else {
-            this.currentIndex = (this.currentIndex - this.visibleSlides + this.totalSlides) % this.totalSlides;
-        }
-        
-        // Calcular posição atual no carrossel (com clones)
-        const currentPosition = Math.round(this.carousel.scrollLeft / this.slideWidth);
-        const targetPosition = currentPosition + (direction * this.visibleSlides);
-        
-        // Navegar com animação
-        this.setPosition(targetPosition, true);
-        
-        if (navigator.vibrate) navigator.vibrate(20);
-    }
-    
-    goToGroup(groupIndex) {
-        if (this.isTransitioning) return;
-        
-        this.isTransitioning = true;
-        
-        // Calcular índice real baseado no grupo clicado
-        let targetRealIndex;
-        if (this.totalDots === 2) {
-            // Desktop: cada grupo tem 2 slides
-            targetRealIndex = groupIndex * 2;
+        // Calcular próximo índice com loop
+        if (direction === 1) {
+            // Próximo: incrementa e volta para 0 se passar do último
+            this.currentIndex = (this.currentIndex + 1) % this.totalSlides;
         } else {
-            // Mobile: cada grupo é 1 slide
-            targetRealIndex = groupIndex;
+            // Anterior: decrementa e vai para o último se for menor que 0
+            this.currentIndex = (this.currentIndex - 1 + this.totalSlides) % this.totalSlides;
         }
         
-        // Atualizar o índice atual
-        this.currentIndex = targetRealIndex;
+        // Navegar para o slide
+        this.goToSlide(this.currentIndex, true);
         
-        // Calcular posição no carrossel incluindo os clones
-        // Precisamos ir para o slide real (não clone)
-        const targetPosition = targetRealIndex + this.totalSlides;
-        
-        // Navegar diretamente para a posição
-        this.setPosition(targetPosition, true);
-        
-        if (navigator.vibrate) navigator.vibrate(20);
+        // Haptic feedback
+        if (navigator.vibrate) {
+            navigator.vibrate(20);
+        }
     }
     
-    setPosition(index, smooth = true) {
-        const targetScroll = index * this.slideWidth;
+    goToSlide(index, smooth = true) {
+        if (this.isTransitioning && smooth) return;
         
+        // Garantir que o índice está no range válido
+        index = Math.max(0, Math.min(index, this.totalSlides - 1));
+        this.currentIndex = index;
+        
+        // Recalcular dimensões antes de navegar (importante após resize)
+        this.calculateDimensions();
+        
+        // Calcular posição: slides originais começam após os clones do início
+        // Estrutura: [clones início] [slides originais] [clones fim]
+        // Posição = índice do slide + número de slides originais (clones do início)
+        const targetPosition = (index + this.totalSlides) * this.slideWidth;
+        
+        if (smooth) {
+            this.isTransitioning = true;
+        }
+        
+        // Scroll suave ou instantâneo
         this.carousel.scrollTo({
-            left: targetScroll,
+            left: targetPosition,
             behavior: smooth ? 'smooth' : 'instant'
         });
         
-        this.updateDots();
+        // Atualizar UI imediatamente
+        this.updateUI();
+        
+        // Se não for smooth, não precisa esperar transição
+        if (!smooth) {
+            this.isTransitioning = false;
+        } else {
+            // Aguardar fim da transição
+            setTimeout(() => {
+                this.isTransitioning = false;
+            }, 500);
+        }
     }
     
     handleScrollEnd() {
-        const scrollPosition = this.carousel.scrollLeft;
-        const currentSlideIndex = Math.round(scrollPosition / this.slideWidth);
+        if (this.isTransitioning) return;
         
-        // Verificar se está nos clones e reposicionar instantaneamente
-        if (currentSlideIndex < this.totalSlides) {
-            // Está nos clones do início - pular para o final correspondente
-            const realIndex = currentSlideIndex;
-            const newPosition = realIndex + this.totalSlides;
-            this.carousel.scrollTo({
-                left: newPosition * this.slideWidth,
-                behavior: 'instant'
-            });
+        // Recalcular dimensões para garantir precisão
+        this.calculateDimensions();
+        
+        const scrollLeft = this.carousel.scrollLeft;
+        
+        // Calcular índice do slide atual baseado na posição de scroll
+        // Usar Math.round para pegar o slide mais próximo
+        const slideIndex = Math.round(scrollLeft / this.slideWidth);
+        
+        // Verificar se está nos clones do início (índices 0 a totalSlides-1)
+        if (slideIndex < this.totalSlides) {
+            // Está nos clones do início, pular para o slide real correspondente no final
+            const realIndex = slideIndex;
+            const newPosition = (realIndex + this.totalSlides * 2) * this.slideWidth;
+            
+            // Reposicionar instantaneamente sem animação
+            this.carousel.style.scrollBehavior = 'auto';
+            this.carousel.scrollLeft = newPosition;
+            this.carousel.style.scrollBehavior = '';
+            
             this.currentIndex = realIndex;
-        } else if (currentSlideIndex >= this.totalSlides * 2) {
-            // Está nos clones do fim - pular para o início correspondente
-            const realIndex = currentSlideIndex - (this.totalSlides * 2);
-            const newPosition = realIndex + this.totalSlides;
-            this.carousel.scrollTo({
-                left: newPosition * this.slideWidth,
-                behavior: 'instant'
-            });
-            this.currentIndex = realIndex;
-        } else {
-            // Está nos slides reais - calcular índice correto
-            this.currentIndex = currentSlideIndex - this.totalSlides;
+            this.updateUI();
+            this.isTransitioning = false;
+            return;
         }
         
-        // Garantir que o índice esteja dentro do range correto
-        this.currentIndex = Math.max(0, Math.min(this.currentIndex, this.totalSlides - 1));
+        // Verificar se está nos clones do final (índices >= totalSlides * 2)
+        if (slideIndex >= this.totalSlides * 2) {
+            // Está nos clones do final, pular para o slide real correspondente no início
+            const realIndex = slideIndex - (this.totalSlides * 2);
+            const newPosition = (realIndex + this.totalSlides) * this.slideWidth;
+            
+            // Reposicionar instantaneamente sem animação
+            this.carousel.style.scrollBehavior = 'auto';
+            this.carousel.scrollLeft = newPosition;
+            this.carousel.style.scrollBehavior = '';
+            
+            this.currentIndex = realIndex;
+            this.updateUI();
+            this.isTransitioning = false;
+            return;
+        }
+        
+        // Está nos slides reais (índices totalSlides a totalSlides*2-1)
+        // Calcular índice real subtraindo os clones do início
+        const realIndex = slideIndex - this.totalSlides;
+        this.currentIndex = Math.max(0, Math.min(realIndex, this.totalSlides - 1));
+        this.updateUI();
         
         this.isTransitioning = false;
-        this.updateDots();
     }
     
-    updateDots() {
-        const dots = document.querySelectorAll('.carousel-dot');
-        
-        // Garantir que currentIndex está no range correto
-        const safeIndex = Math.max(0, Math.min(this.currentIndex, this.totalSlides - 1));
-        
-        let activeGroupIndex;
-        if (this.totalDots === 2) {
-            // Desktop: cada grupo representa 2 slides
-            activeGroupIndex = Math.floor(safeIndex / 2);
-                } else {
-            // Mobile: cada grupo representa 1 slide
-            activeGroupIndex = safeIndex;
-        }
-        
-        // Garantir que activeGroupIndex está no range dos dots
-        activeGroupIndex = Math.max(0, Math.min(activeGroupIndex, this.totalDots - 1));
-        
-        dots.forEach((dot, index) => {
-            dot.classList.toggle('active', index === activeGroupIndex);
-        });
-        
-        // Atualizar contador
-        this.updateCounter();
-    }
-    
-    updateCounter() {
+    updateUI() {
+        // Atualizar contador - sempre mostra o passo exato (1-4)
         const counter = document.getElementById('carouselCounter');
         if (counter) {
-            // Garantir que o display está no range correto
-            const safeIndex = Math.max(0, Math.min(this.currentIndex, this.totalSlides - 1));
-            
-            if (this.visibleSlides === 2) {
-                // Desktop: mostra 2 por vez, então conta em grupos
-                const currentGroup = Math.floor(safeIndex / 2) + 1;
-                const totalGroups = Math.ceil(this.totalSlides / 2);
-                counter.textContent = `${currentGroup} / ${totalGroups}`;
-            } else {
-                // Mobile: mostra 1 por vez
-                const currentDisplay = safeIndex + 1;
-                counter.textContent = `${currentDisplay} / ${this.totalSlides}`;
-            }
+            const passoAtual = this.currentIndex + 1;
+            counter.textContent = `${passoAtual} / ${this.totalSlides}`;
         }
+        
+        // Atualizar dots
+        const dots = document.querySelectorAll('.carousel-dot');
+        dots.forEach((dot, index) => {
+            dot.classList.toggle('active', index === this.currentIndex);
+        });
     }
 }
 
