@@ -140,7 +140,7 @@ document.addEventListener('DOMContentLoaded', function() {
 // WhatsApp order function
 function pedirWhatsApp(produto, preco) {
     const numero = '5548988030687';
-    const mensagem = `Olá! Gostaria de fazer um pedido de ${produto} (${preco}).`;
+    const mensagem = `Olá Cidiu, quero fazer um pedido de roscas disponivel no Cardápio do site`;
     const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
     
     // Haptic feedback on mobile
