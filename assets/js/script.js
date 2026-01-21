@@ -656,8 +656,8 @@ const produtosData = {
 const passosData = [
     {
         numero: 1,
-        titulo: 'Aqueça o Forno a 200°C',
-        descricao: 'Coloque a rosca no forno ou air fryer pré-aquecido a 200°C. Importante: mantenha o papel manteiga embaixo da rosca para evitar que grude e facilitar o manuseio.',
+        titulo: 'Aqueça o Forno a 180°C',
+        descricao: 'Coloque a rosca no forno ou air fryer pré-aquecido a 180°C. Importante: mantenha o papel manteiga embaixo da rosca para evitar que grude e facilitar o manuseio.',
         imagem: 'assets/images/como-assar/passo1.png'
     },
     {
