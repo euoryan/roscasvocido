@@ -139,45 +139,65 @@ body {
 
 .nav-link {
     text-decoration: none;
-    color: var(--text-dark);
+    color: var(--text-light);
     font-weight: 500;
     font-size: 0.875rem;
     padding: 0.5rem 0.875rem;
-    transition: var(--transition);
+    transition: color 0.3s ease;
     letter-spacing: 0.01em;
-    border-radius: 0;
     position: relative;
-    background: transparent;
     white-space: nowrap;
+    display: inline-block;
+    line-height: 1.5;
 }
 
-.nav-link:hover {
+/* Linha indicadora - sempre presente para evitar layout shift */
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0.875rem;
+    right: 0.875rem;
+    height: 1.5px;
+    background: transparent;
+    transition: background-color 0.3s ease;
+    pointer-events: none;
+}
+
+/* Hover Desktop - Simples e elegante: apenas mudança de cor e linha */
+.nav-link:hover:not(.active) {
     color: var(--secondary-color);
 }
 
-.nav-link:hover::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0.875rem;
-    right: 0.875rem;
-    height: 1.5px;
+.nav-link:hover:not(.active)::after {
     background: var(--secondary-color);
 }
 
+/* Active State - Cor primária e linha mais visível */
 .nav-link.active {
     color: var(--primary-color);
-    font-weight: 600;
+    font-weight: 500;
 }
 
 .nav-link.active::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0.875rem;
-    right: 0.875rem;
-    height: 1.5px;
     background: var(--primary-color);
+    height: 2px;
+}
+
+/* Hover no link ativo mantém cor primária */
+.nav-link.active:hover {
+    color: var(--primary-color);
+}
+
+.nav-link.active:hover::after {
+    background: var(--primary-color);
+}
+
+/* Focus para acessibilidade */
+.nav-link:focus-visible {
+    outline: 2px solid var(--secondary-color);
+    outline-offset: 4px;
+    border-radius: 2px;
 }
 
 .menu-toggle {
@@ -185,44 +205,87 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 5px;
-    background: none;
+    gap: 6px;
+    background: transparent;
     border: none;
     cursor: pointer;
-    padding: 0.5rem;
+    padding: 0.625rem;
     z-index: 1001;
     position: relative;
-    width: 44px;
-    height: 44px;
-    border-radius: var(--radius-sm);
-    transition: var(--transition);
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-md);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
 }
 
-.menu-toggle:hover {
-    background: rgba(59, 64, 27, 0.08);
+/* Desktop Hover - Subtle and professional */
+@media (hover: hover) and (pointer: fine) {
+    .menu-toggle:hover {
+        background: rgba(59, 64, 27, 0.06);
+        transform: scale(1.05);
+    }
+    
+    .menu-toggle:hover span {
+        background: var(--secondary-color);
+    }
+    
+    .menu-toggle:active {
+        transform: scale(0.95);
+        background: rgba(59, 64, 27, 0.1);
+    }
+}
+
+/* Mobile Touch States */
+@media (hover: none) and (pointer: coarse) {
+    .menu-toggle:active {
+        background: rgba(59, 64, 27, 0.1);
+        transform: scale(0.95);
+    }
+}
+
+.menu-toggle:focus-visible {
+    outline: 2px solid var(--secondary-color);
+    outline-offset: 2px;
 }
 
 .menu-toggle span {
     display: block;
-    width: 24px;
+    width: 26px;
     height: 2.5px;
     background: var(--primary-color);
     border-radius: 2px;
-    transition: var(--transition);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     transform-origin: center;
+    position: relative;
+}
+
+/* Active State - Smooth X transformation */
+.menu-toggle.active {
+    background: rgba(59, 64, 27, 0.08);
 }
 
 .menu-toggle.active span:nth-child(1) {
-    transform: translateY(7px) rotate(45deg);
+    transform: translateY(8.5px) rotate(45deg);
+    background: var(--secondary-color);
 }
 
 .menu-toggle.active span:nth-child(2) {
     opacity: 0;
     transform: scaleX(0);
+    width: 0;
 }
 
 .menu-toggle.active span:nth-child(3) {
-    transform: translateY(-7px) rotate(-45deg);
+    transform: translateY(-8.5px) rotate(-45deg);
+    background: var(--secondary-color);
+}
+
+/* Focus state for accessibility */
+.menu-toggle.active:focus-visible {
+    outline-color: var(--secondary-color);
 }
 
 /* ===== HERO ===== */
@@ -1205,6 +1268,23 @@ section {
 
     .menu-toggle {
         display: flex !important;
+        width: 48px;
+        height: 48px;
+        gap: 6px;
+        padding: 0.625rem;
+    }
+    
+    .menu-toggle span {
+        width: 26px;
+        height: 2.5px;
+    }
+    
+    .menu-toggle.active span:nth-child(1) {
+        transform: translateY(8.5px) rotate(45deg);
+    }
+    
+    .menu-toggle.active span:nth-child(3) {
+        transform: translateY(-8.5px) rotate(-45deg);
     }
 
     .nav {
@@ -1214,16 +1294,17 @@ section {
         right: 0;
         background: rgba(255, 255, 255, 0.98);
         backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
         border-bottom: 1px solid var(--border-light);
         transform: translateY(-100%);
         opacity: 0;
         visibility: hidden;
-        transition: var(--transition);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         flex-direction: column;
         align-items: stretch;
         padding: 0.5rem 0;
         gap: 0.125rem;
-        box-shadow: var(--shadow-md);
+        box-shadow: 0 4px 12px rgba(59, 64, 27, 0.12);
         z-index: 1000;
         border-radius: 0 0 var(--radius-md) var(--radius-md);
     }
@@ -1236,26 +1317,34 @@ section {
 
     .nav-link {
         text-align: left;
-        border-radius: 0;
+        border-radius: var(--radius-md);
         font-size: 0.875rem;
         border: none;
-        transition: var(--transition);
+        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
         font-weight: 500;
         display: block;
         width: calc(100% - 2rem);
-        margin: 0 1rem;
+        margin: 0 1rem 0.125rem 1rem;
         background: transparent;
         position: relative;
-        padding: 0.625rem 0.875rem;
+        padding: 0.75rem 1rem;
+        -webkit-tap-highlight-color: transparent;
     }
     
     .nav-link:last-child {
         border-bottom: none;
+        margin-bottom: 0;
+    }
+    
+    .nav-link:active {
+        background: rgba(193, 118, 36, 0.1);
+        transform: scale(0.98);
     }
     
     .nav-link:hover {
         background: rgba(193, 118, 36, 0.06);
         color: var(--secondary-color);
+        transform: translateX(4px);
     }
     
     .nav-link:hover::after {
