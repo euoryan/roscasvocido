@@ -499,13 +499,8 @@ function showCopySuccess(button) {
     // Adicionar classe de copiado
     button.classList.add('copied');
     
-    // Mudar conteúdo do botão
-    const buttonText = button.querySelector('.btn-copy-text');
+    // Mudar ícone do botão
     const buttonIcon = button.querySelector('svg path');
-    
-    if (buttonText) {
-        buttonText.textContent = 'Copiado!';
-    }
     
     if (buttonIcon) {
         buttonIcon.setAttribute('d', 'M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z');
@@ -514,9 +509,6 @@ function showCopySuccess(button) {
     // Reverter após 2 segundos
     setTimeout(() => {
         button.classList.remove('copied');
-        if (buttonText) {
-            buttonText.textContent = 'Copiar';
-        }
         if (buttonIcon) {
             buttonIcon.setAttribute('d', 'M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z');
         }
@@ -542,16 +534,6 @@ function fallbackCopyTextToClipboard(text, button) {
         }
     } catch (err) {
         console.error('Erro ao copiar:', err);
-        if (button) {
-            const buttonText = button.querySelector('.btn-copy-text');
-            if (buttonText) {
-                const originalText = buttonText.textContent;
-                buttonText.textContent = 'Erro';
-                setTimeout(() => {
-                    buttonText.textContent = originalText;
-                }, 2000);
-            }
-        }
     }
     
     document.body.removeChild(textArea);
