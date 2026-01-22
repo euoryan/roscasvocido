@@ -1008,6 +1008,33 @@ function adicionarSwipeSupport() {
     });
 }
 
+// Abrir modal QR Code
+function abrirModalQR() {
+    const modal = document.getElementById('modalQR');
+    modal.classList.add('active');
+    modal.setAttribute('aria-hidden', 'false');
+    
+    // Salvar posição atual do scroll
+    scrollPosition = window.scrollY;
+    
+    // Corrigir scroll no iPhone
+    document.body.style.overflow = 'hidden';
+    document.body.style.position = 'fixed';
+    document.body.style.width = '100%';
+    document.body.style.top = `-${scrollPosition}px`;
+    
+    // Focar no modal para acessibilidade
+    const modalContent = modal.querySelector('.modal-content');
+    if (modalContent) {
+        modalContent.focus();
+    }
+    
+    // Haptic feedback
+    if (navigator.vibrate) {
+        navigator.vibrate(30);
+    }
+}
+
 // Fechar modal
 function fecharModal(modalId) {
     const modal = document.getElementById(modalId);

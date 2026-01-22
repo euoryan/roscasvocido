@@ -362,19 +362,19 @@ body {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 0.5rem;
+    gap: 0.375rem;
     background: var(--primary-color);
     color: white;
-    padding: 0.75rem 1.5rem;
+    padding: 0.5rem 1rem;
     border-radius: var(--radius-md);
-    font-size: 0.875rem;
+    font-size: 0.75rem;
     font-weight: 600;
     text-decoration: none;
     transition: var(--transition);
     border: none;
     white-space: nowrap;
     flex: 1;
-    min-width: 160px;
+    min-width: 140px;
     box-shadow: var(--shadow-sm);
     letter-spacing: 0.01em;
 }
@@ -385,23 +385,23 @@ body {
 
 .btn-hero-compact svg {
     flex-shrink: 0;
-    width: 18px;
-    height: 18px;
+    width: 14px;
+    height: 14px;
 }
 
 /* ===== SECTION COMMON ===== */
 section {
-    padding: clamp(2.25rem, 4.5vw, 3rem) 0;
+    padding: 3rem 0;
 }
 
 .section-header {
     text-align: center;
-    margin-bottom: clamp(1.75rem, 3.5vw, 2.25rem);
-    padding: 0 clamp(1rem, 3vw, 1.5rem);
+    margin-bottom: 2.25rem;
+    padding: 0 1.5rem;
 }
 
 .section-title {
-    font-size: clamp(1.75rem, 4vw, 2.25rem);
+    font-size: 2rem;
     font-weight: 700;
     color: var(--primary-color);
     margin-bottom: 0.75rem;
@@ -410,7 +410,7 @@ section {
 }
 
 .section-description {
-    font-size: clamp(0.875rem, 2vw, 1rem);
+    font-size: 0.9375rem;
     color: var(--text-light);
     max-width: 600px;
     margin: 0 auto;
@@ -419,14 +419,14 @@ section {
 
 /* ===== CARDÁPIO / PRODUTOS ===== */
 .catalogo {
-    padding: clamp(2.25rem, 4.5vw, 3rem) 0;
+    padding: 3rem 0;
     background: var(--background);
 }
 
 .produtos-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
-    gap: clamp(1.5rem, 3vw, 2rem);
+    gap: 1.75rem;
     max-width: 1200px;
     margin: 0 auto;
 }
@@ -466,52 +466,52 @@ section {
 }
 
 .produto-info {
-    padding: clamp(1.25rem, 2.5vw, 1.5rem);
+    padding: 1rem 1.125rem 1.125rem;
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
+    gap: 0.5rem;
     flex-grow: 1;
 }
 
 .produto-nome {
-    font-size: clamp(1.125rem, 2.5vw, 1.375rem);
+    font-size: 1.125rem;
     font-weight: 700;
     color: var(--primary-color);
-    line-height: 1.35;
+    line-height: 1.3;
     letter-spacing: -0.02em;
 }
 
 .produto-desc {
-    font-size: clamp(0.9375rem, 2vw, 1rem);
+    font-size: 0.875rem;
     color: var(--text-light);
-    line-height: 1.65;
+    line-height: 1.5;
     flex-grow: 1;
 }
 
 .produto-preco-wrapper {
     display: flex;
     flex-direction: column;
-    gap: 0.375rem;
+    gap: 0.25rem;
     margin-top: auto;
-    padding-top: 1rem;
+    padding-top: 0.75rem;
     border-top: 1px solid var(--border-light);
 }
 
 .preco-principal {
     display: flex;
     align-items: baseline;
-    gap: 0.5rem;
+    gap: 0.375rem;
 }
 
 .produto-preco {
-    font-size: clamp(1.75rem, 3vw, 2rem);
+    font-size: 1.625rem;
     font-weight: 800;
     color: var(--secondary-color);
     letter-spacing: -0.02em;
 }
 
 .produto-un {
-    font-size: 0.875rem;
+    font-size: 0.8125rem;
     color: var(--text-muted);
 }
 
@@ -519,13 +519,13 @@ section {
 .frete-tag {
     display: flex;
     flex-direction: column;
-    gap: 0.25rem;
-    margin-top: 0.5rem;
+    gap: 0.1875rem;
+    margin-top: 0.375rem;
     align-items: flex-start;
 }
 
 .frete-text {
-    font-size: 0.75rem;
+    font-size: 0.6875rem;
     color: var(--text-muted);
     font-weight: 500;
     opacity: 0.8;
@@ -533,16 +533,16 @@ section {
 }
 
 .frete-gratis {
-    font-size: 0.7rem;
+    font-size: 0.6875rem;
     color: #25A754;
     font-weight: 600;
     background: linear-gradient(135deg, #E8F5E8, #F0F8F0);
-    padding: 0.25rem 0.5rem;
-    border-radius: 4px;
+    padding: 0.1875rem 0.4375rem;
+    border-radius: 3px;
     border: 1px solid #C8E6C9;
     text-align: left;
     line-height: 1.2;
-    box-shadow: 0 1px 2px rgba(37, 167, 84, 0.1);
+    box-shadow: 0 1px 2px rgba(37, 167, 84, 0.08);
     display: inline-block;
     width: fit-content;
 }
@@ -552,19 +552,18 @@ section {
     background: var(--primary-color);
     color: white;
     border: none;
-    padding: 0.75rem 1.25rem;
+    padding: 0.5rem 0.875rem;
     border-radius: var(--radius-md);
-    font-size: 0.875rem;
+    font-size: 0.75rem;
     font-weight: 600;
     cursor: pointer;
     transition: var(--transition);
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0.5rem;
-    margin-top: 1rem;
+    gap: 0.375rem;
+    margin-top: 0.75rem;
     white-space: nowrap;
-    min-height: 44px;
     letter-spacing: 0.01em;
     box-shadow: var(--shadow-sm);
 }
@@ -574,8 +573,8 @@ section {
 }
 
 .btn-pedir svg {
-    width: 16px;
-    height: 16px;
+    width: 12px;
+    height: 12px;
     flex-shrink: 0;
 }
 
@@ -1142,17 +1141,16 @@ section {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 0.625rem;
+    gap: 0.375rem;
     background: var(--accent-color);
     color: white;
-    padding: 0.875rem 1.75rem;
+    padding: 0.5rem 1rem;
     border-radius: var(--radius-md);
-    font-size: 0.9375rem;
+    font-size: 0.75rem;
     font-weight: 600;
     text-decoration: none;
     transition: var(--transition);
     white-space: nowrap;
-    min-height: 48px;
     box-shadow: var(--shadow-sm);
     letter-spacing: 0.01em;
 }
@@ -1162,8 +1160,8 @@ section {
 }
 
 .btn-maps-abrir svg {
-    width: 16px;
-    height: 16px;
+    width: 12px;
+    height: 12px;
     flex-shrink: 0;
 }
 
@@ -1391,35 +1389,36 @@ section {
     }
     
     .btn-hero-compact {
-        padding: 0.65rem 1rem;
-        font-size: 0.875rem;
-        min-width: 150px;
+        padding: 0.5rem 1rem;
+        font-size: 0.75rem;
+        min-width: 130px;
     }
     
     .btn-hero-compact svg {
-        width: 16px;
-        height: 16px;
+        width: 14px;
+        height: 14px;
     }
 
     .catalogo, .videos, .pagamento, .contato, .localizacao {
-        padding: clamp(2rem, 4vw, 2.75rem) 0;
+        padding: 2.5rem 0;
     }
 
     .section-header {
-        margin-bottom: clamp(1.5rem, 3vw, 2rem);
+        margin-bottom: 1.75rem;
+        padding: 0 1rem;
     }
     
     .section-title {
-        font-size: clamp(1.75rem, 4vw, 2.25rem);
+        font-size: 1.625rem;
     }
     
     .section-description {
-        font-size: clamp(0.9375rem, 2vw, 1.0625rem);
+        font-size: 0.875rem;
     }
 
     .produtos-grid {
         grid-template-columns: 1fr;
-        gap: 2rem;
+        gap: 1.5rem;
     }
 
     /* Carrossel mobile */
@@ -1670,8 +1669,8 @@ section {
     }
     
     .btn-hero-compact {
-        padding: 0.625rem 1rem;
-        font-size: 0.875rem;
+        padding: 0.5rem 1rem;
+        font-size: 0.75rem;
         flex: none;
         width: 100%;
         max-width: 100%;
@@ -1679,8 +1678,8 @@ section {
     }
     
     .btn-hero-compact svg {
-        width: 16px;
-        height: 16px;
+        width: 14px;
+        height: 14px;
     }
     
      .catalogo, .videos, .pagamento, .contato, .localizacao {
@@ -1799,7 +1798,7 @@ section {
 .contato-card {
     background: white;
     border-radius: var(--radius-lg);
-    padding: clamp(1.5rem, 3vw, 2rem);
+    padding: 2rem;
     box-shadow: var(--shadow-sm);
     max-width: 700px;
     width: 100%;
@@ -1819,8 +1818,12 @@ section {
     gap: 1.5rem;
 }
 
+.contato-header {
+    text-align: left;
+}
+
 .contato-header h3 {
-    font-size: clamp(1.125rem, 2.5vw, 1.25rem);
+    font-size: 1.25rem;
     font-weight: 700;
     color: var(--primary-color);
     margin: 0 0 0.375rem 0;
@@ -1830,31 +1833,24 @@ section {
 .contato-header p {
     margin: 0;
     color: var(--text-muted);
-    font-size: clamp(0.875rem, 2vw, 0.9375rem);
+    font-size: 0.875rem;
 }
 
 .contato-body {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 0.875rem;
 }
 
 .contato-telefone {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 0.75rem;
-    padding: 0.875rem 1rem;
-    background: var(--background-light);
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    background: rgba(59, 64, 27, 0.04);
     border-radius: var(--radius-md);
-    border: 1px solid var(--border-color);
-}
-
-.contato-telefone-info {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    flex: 1;
+    border: 1px solid rgba(59, 64, 27, 0.1);
 }
 
 .contato-telefone svg {
@@ -1864,7 +1860,7 @@ section {
 
 .contato-numero {
     font-family: 'Courier New', monospace;
-    font-size: 1.1rem;
+    font-size: 0.9375rem;
     font-weight: 600;
     color: var(--text-dark);
 }
@@ -1873,23 +1869,26 @@ section {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 0.5rem;
+    gap: 0.375rem;
     background: var(--secondary-color);
     color: white;
-    padding: 0.75rem 1.25rem;
+    padding: 0.4375rem 0.875rem;
     border-radius: var(--radius-md);
     text-decoration: none;
     font-weight: 600;
-    font-size: 0.875rem;
+    font-size: 0.75rem;
     transition: var(--transition);
     border: none;
     white-space: nowrap;
     box-shadow: var(--shadow-sm);
+    width: fit-content;
+    align-self: center;
 }
 
 .btn-whatsapp-simples svg {
     fill: white;
     color: white;
+    flex-shrink: 0;
 }
 
 .btn-whatsapp-simples:hover {
@@ -1899,28 +1898,26 @@ section {
 /* Responsividade para contato */
 @media (max-width: 768px) {
     .contato-card {
-        padding: 1.75rem;
+        padding: 1.5rem;
         margin: 0 auto;
         max-width: calc(100% - 2rem);
     }
     
-    .contato-telefone {
-        flex-direction: column;
-        gap: 1rem;
+    .contato-header h3 {
+        font-size: 1.125rem;
     }
-
-    .contato-telefone-info {
-        justify-content: center;
+    
+    .contato-header p {
+        font-size: 0.875rem;
     }
 
     .contato-numero {
-        font-size: 1rem;
+        font-size: 0.875rem;
     }
 
     .btn-whatsapp-simples {
         width: 100%;
-        padding: 0.75rem 1.5rem;
-        font-size: 0.95rem;
+        align-self: stretch;
     }
 }
 
@@ -1934,7 +1931,7 @@ section {
 .pix-card-simples {
     background: white;
     border-radius: var(--radius-lg);
-    padding: clamp(1.5rem, 3vw, 2rem);
+    padding: 2rem;
     box-shadow: var(--shadow-sm);
     max-width: 700px;
     width: 100%;
@@ -1948,8 +1945,13 @@ section {
     background-color: rgba(193, 118, 36, 0.02);
 }
 
+.pix-header-simples {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
 .pix-header-simples h3 {
-    font-size: clamp(1.125rem, 2.5vw, 1.25rem);
+    font-size: 1.25rem;
     font-weight: 700;
     color: var(--primary-color);
     margin: 0 0 0.375rem 0;
@@ -1957,33 +1959,126 @@ section {
 }
 
 .pix-header-simples p {
-    margin: 0 0 1.25rem 0;
+    margin: 0;
     color: var(--text-muted);
-    font-size: clamp(0.875rem, 2vw, 0.9375rem);
+    font-size: 0.875rem;
 }
 
 .pix-content-simples {
     display: flex;
-    gap: clamp(1.25rem, 3vw, 1.75rem);
-    align-items: flex-start;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.pix-qr-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    width: 100%;
 }
 
 .pix-qr-simples {
-    flex-shrink: 0;
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.pix-qr-simples:hover {
+    transform: scale(1.03);
 }
 
 .pix-qr-image {
-    width: 160px;
-    height: 160px;
+    width: 180px;
+    height: 180px;
     border-radius: 8px;
     border: 1px solid var(--border-light);
+    display: block;
+    transition: box-shadow 0.3s ease;
+}
+
+.pix-qr-simples:hover .pix-qr-image {
+    box-shadow: 0 4px 12px rgba(59, 64, 27, 0.15);
+}
+
+.pix-qr-hint {
+    font-size: 0.6875rem;
+    color: var(--text-muted);
+    opacity: 0.7;
+}
+
+.pix-qr-text {
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+    text-align: center;
+    margin: 0;
+}
+
+.pix-divider {
+    position: relative;
+    text-align: center;
+    width: 100%;
+    margin: 0.5rem 0;
+}
+
+.pix-divider::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--border-color);
+}
+
+.pix-divider span {
+    position: relative;
+    background: white;
+    padding: 0 1rem;
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
 }
 
 .pix-info-section {
-    flex: 1;
+    width: 100%;
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    max-width: 500px;
+}
+
+.pix-titular {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    background: rgba(59, 64, 27, 0.04);
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(59, 64, 27, 0.1);
+}
+
+.pix-titular-label {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.pix-titular-nome {
+    font-size: 0.9375rem;
+    color: var(--primary-color);
+    font-weight: 600;
+    letter-spacing: -0.01em;
 }
 
 .pix-key-simples {
@@ -1991,8 +2086,11 @@ section {
 }
 
 .pix-key-label {
-    font-size: 0.9rem;
+    font-size: 0.75rem;
     color: var(--text-muted);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
     margin-bottom: 0.5rem;
     display: block;
 }
@@ -2000,11 +2098,11 @@ section {
 .pix-key-box-simples {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
+    gap: 0.625rem;
     background: var(--background-light);
     border: 1px solid var(--border-color);
-    border-radius: 8px;
-    padding: 0.75rem;
+    border-radius: var(--radius-md);
+    padding: 0.75rem 1rem;
     transition: var(--transition);
 }
 
@@ -2015,7 +2113,7 @@ section {
 .pix-key-text {
     flex: 1;
     font-family: 'Courier New', monospace;
-    font-size: 1rem;
+    font-size: 0.9375rem;
     font-weight: 600;
     color: var(--text-dark);
     background: none;
@@ -2027,16 +2125,17 @@ section {
     background: var(--secondary-color);
     color: white;
     border: none;
-    border-radius: var(--radius-md);
-    padding: 0.625rem 1rem;
+    border-radius: var(--radius-sm);
+    padding: 0.375rem 0.625rem;
     cursor: pointer;
     transition: var(--transition);
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.25rem;
     font-weight: 600;
-    font-size: 0.875rem;
+    font-size: 0.6875rem;
     box-shadow: var(--shadow-sm);
+    white-space: nowrap;
 }
 
 .btn-copy-pix-simples:hover {
@@ -2047,89 +2146,105 @@ section {
     background: var(--primary-color);
 }
 
+.btn-copy-pix-simples svg {
+    width: 12px;
+    height: 12px;
+    flex-shrink: 0;
+}
+
 .pix-instruction {
     width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 .btn-whatsapp-pix {
-    background: var(--background-light);
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-md);
-    padding: 0.875rem 1rem;
+    background: var(--secondary-color);
+    color: white;
+    border: none;
+    border-radius: var(--radius-sm);
+    padding: 0.4375rem 0.75rem;
     text-decoration: none;
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
+    justify-content: center;
+    gap: 0.375rem;
     transition: var(--transition);
-    width: 100%;
+    width: fit-content;
     cursor: pointer;
+    font-weight: 600;
+    font-size: 0.6875rem;
+    box-shadow: var(--shadow-sm);
 }
 
 .btn-whatsapp-pix:hover {
-    border-color: var(--secondary-color);
-    background: rgba(193, 118, 36, 0.04);
-}
-
-.btn-whatsapp-pix p {
-    margin: 0;
-    color: var(--text-muted);
-    font-size: 0.9rem;
-    flex: 1;
+    background: var(--primary-color);
 }
 
 .btn-whatsapp-pix svg {
-    width: 16px;
-    height: 16px;
-    color: var(--secondary-color);
+    width: 12px;
+    height: 12px;
+    fill: white;
+    color: white;
     flex-shrink: 0;
-    transition: var(--transition);
-}
-
-.btn-whatsapp-pix:hover svg {
-    color: var(--primary-color);
 }
 
 /* Responsividade para PIX */
 @media (max-width: 768px) {
     .pix-card-simples {
-        padding: 1.75rem;
+        padding: 1.5rem;
         margin: 0 auto;
         max-width: calc(100% - 2rem);
     }
     
-    .pix-content-simples {
-        flex-direction: column;
-        gap: 1.5rem;
-        align-items: center;
+    .pix-header-simples h3 {
+        font-size: 1.125rem;
     }
     
-    .pix-qr-simples {
-        display: flex;
-        justify-content: center;
+    .pix-header-simples p {
+        font-size: 0.875rem;
+        margin-bottom: 1.25rem;
+    }
+    
+    .pix-content-simples {
+        gap: 1.25rem;
+    }
+    
+    .pix-qr-section {
+        width: 100%;
     }
     
     .pix-qr-image {
-        width: 140px;
-        height: 140px;
+        width: 160px;
+        height: 160px;
     }
     
     .pix-info-section {
         width: 100%;
+        max-width: 100%;
     }
     
-    .pix-key-text {
-        font-size: 0.95rem;
+    .pix-titular {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    
+    .pix-key-box-simples {
+        flex-direction: column;
+        gap: 0.75rem;
     }
     
     .btn-copy-pix-simples {
-        padding: 0.5rem 0.75rem;
-        font-size: 0.8rem;
+        width: 100%;
+        justify-content: center;
     }
     
-    .btn-whatsapp-pix p {
-        font-size: 0.85rem;
-        text-align: left;
+    .pix-instruction {
+        justify-content: stretch;
+    }
+    
+    .btn-whatsapp-pix {
+        width: 100%;
     }
 }
 
@@ -2503,18 +2618,17 @@ section {
     background: var(--primary-color);
     color: white;
     border: none;
-    padding: 1rem 2rem;
-    border-radius: 6px;
-    font-size: 1rem;
-    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-md);
+    font-size: 0.75rem;
+    font-weight: 600;
     cursor: pointer;
     transition: var(--transition);
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0.75rem;
+    gap: 0.375rem;
     width: 100%;
-    min-height: 48px;
 }
 
 .btn-modal-pedir:hover {
@@ -2522,8 +2636,8 @@ section {
 }
 
 .btn-modal-pedir svg {
-    width: 20px;
-    height: 20px;
+    width: 14px;
+    height: 14px;
     flex-shrink: 0;
 }
 
@@ -2539,19 +2653,18 @@ section {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0.5rem;
+    gap: 0.375rem;
     background: var(--background-light);
     color: var(--text-dark);
     border: 1px solid var(--border-color);
-    padding: 0.75rem 1.25rem;
-    border-radius: 6px;
-    font-size: 0.9rem;
+    padding: 0.5rem 0.875rem;
+    border-radius: var(--radius-md);
+    font-size: 0.75rem;
     font-weight: 500;
     cursor: pointer;
     transition: all 0.2s ease;
-    min-height: 44px;
     flex: 1;
-    max-width: 150px;
+    max-width: 140px;
 }
 
 .btn-nav-passo:hover {
@@ -2580,8 +2693,8 @@ section {
 }
 
 .btn-nav-passo svg {
-    width: 18px;
-    height: 18px;
+    width: 14px;
+    height: 14px;
     flex-shrink: 0;
 }
 
@@ -2633,6 +2746,43 @@ section {
     cursor: pointer;
 }
 
+/* Modal QR Code */
+.modal-qr {
+    max-width: 500px;
+}
+
+.modal-qr-body {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+    text-align: center;
+}
+
+.modal-qr-body h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin: 0;
+    letter-spacing: -0.01em;
+}
+
+.modal-qr-image {
+    width: 100%;
+    max-width: 350px;
+    height: auto;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-light);
+}
+
+.modal-qr-text {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    margin: 0;
+    line-height: 1.5;
+}
+
 /* Responsividade dos modais */
 @media (max-width: 768px) {
     .modal.active {
@@ -2680,9 +2830,8 @@ section {
     }
     
     .btn-modal-pedir {
-        padding: 0.875rem 1.5rem;
-        font-size: 0.95rem;
-        min-height: 44px;
+        padding: 0.5rem 1rem;
+        font-size: 0.75rem;
     }
     
     .modal-navegacao {
@@ -2690,9 +2839,8 @@ section {
     }
     
     .btn-nav-passo {
-        padding: 0.625rem 1rem;
-        font-size: 0.85rem;
-        min-height: 40px;
+        padding: 0.5rem 0.875rem;
+        font-size: 0.75rem;
     }
 }
 
@@ -2743,22 +2891,20 @@ section {
     }
     
     .btn-modal-pedir {
-        padding: 0.65rem 1rem;
-        font-size: 0.875rem;
-        min-height: 40px;
+        padding: 0.5rem 1rem;
+        font-size: 0.75rem;
     }
     
     .modal-navegacao {
         flex-direction: column;
-        gap: 0.75rem;
+        gap: 0.5rem;
     }
     
     .btn-nav-passo {
         width: 100%;
         max-width: none;
-        padding: 0.75rem 1rem;
-        font-size: 0.9rem;
-        min-height: 44px;
+        padding: 0.5rem 1rem;
+        font-size: 0.75rem;
     }
     
     .modal-close {
