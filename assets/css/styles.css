@@ -1,19 +1,39 @@
+/* ===================================================================
+   ROSCAS VO CIDO - Stylesheet
+   Design: Minimalista, Profissional, Identidade de Padaria
+   Cores: Tons claros e quentes (#3b401b, #C17624)
+   Mobile First: Otimizado para iOS e Android
+   =================================================================== */
+
 :root {
+    /* Cores principais - Identidade de Padaria */
     --primary-color: #3b401b;
     --secondary-color: #C17624;
     --accent-color: #9E6132;
+    
+    /* Textos */
     --text-dark: #2c2c2c;
     --text-light: #4a4a4a;
     --text-muted: #6b6b6b;
+    
+    /* Fundos */
     --background: #ffffff;
     --background-light: #fafafa;
     --background-dark: #f5f5f5;
+    
+    /* Bordas */
     --border-color: #e0e0e0;
     --border-light: #f0f0f0;
+    
+    /* Sombras */
     --shadow-sm: 0 1px 2px rgba(59, 64, 27, 0.06);
     --shadow-md: 0 2px 4px rgba(59, 64, 27, 0.08);
     --shadow-lg: 0 4px 8px rgba(59, 64, 27, 0.1);
+    
+    /* Transições */
     --transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    
+    /* Bordas arredondadas */
     --radius-sm: 4px;
     --radius-md: 6px;
     --radius-lg: 8px;
@@ -425,15 +445,40 @@ section {
     background: var(--background);
 }
 
-.produtos-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
-    gap: 1.75rem;
+/* Carrossel de Produtos */
+.produtos-carousel-container {
     max-width: 1200px;
     margin: 0 auto;
+    position: relative;
+    padding-top: 3rem;
+}
+
+.produtos-carousel {
+    display: flex;
+    gap: 1.5rem;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    padding: 1.5rem 0;
+    cursor: grab;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    position: relative;
+}
+
+.produtos-carousel::-webkit-scrollbar {
+    display: none;
+}
+
+.produtos-carousel:active {
+    cursor: grabbing;
 }
 
 .produto-item {
+    flex: 0 0 calc(33.333% - 1rem);
+    min-width: calc(33.333% - 1rem);
+    max-width: calc(33.333% - 1rem);
     background: white;
     border-radius: var(--radius-lg);
     overflow: hidden;
@@ -442,6 +487,18 @@ section {
     transition: var(--transition);
     display: flex;
     flex-direction: column;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    user-select: none;
+    margin: 0;
+}
+
+.produto-item:first-child {
+    margin-left: 2rem;
+}
+
+.produto-item:last-child {
+    margin-right: 2rem;
 }
 
 .produto-item:hover {
@@ -730,6 +787,17 @@ section {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     letter-spacing: 0.02em;
     box-shadow: var(--shadow-sm);
+}
+
+/* Esconder contador de produtos no desktop (mostra 3 de uma vez) */
+#produtosCounter {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    #produtosCounter {
+        display: block;
+    }
 }
 
 /* Navegação moderna e minimalista do carrossel */
@@ -1489,9 +1557,28 @@ section {
         font-size: 0.875rem;
     }
 
-    .produtos-grid {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
+    /* Carrossel de produtos mobile */
+    .produtos-carousel-container {
+        padding-top: 2.5rem;
+    }
+    
+    .produtos-carousel {
+        padding: 1.25rem 0;
+        gap: 1rem;
+    }
+
+    .produto-item {
+        flex: 0 0 calc(100% - 3rem);
+        min-width: calc(100% - 3rem);
+        max-width: calc(100% - 3rem);
+    }
+    
+    .produto-item:first-child {
+        margin-left: 1.5rem;
+    }
+    
+    .produto-item:last-child {
+        margin-right: 1.5rem;
     }
 
     /* Carrossel mobile */
@@ -1772,6 +1859,28 @@ section {
     
      .catalogo, .videos, .pagamento, .contato, .localizacao {
          padding: 2rem 0;
+     }
+     
+     .produtos-carousel-container {
+         padding-top: 2rem;
+     }
+     
+     .produtos-carousel {
+         gap: 1rem;
+     }
+     
+     .produto-item {
+         flex: 0 0 calc(100% - 2rem);
+         min-width: calc(100% - 2rem);
+         max-width: calc(100% - 2rem);
+     }
+     
+     .produto-item:first-child {
+         margin-left: 1rem;
+     }
+     
+     .produto-item:last-child {
+         margin-right: 1rem;
      }
      
      .passos-carousel-container {
@@ -3037,6 +3146,7 @@ section {
     gap: 0.75rem;
     justify-content: space-between;
     width: 100%;
+    align-items: center;
 }
 
 .btn-nav-passo {
@@ -3055,6 +3165,7 @@ section {
     transition: all 0.2s ease;
     flex: 1;
     max-width: 140px;
+    white-space: nowrap;
 }
 
 .btn-nav-passo:hover {
@@ -3225,12 +3336,16 @@ section {
     }
     
     .modal-navegacao {
-        gap: 0.5rem;
+        gap: 0.625rem;
+        justify-content: space-between;
+        flex-direction: row;
     }
     
     .btn-nav-passo {
-        padding: 0.5rem 0.875rem;
+        padding: 0.5rem 0.75rem;
         font-size: 0.75rem;
+        flex: 1;
+        max-width: 48%;
     }
 }
 
@@ -3286,15 +3401,21 @@ section {
     }
     
     .modal-navegacao {
-        flex-direction: column;
+        flex-direction: row;
         gap: 0.5rem;
+        justify-content: space-between;
     }
     
     .btn-nav-passo {
-        width: 100%;
-        max-width: none;
-        padding: 0.5rem 1rem;
-        font-size: 0.75rem;
+        flex: 1;
+        max-width: 48%;
+        padding: 0.5rem 0.75rem;
+        font-size: 0.6875rem;
+    }
+    
+    .btn-nav-passo svg {
+        width: 12px;
+        height: 12px;
     }
     
     .modal-close {
